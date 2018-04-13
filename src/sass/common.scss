@@ -1,0 +1,231 @@
+//	计算使用文字的尺寸。
+//	如果低版本浏览器无法识别rem则计算为px
+// 	p {
+// 		@include font-size(14px)
+//	}
+@function calculateRem($size) {
+  $remSize: $size / 10;
+  @return $remSize * 1rem;
+}
+@function px2rem($px){
+  @return $px / $design-width*10 + rem;
+}
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+//跨浏览器透明度设置
+// @include opacity(0.8)
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+} 
+//浏览器前缀增加 Animations 和 keyframes
+//动画调用，例如：
+//@include keyframes(slide-down) {
+//  0% { opacity: 1; }
+//  90% { opacity: 0; }
+//}
+//.element {
+//  width: 100px;
+//  height: 100px;
+//  background: black;
+//  @include animation('slide-down 5s 3');
+//} 
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes $animation-name {
+    @content;
+  }
+  @-moz-keyframes $animation-name {
+    @content;
+  }  
+  @-ms-keyframes $animation-name {
+    @content;
+  }
+  @-o-keyframes $animation-name {
+    @content;
+  }  
+  @keyframes $animation-name {
+    @content;
+  }
+}
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}  
+//Transition 前缀添加,例如：
+//a {
+//  color: gray;
+//  @include transition(color .3s ease);
+//  &:hover {
+//    color: black;
+//  }
+//} 
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+//浏览器前缀（通用）
+//例子：@include css3-prefix(transition, 0.5s);  
+@mixin css3-prefix($property, $value) {  
+    @each $prefix in -webkit-,  
+    -moz-,  
+    -ms-,  
+    -o-,  
+    '' {  
+        #{$prefix}#{$property}: $value;  
+    }  
+} 
+//省略号
+@mixin ellipsis{ 
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+//绝对居中
+@mixin positionAbsolute($width , $height){ 
+    position: absolute; 
+    left:50%; 
+    top:50%; 
+    width: $width;
+    height: $height; 
+    margin-left:-$width/2;
+    margin-top:-$height/2; 
+    z-index:9999999; 
+}
+//设置行高（通用） 
+//引用例子:@include line-height (16);  
+@mixin line-height($heightValue: 12) {  
+    line-height: $heightValue + px; //fallback for old browsers  
+    line-height: (0.125 * $heightValue) + rem;  
+} 
+//内侧阴影和外侧阴影
+//引用例子:@include box-emboss(0.8, 0.05);  
+@mixin box-emboss($opacity, $opacity2) {  
+    box-shadow: white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;  
+}
+//Retina图片
+@mixin image-2x($image, $width, $height) {  
+    @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {  
+        /* on retina, use image that's scaled by 2 */  
+        background-image: url($image);  
+        background-size: $width $height;  
+    }  
+}
+//根据DPR计算文字尺寸
+@mixin font-dpr($font-size){
+  font-size: $font-size;
+  [data-dpr="2"] & { 
+    font-size: $font-size * 2; 
+  } 
+  [data-dpr="3"] & { 
+    font-size: $font-size * 3; 
+  } 
+}
+//隐藏文字
+//引用例子：  
+//.logo{  
+//    background: url("logo.png");  
+//    height:100px;  
+//    width:200px;  
+//   @include hide-text;  
+//}  
+@mixin hide-text {  
+    overflow: hidden;  
+    text-indent: -9000px;  
+    display: block;  
+} 
+//清除浮动
+// @extend %clearfix;
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+//正三角的通用属性  
+%triangleBase {  
+    _font-size: 0;  
+    _line-height: 0;  
+    _overflow: hidden;  
+    width: 0;  
+    height: 0;
+}
+//regulaTriangle:正三角(dashed默认透明)  
+//例子：@include regulaTriangle(top,red);  
+@mixin regulaTriangle($derection:bottom, $color: #000, $width: 20px) {  
+    @extend %triangleBase;  
+    border-width: $width;  
+    //向右  
+    @if $derection==right {  
+        border-style: dashed dashed dashed solid;  
+        border-color: transparent transparent transparent $color;  
+    }  
+    //向左  
+    @if $derection==left {  
+        border-style: dashed solid dashed dashed;  
+        border-color: transparent $color transparent transparent;  
+    }  
+    //向上  
+    @if $derection==top {  
+        border-style: dashed dashed solid dashed;  
+        border-color: transparent transparent $color transparent;  
+    }  
+    //向下  
+    @if $derection==bottom {  
+        border-style: solid dashed dashed dashed;  
+        border-color: $color transparent transparent transparent;  
+    }  
+}
+//right-angledTriangle:直角三角形  
+//例子：@include right-angledTriangle(1,red);  
+@mixin right-angledTriangle ($derection:1, $color:#000, $width: 20px, $opacity:transparent, $border:dashed) {  
+    @extend %triangleBase;  
+    border-width: $width;  
+    //向右  
+    @if $derection==1 {  
+        border-style: $border dashed dashed $border;  
+        border-color: $color $opacity $opacity $color;  
+    }  
+    //向右  
+    @if $derection==2 {  
+        border-style: $border $border dashed dashed;  
+        border-color: $color $color $opacity $opacity;  
+    }  
+    //向右  
+    @if $derection==3 {  
+        border-style: dashed $border $border dashed;  
+        border-color: $opacity $color $color $opacity;  
+    }  
+    //向右  
+    @if $derection==4 {  
+        border-style: dashed dashed $border $border;  
+        border-color: $opacity $opacity $color $color;  
+    }  
+}
+//隐藏元素
+%visually-hidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+.hidden{
+    @extend %visually-hidden;
+}

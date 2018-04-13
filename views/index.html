@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--页面使用的语言环境-->
+<html lang="zh-CN">
+  <head>
+  	<meta charset="UTF-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  	<!--标准的视口设置-->
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+    <title><%= title %></title>
+    <!-- External CSS -->
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/bootstrap-validator/css/bootstrapValidator.min.css">
+	<link rel="stylesheet" href="/stylesheets/index.min.css">
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries: 这两个文件的引入是为了支持IE8下面的html5元素和媒体查询：因为在IE8下面默认不支持HTML5和媒体查询，所以需要引入两个插件-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// 如果通过file://来查看文件，那么respond.js文件不能正常工作，说明必须在http://形式下访问才有用-->
+    <!--html5shiv.min.js：为了在IE8下面支持HTML标签
+    respond.min.js：为了在IE8下面支持媒体查询-->
+    <!--[if lt IE 9]> <!--只有IE9之前才会加载这两个文件  lt:less than-->
+    <script src="/bootstrap/js/html5shiv.min.js"></script>
+    <script src="/bootstrap/js/respond.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	  <div class="container">
+		  <div class="card loginform text-white">
+		  	<div class="card-body">
+		  		<div class="card-title h3 text-center">乐享御味 OMS系统</div>
+			  	<form action="/login" method="post">
+				  <div class="form-group">
+				    <label for="email">Email:</label>
+				    <input type="email" class="form-control" id="email">
+				  </div>
+				  <div class="form-group">
+				    <label for="pwd">Password:</label>
+				    <input type="password" class="form-control" id="pwd">
+				  </div>
+				  <div class="form-check">
+				    <label class="form-check-label">
+				      <input class="form-check-input" type="checkbox">
+				      记住用户名
+				    </label>
+				  </div>
+				  <div class="form-group logincontrol">
+				  	<button type="submit" class="btn btn-primary btn-lg">登录</button>
+				  	<button type="button" class="btn btn-secondary btn-lg">忘记密码</button>
+				  </div>
+				</form>
+			</div>
+		  </div>
+	  </div>
+    <!-- JavaScript -->
+	<script src="/Jquery/jquery-3.3.1.min.js"></script>
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+	<script src="/bootstrap-validator/js/language/zh_CN.js"></script>
+  </body>
+</html>

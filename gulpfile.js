@@ -13,6 +13,10 @@ var squence = require('gulp-sequence');
 //文件合并
 var concat = require('gulp-concat');
 
+var plumber = require('gulp-plumber');
+var imagemin = require('gulp-imagemin');
+var cache = require('gulp-cache');
+
 //清理动作
 gulp.task("clean", function(){ 
     return gulp.src(['./dist/**/*.*','./public/stylesheets/**/*.css'],{read:false})
@@ -57,4 +61,17 @@ gulp.task('css', function(){
 		});
 
 	});
+});
+
+//压缩图片
+gulp.task('imagesmin', function() {
+    return gulp.src('./src/images/**/*.{png,jpg,gif}')
+    .pipe(plumber())
+    .pipe(cache(imagemin({ 
+        optimizationLevel: 3, //类型：Number  默认：3  取值范围：0-7（优化等级）  
+        progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片  
+        interlaced: true, //类型：Boolean 默认：false 隔行扫描gif进行渲染  
+        multipass: true //类型：Boolean 默认：false 多次优化svg直到完全优化 
+    }))) 
+    .pipe(gulp.dest('public/images/'));
 });

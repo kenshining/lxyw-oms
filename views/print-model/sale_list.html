@@ -10,10 +10,126 @@
     <!-- External CSS -->
 	  <link rel="stylesheet" href="/stylesheets/print-model/form.min.css">
     <![endif]-->
+    <script src="/Jquery/jquery-3.3.1.min.js"></script>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries: 这两个文件的引入是为了支持IE8下面的html5元素和媒体查询：因为在IE8下面默认不支持HTML5和媒体查询，所以需要引入两个插件-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// 如果通过file://来查看文件，那么respond.js文件不能正常工作，说明必须在http://形式下访问才有用-->
+    <!--html5shiv.min.js：为了在IE8下面支持HTML标签
+    respond.min.js：为了在IE8下面支持媒体查询-->
+    <!--[if lt IE 9]> <!--只有IE9之前才会加载这两个文件  lt:less than-->
+    <script src="/bootstrap/js/html5shiv.min.js"></script>
+    <script src="/bootstrap/js/respond.js"></script>
+    <script src="/libs/jspdf/jspdf.debug.js"></script>
+    <script src="/libs/html2canvas/html2canvas.min.js"></script>
+    <script src="/libs/barcode/jquery-barcode-2.0.1.js"></script>
+    <script type="text/javascript">
+      $(function(){
+           $(".order_id_barcode").barcode("20170309XNI3321XIIN", "code93",{barWidth:1, barHeight:40});
+      });
+    </script>
   </head>
   <body>
       <div class="form-contain">
-        fdsafdsa
+        <div class="order_id_barcode">
+          
+        </div>
+        <div class="company-title">
+          北京乐享御味贸易有限公司
+        </div>
+        <div class="item-title">
+          销售订单
+        </div>
+        <div class="sub-title">
+          销售联系人：李中星 | 联系电话：13241413155 (010)63420059 | 微信：13241413155
+        </div>
+        <div>
+          <table>
+            <tr>
+              <td colspan="9">客户名称：成龙（个人客户）</td>
+              <td colspan="5">订单编号：20170309XNI3321XIIN | 2018年10月13日</td>
+            </tr>
+            <tr>
+              <td colspan="9">采购联系人：成龙 | 电话：18611699091</td>
+              <td  colspan="5">付款方式：对公全额付款 </td>
+            </tr>
+            <tr>
+              <td colspan="9">收货信息：北京市东城区朝内大街188号 成龙 18611699091 030001</td>
+             <td colspan="5">客户收货要求：货到自提点</td>
+            </tr>
+            <tr>
+              <td colspan="9">发票寄至：北京市东城区朝内大街188号 成龙 18611699091 030001</td>
+              <td colspan="5">物流付款方式：客户自付</td>
+            </tr>
+             <tr>
+              <th>品名</th>
+              <th>参考图片</th>
+              <th>单品条码</th>
+              <th>产地</th>
+              <th>保质期</th>
+              <th>单价（元）</th>
+              <th>箱单价（元）</th>
+              <th>箱数</th>
+              <th>总价（元）</th>
+              <th>单箱重（kg）</th>
+              <th>总重（kg）</th>
+              <th>单箱体积（M3）</th>
+              <th>总体积（M3）</th>
+              <th>搭赠量</th>
+            </tr>
+            <tr>
+              <td>粉色红茶</td>
+              <td>参考图片</td>
+              <td>4923440983</td>
+              <td>日本</td>
+              <td>9个月</td>
+              <td>12</td>
+              <td>288</td>
+              <td>20</td>
+              <td>5760</td>
+              <td>13.5</td>
+              <td>270</td>
+              <td>0.0227</td>
+              <td>0.454</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td colspan="2">合计</td>
+              <td colspan="12"><b>
+                总箱数：20箱 | 
+                总重量：405KG | 
+                总体积：0.681M3 | 
+                总价：8640元
+                </b>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">注意</td>
+              <td colspan="12">
+                <b>
+                  请务必确认货品完好无损再签收，否则我司概不负责，由此带来的不便敬请谅解！
+                  如对货品有疑议，请及时与我司销售联系人联络。食品饮料品类属特殊商品，一旦签收，无法退换。
+                </b>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">备注</td>
+              <td colspan="12">
+                交货期：预计2018年4月17日发货，最终交货时间根据实际情况由卖方安排。
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="sign-company">
+          <div class="sign-float sign-seal">
+              <img src="/images/seal/lxyw-seal2.png">
+          </div>
+          <div class="sign-float sign-signature">
+            <img src="/images/seal/mingzi.png">
+          </div>
+          <div class="sign-float sign-signature">
+              北京乐享御味贸易有限公司
+          </div>
+        </div>
       </div>
   </body>
 </html>

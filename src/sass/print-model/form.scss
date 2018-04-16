@@ -1,6 +1,66 @@
+@import "../common.scss";
 html {
 	font-size: 62.5%;
 }
+body{
+	font-size:calculateRem(14);
+}
 .form-contain{
 	margin:2rem;
+}
+.form-contain .order_id_barcode{
+	position: absolute;
+	width:calculateRem(200);
+	height:calculateRem(50);
+}
+.form-contain .company-title{
+	font-size:calculateRem(24);
+	font-weight:bold;
+	text-align:center;
+}
+.form-contain .item-title{
+	font-size:calculateRem(20);
+	font-weight:bold;
+	text-align:center;
+	padding-top:calculateRem(10);
+	padding-bottom:calculateRem(10);
+}
+.form-contain .sub-title{
+	font-size:calculateRem(14);
+	text-align:center;
+}
+.form-contain table{  
+	border-collapse:collapse;  
+	border: 1px solid #000000;
+	width:100%;
+	td{
+		border-collapse:collapse;  
+		border: 1px solid #000000;
+		padding: calculateRem(6);
+	};
+	th{
+		border-collapse:collapse;  
+		border: 1px solid #000000;
+		padding: calculateRem(6);
+	};
+}
+.form-contain .sign-company{
+	text-align:right;
+	font-size:calculateRem(18);
+	font-weight:bold;
+}
+.form-contain .sign-signature{
+	bottom:calculateRem(100);
+	z-index:99;
+}
+.form-contain .sign-seal{
+	bottom:calculateRem(0);
+	z-index:90;
+}
+.form-contain .sign-float{
+	position: relative;
+	right: calculateRem(50);
+}
+.form-contain .sign-float img{
+	width: calculateRem(120);
 }

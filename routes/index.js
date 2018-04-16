@@ -25,7 +25,7 @@ module.exports = function(app,logger){
 	  res.render('main', { title: 'Express' });
 	});
 
-	app.get('/print-model/form', function(req, res, next) {
+	app.get('/print-model/sale_list', function(req, res, next) {
 	  res.render('print-model/sale_list', { title: 'Express' });
 	});
 

@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "async": "^2.6.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "body-parser": "^1.13.3",
@@ -15,6 +16,7 @@
     "ejs": "^2.3.4",
     "express": "^4.13.4",
     "jsx-loader": "^0.13.2",
+    "log4js": "^0.6.35",
     "morgan": "^1.6.1",
     "popper.js": "^1.14.0",
     "serve-favicon": "^2.3.2",

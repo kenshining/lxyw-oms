@@ -5,8 +5,12 @@ html {
 body{
 	font-size:calculateRem(14);
 }
+.outer{
+	background-color:#FFF;
+	padding:2rem;
+}
 .form-contain{
-	margin:2rem;
+
 }
 .form-contain .order_id_barcode{
 	position: absolute;
@@ -41,7 +45,6 @@ body{
 	th{
 		border-collapse:collapse;  
 		border: 1px solid #000000;
-		padding: calculateRem(6);
 	};
 }
 .form-contain .sign-company{
@@ -63,4 +66,9 @@ body{
 }
 .form-contain .sign-float img{
 	width: calculateRem(120);
+}
+.float-bar{
+	position:absolute;
+	right:2rem;
+	top: 2rem;
 }

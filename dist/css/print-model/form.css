@@ -14,8 +14,9 @@ html {
 body {
   font-size: 1.4rem; }
 
-.form-contain {
-  margin: 2rem; }
+.outer {
+  background-color: #FFF;
+  padding: 2rem; }
 
 .form-contain .order_id_barcode {
   position: absolute;
@@ -48,8 +49,7 @@ body {
     padding: 0.6rem; }
   .form-contain table th {
     border-collapse: collapse;
-    border: 1px solid #000000;
-    padding: 0.6rem; }
+    border: 1px solid #000000; }
 
 .form-contain .sign-company {
   text-align: right;
@@ -70,3 +70,8 @@ body {
 
 .form-contain .sign-float img {
   width: 12rem; }
+
+.float-bar {
+  position: absolute;
+  right: 2rem;
+  top: 2rem; }

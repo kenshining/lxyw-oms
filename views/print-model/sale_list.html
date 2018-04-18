@@ -18,118 +18,156 @@
     <!--[if lt IE 9]> <!--只有IE9之前才会加载这两个文件  lt:less than-->
     <script src="/bootstrap/js/html5shiv.min.js"></script>
     <script src="/bootstrap/js/respond.js"></script>
-    <script src="/libs/jspdf/jspdf.debug.js"></script>
-    <script src="/libs/html2canvas/html2canvas.min.js"></script>
+    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js" integrity="sha384-CchuzHs077vGtfhGYl9Qtc7Vx64rXBXdIAZIPbItbNyWIRTdG0oYAqki3Ry13Yzu" crossorigin="anonymous"></script>
     <script src="/libs/barcode/jquery-barcode-2.0.1.js"></script>
+    <script src="/Jquery/jQuery.print.min.js"></script>
     <script type="text/javascript">
       $(function(){
-           $(".order_id_barcode").barcode("20170309XNI3321XIIN", "code93",{barWidth:1, barHeight:40});
+        //生成
+        $(".order_id_barcode").barcode("20170309XNI3321XIIN", "code93",{barWidth:1, barHeight:40});
       });
+      var order_id = "20170309XNI3321XIIN";
+      var printToPdf = function(){
+        var target = document.getElementsByClassName("outer")[0];
+        target.style.background = "#FFFFFF";
+        var pdf = new jsPDF('l','pt','a4');
+        pdf.internal.scaleFactor = 1.5;
+        var options = {
+             pagesplit: true
+        };
+        pdf.addHTML(target,options,function() {
+            pdf.save(order_id+'.pdf');
+        });
+      }
+      var printToPrinter = function(){
+        $("#outer").print({
+            globalStyles:false,//是否包含父文档的样式，默认为true
+            mediaPrint:false,//是否包含media='print'的链接标签。会被globalStyles选项覆盖，默认为false
+            stylesheet:null,//外部样式表的URL地址，默认为null
+            noPrintSelector:".no-print",//不想打印的元素的jQuery选择器，默认为".no-print"
+            iframe:true,//是否使用一个iframe来替代打印表单的弹出窗口，true为在本页面进行打印，false就是说新开一个页面打印，默认为true
+            append:null,//将内容添加到打印内容的后面
+            prepend:null,//将内容添加到打印内容的前面，可以用来作为要打印内容
+            deferred:$.Deferred()//回调函数
+        });               
+      }
     </script>
   </head>
   <body>
-      <div class="form-contain">
-        <div class="order_id_barcode">
-          
-        </div>
-        <div class="company-title">
-          北京乐享御味贸易有限公司
-        </div>
-        <div class="item-title">
-          销售订单
-        </div>
-        <div class="sub-title">
-          销售联系人：李中星 | 联系电话：13241413155 (010)63420059 | 微信：13241413155
-        </div>
-        <div>
-          <table>
-            <tr>
-              <td colspan="9">客户名称：成龙（个人客户）</td>
-              <td colspan="5">订单编号：20170309XNI3321XIIN | 2018年10月13日</td>
-            </tr>
-            <tr>
-              <td colspan="9">采购联系人：成龙 | 电话：18611699091</td>
-              <td  colspan="5">付款方式：对公全额付款 </td>
-            </tr>
-            <tr>
-              <td colspan="9">收货信息：北京市东城区朝内大街188号 成龙 18611699091 030001</td>
-             <td colspan="5">客户收货要求：货到自提点</td>
-            </tr>
-            <tr>
-              <td colspan="9">发票寄至：北京市东城区朝内大街188号 成龙 18611699091 030001</td>
-              <td colspan="5">物流付款方式：客户自付</td>
-            </tr>
-             <tr>
-              <th>品名</th>
-              <th>参考图片</th>
-              <th>单品条码</th>
-              <th>产地</th>
-              <th>保质期</th>
-              <th>单价（元）</th>
-              <th>箱单价（元）</th>
-              <th>箱数</th>
-              <th>总价（元）</th>
-              <th>单箱重（kg）</th>
-              <th>总重（kg）</th>
-              <th>单箱体积（M3）</th>
-              <th>总体积（M3）</th>
-              <th>搭赠量</th>
-            </tr>
-            <tr>
-              <td>粉色红茶</td>
-              <td>参考图片</td>
-              <td>4923440983</td>
-              <td>日本</td>
-              <td>9个月</td>
-              <td>12</td>
-              <td>288</td>
-              <td>20</td>
-              <td>5760</td>
-              <td>13.5</td>
-              <td>270</td>
-              <td>0.0227</td>
-              <td>0.454</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td colspan="2">合计</td>
-              <td colspan="12"><b>
-                总箱数：20箱 | 
-                总重量：405KG | 
-                总体积：0.681M3 | 
-                总价：8640元
-                </b>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">注意</td>
-              <td colspan="12">
-                <b>
-                  请务必确认货品完好无损再签收，否则我司概不负责，由此带来的不便敬请谅解！
-                  如对货品有疑议，请及时与我司销售联系人联络。食品饮料品类属特殊商品，一旦签收，无法退换。
-                </b>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">备注</td>
-              <td colspan="12">
-                交货期：预计2018年4月17日发货，最终交货时间根据实际情况由卖方安排。
-              </td>
-            </tr>
-          </table>
-        </div>
+        <div class="outer">
+            <div class="form-contain">
+              <div class="order_id_barcode">
+                
+              </div>
+              <div class="company-title">
+                北京乐享御味贸易有限公司
+              </div>
+              <div class="item-title">
+                销售订单
+              </div>
+              <div class="sub-title">
+                销售联系人：李中星 | 联系电话：13241413155 (010)63420059 | 微信：13241413155
+              </div>
+              <div>
+                <table>
+                  <tr>
+                    <td colspan="9">客户名称：成龙（个人客户）</td>
+                    <td colspan="5">订单编号：20170309XNI3321XIIN | 2018年10月13日</td>
+                  </tr>
+                  <tr>
+                    <td colspan="9">采购联系人：成龙 | 电话：18611699091</td>
+                    <td  colspan="5">付款方式：对公全额付款 </td>
+                  </tr>
+                  <tr>
+                    <td colspan="9">收货信息：北京市东城区朝内大街188号 成龙 18611699091 030001</td>
+                   <td colspan="5">客户收货要求：货到自提点</td>
+                  </tr>
+                  <tr>
+                    <td colspan="9">发票寄至：北京市东城区朝内大街188号 成龙 18611699091 030001</td>
+                    <td colspan="5">物流付款方式：客户自付</td>
+                  </tr>
+                   <tr>
+                    <th colspan="14">订购列表</th>
+                  </tr>
+                  <tr>
+                    <th>品名</th>
+                    <td>透明红茶</td>
+                    <th>样品图片</th>
+                    <td>图片</td>
+                    <th>规格</th>
+                    <td>瓶装500ml*24/箱</td>
+                    <th>产地</th>
+                    <td>日本</td>
+                    <th>保质期</th>
+                    <td>9个月</td>
+                    <th>条码</th>
+                    <td>400102909</td>
+                    <th>订购数量</th>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <th>单价（元）</th>
+                    <td>12</td>
+                    <th>总价（元）</th>
+                    <td>4500</td>
+                    <th>单箱重（kg）</th>
+                    <td>34</td>
+                    <th>总重（kg）</th>
+                    <td>1200</td>
+                    <th>单箱体积</th>
+                    <td>2021</td>
+                    <th>总体积</th>
+                    <td>1111</td>
+                    <th>搭赠</th>
+                    <td>20</td>
+                  </tr>
+                  
+                  <tr>
+                    <td colspan="2">合计</td>
+                    <td colspan="12"><b>
+                      总箱数：20箱 | 
+                      总重量：405KG | 
+                      总体积：0.681M3 | 
+                      总价：8640元
+                      </b>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">注意</td>
+                    <td colspan="12">
+                      <b>
+                        请务必确认货品完好无损再签收，否则我司概不负责，由此带来的不便敬请谅解！
+                        如对货品有疑议，请及时与我司销售联系人联络。食品饮料品类属特殊商品，一旦签收，无法退换。
+                      </b>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">备注</td>
+                    <td colspan="12">
+                      交货期：预计2018年4月17日发货，最终交货时间根据实际情况由卖方安排。
+                    </td>
+                  </tr>
+                </table>
+              </div>
 
-        <div class="sign-company">
-          <div class="sign-float sign-seal">
-              <img src="/images/seal/lxyw-seal2.png">
-          </div>
-          <div class="sign-float sign-signature">
-            <img src="/images/seal/mingzi.png">
-          </div>
-          <div class="sign-float sign-signature">
-              北京乐享御味贸易有限公司
-          </div>
-        </div>
+              <div class="sign-company">
+                <div class="sign-float sign-seal">
+                    <img src="/images/seal/lxyw-seal2.png">
+                </div>
+                <div class="sign-float sign-signature">
+                  <img src="/images/seal/mingzi.png">
+                </div>
+                <div class="sign-float sign-signature">
+                    北京乐享御味贸易有限公司
+                </div>
+              </div>
+            </div>
       </div>
+      <div class="float-bar no-print">
+        <a onclick="printToPdf();" href="javascript:void(0);">[导出订单PDF]</a>
+        <a onclick="printToPrinter();" href="javascript:void(0);">[打印]</a>
+      </div>
+      <img src="" id="testImg">
   </body>
 </html>

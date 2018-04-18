@@ -17,6 +17,9 @@ html {
 .navbar-nav {
   font-size: 1.4rem; }
 
+.select {
+  height: 24px; }
+
 .footerBar {
   background-color: #343a40;
   position: fixed;

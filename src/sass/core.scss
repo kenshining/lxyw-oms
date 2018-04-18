@@ -1,0 +1,25 @@
+@import "common.scss";
+
+html {
+	font-size: 62.5%;
+}
+.table td, .table th{
+    vertical-align: middle;
+}
+.navbar-nav{
+	font-size:calculateRem(14);
+}
+.footerBar{
+	background-color: #343a40;
+	position: fixed;
+	bottom: 0;
+	height: calculateRem(30);
+	line-height: calculateRem(30);
+	width:100%;
+	color:#FFF;
+	font-size:calculateRem(14);
+	text-align:center;
+}
+.searchBar{
+	margin-top:calculateRem(20);
+}

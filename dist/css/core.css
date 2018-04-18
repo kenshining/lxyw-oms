@@ -1,0 +1,32 @@
+.hidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute; }
+
+html {
+  font-size: 62.5%; }
+
+.table td, .table th {
+  vertical-align: middle; }
+
+.navbar-nav {
+  font-size: 1.4rem; }
+
+.footerBar {
+  background-color: #343a40;
+  position: fixed;
+  bottom: 0;
+  height: 3rem;
+  line-height: 3rem;
+  width: 100%;
+  color: #FFF;
+  font-size: 1.4rem;
+  text-align: center; }
+
+.searchBar {
+  margin-top: 2rem; }

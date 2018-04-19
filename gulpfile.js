@@ -13,6 +13,8 @@ var squence = require('gulp-sequence');
 //文件合并
 var concat = require('gulp-concat');
 
+var uglify = require('gulp-uglify');
+
 var plumber = require('gulp-plumber');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
@@ -63,6 +65,15 @@ gulp.task('css', function(){
 	});
 });
 
+//压缩js
+gulp.task('jsmin', function() {
+    return gulp.src('./src/js/**/*.js')   
+        .pipe(plumber())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(uglify())  //压缩
+        .pipe(gulp.dest('public/javascripts'));
+});
+
 //压缩图片
 gulp.task('imagesmin', function() {
     return gulp.src('./src/images/**/*.{png,jpg,gif}')
@@ -74,4 +85,19 @@ gulp.task('imagesmin', function() {
         multipass: true //类型：Boolean 默认：false 多次优化svg直到完全优化 
     }))) 
     .pipe(gulp.dest('public/images/'));
+});
+
+//监听文件，文件改变，执行对应任务
+gulp.task('watch',function(){
+    squence('clean', 'sass','cssmin','jsmin','imagesmin',function() {
+         gulp.watch(['./src/sass/**/*.scss','./src/js/**/*.js','./src/images/**/*.{png,jpg,gif}'],function(event){
+          squence('clean','sass','cssmin','jsmin','imagesmin')(function (err) {
+            if (err){
+            console.log(err);
+          }else{
+            console.log( "css build ok!" );
+          }
+          });
+        });
+    });
 });

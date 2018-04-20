@@ -73,6 +73,12 @@ gulp.task('jsmin', function() {
         .pipe(uglify())  //压缩
         .pipe(gulp.dest('public/javascripts'));
 });
+gulp.task('jsscp', function() {
+    return gulp.src('./src/js/**/*.js')   
+        .pipe(plumber())
+        //.pipe(rename({suffix: '.dev'}))
+        .pipe(gulp.dest('public/javascripts'));
+});
 
 //压缩图片
 gulp.task('imagesmin', function() {
@@ -89,9 +95,9 @@ gulp.task('imagesmin', function() {
 
 //监听文件，文件改变，执行对应任务
 gulp.task('watch',function(){
-    squence('clean', 'sass','cssmin','jsmin','imagesmin',function() {
+    squence('clean', 'sass','cssmin','jsmin','imagesmin','jsscp',function() {
          gulp.watch(['./src/sass/**/*.scss','./src/js/**/*.js','./src/images/**/*.{png,jpg,gif}'],function(event){
-          squence('clean','sass','cssmin','jsmin','imagesmin')(function (err) {
+          squence('clean','sass','cssmin','jsmin','imagesmin','jsscp')(function (err) {
             if (err){
             console.log(err);
           }else{

@@ -16,17 +16,8 @@ module.exports = function(app,logger){
 	//init serverside enumerations service instance
 	var serviceEnumerationInstance = serviceEnumeration.init();
 
-	/* GET home page. */
-	app.get('/', function(req, res, next) {
-	  res.render('index', { title: 'Express' });
-	});
-
 	app.get('/main', function(req, res, next) {
 	  res.render('main', { title: 'Express' });
-	});
-
-	app.get('/print-model/sale_list', function(req, res, next) {
-	  res.render('print-model/sale_list', { title: 'Express' });
 	});
 
 	//导入路由配置。

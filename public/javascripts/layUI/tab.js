@@ -143,7 +143,7 @@ layui.define(['element', 'common'], function (exports) {
             });
             //iframe 自适应
             ELEM.contentBox.find('iframe[data-id=' + globalTabIdIndex + ']').each(function () {
-                $(this).height(ELEM.contentBox.height());
+                //$(this).height(ELEM.contentBox.height());
             });
             if (_config.closed) {
                 //监听关闭事件

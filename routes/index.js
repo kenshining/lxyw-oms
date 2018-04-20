@@ -20,6 +20,9 @@ module.exports = function(app,logger){
 	  res.render('main', { title: 'Express' });
 	});
 
+	app.get('/platform-default', function(req, res, next) {
+	  res.render('platform-default', { title: 'Express' });
+	});
 	//导入路由配置。
 	stockRoutes.init(app,serviceInstance,serviceEnumerationInstance,logger);
 };

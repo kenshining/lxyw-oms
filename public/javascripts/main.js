@@ -15,12 +15,6 @@ layui.config({
 	});
 
 	var munes = [{
-		"id" : "1",
-		"title" : "工作台",
-		"icon" : "&#xe61d;",
-		"href" : "page/main.html",
-		"spread" : false
-	},{
 		"id" : "2",
 		"title" : "库存管理",
 		"icon" : "&#xe63c;",
@@ -44,9 +38,9 @@ layui.config({
 		]
 	},{
 		"id" : "5",
-		"title" : "友情链接",
+		"title" : "百度",
 		"icon" : "&#xe629;",
-		"href" : "page/links/linksList.html",
+		"href" : "http://www.baidu.com/",
 		"spread" : false
 	},{
 		"id" : "6",

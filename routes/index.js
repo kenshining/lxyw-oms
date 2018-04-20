@@ -16,6 +16,10 @@ module.exports = function(app,logger){
 	//init serverside enumerations service instance
 	var serviceEnumerationInstance = serviceEnumeration.init();
 
+	app.get('/', function(req, res, next) {
+	  res.render('login', { title: 'Express' });
+	});
+
 	app.get('/main', function(req, res, next) {
 	  res.render('main', { title: 'Express' });
 	});

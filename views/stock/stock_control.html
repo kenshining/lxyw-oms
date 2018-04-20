@@ -41,6 +41,24 @@
         </div>
         </form>
       </div>
-     
+      <div class="layui-field-box">
+          <div>
+            <table class="site-table table-hover">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" id="selected-all"></th>
+                  <th>姓名</th>
+                  <th>年龄</th>
+                  <th>创建时间</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <!--内容容器-->
+              <tbody id="con">  <tr> <td><input type="checkbox"></td> <td>张三</td> <td>21</td> <td>2017-01-10 10:42:36</td> <td> <a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a> <a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a> <a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a> </td> </tr>  <tr> <td><input type="checkbox"></td> <td>李四</td> <td>31</td> <td>2017-01-10 10:42:36</td> <td> <a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a> <a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a> <a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a> </td> </tr>  <tr> <td><input type="checkbox"></td> <td>王五</td> <td>23</td> <td>2017-01-10 10:42:36</td> <td> <a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a> <a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a> <a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a> </td> </tr>  <tr> <td><input type="checkbox"></td> <td>赵六</td> <td>18</td> <td>2017-01-10 10:42:36</td> <td> <a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a> <a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a> <a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a> </td> </tr>  </tbody>
+            </table>
+            <!--分页容器-->
+            <div id="paged"></div>
+            </div>
+     </div>
   </body>
 </html>

@@ -1,5 +1,17 @@
 @charset "UTF-8";
-/*公共样式*/
+.hidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute; }
+
+html {
+  font-size: 62.5%; }
+
 .main_body {
   min-width: 320px; }
 
@@ -357,6 +369,68 @@
   text-align: center;
   line-height: 44px;
   border-left: 2px solid #1AA094; }
+
+/*登录部分*/
+.login_body {
+  background-size: contan;
+  background-image: url(/images/login2.jpg);
+  background-repeat: no-repeat; }
+
+.loginPanel {
+  width: 23rem;
+  margin: 10rem auto;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 25px; }
+
+.beg-login-box .beg-login-main {
+  height: 185px;
+  padding: 30px 90px 0; }
+
+.beg-login-main .layui-form-item {
+  position: relative; }
+
+.beg-login-main .layui-form-item .beg-login-icon {
+  position: absolute;
+  color: #cccccc;
+  top: 10px;
+  left: 10px; }
+
+.beg-login-main .layui-form-item input {
+  padding-left: 34px; }
+
+.beg-login-box footer {
+  height: 35px;
+  padding: 10px 10px 0 10px; }
+
+.beg-pull-left {
+  float: left !important; }
+
+.beg-pull-right {
+  float: right !important; }
+
+.beg-clear {
+  clear: both; }
+
+.beg-login-remember {
+  line-height: 38px; }
+
+.beg-login-remember .layui-form-switch {
+  margin-top: 0px; }
+
+.beg-login-code-box {
+  position: relative;
+  padding: 10px; }
+
+.beg-login-code-box input {
+  position: absolute;
+  width: 100px; }
+
+.beg-login-code-box img {
+  cursor: pointer;
+  position: absolute;
+  left: 115px;
+  height: 38px; }
 
 /*响应式*/
 @media screen and (max-width: 1282px) {

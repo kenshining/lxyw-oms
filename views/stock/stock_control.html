@@ -3,63 +3,44 @@
   <head>
   <% include ../include.html %>
   <link rel="stylesheet" href="/stylesheets/stock/stock.min.css">
+  <script type="text/javascript" src="/javascripts/stock/stock_control.min.js"></script>
   </head>
     <div class="admin-main">
-      <blockquote class="layui-elem-quote">
-
+      <div class="form-search">
+      <form class="layui-form">
        <div class="layui-inline">
-          <label class="layui-label">范围</label>
+          <label class="form-label">品名：</label>
+          <div class="layui-input-inline" style="width: 200px;">
+            <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
+          </div>
+          <label class="form-label">状态：</label>
           <div class="layui-input-inline" style="width: 100px;">
-            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+           <select name="city" lay-verify="">
+              <option value="100" selected="true">全部</option>
+              <option value="0">在途</option>
+              <option value="1">在售</option>
+              <option value="-1">售罄</option>
+            </select>     
+          </div>
+          <label class="form-label">入库日期：</label>
+          <div class="layui-input-inline" style="width: 100px;">
+            <input type="text" name="stock_date" placeholder="" autocomplete="off" class="layui-input" id="date1" onclick="layui.laydate({elem: this})">
+          </div>-
+           <div class="layui-input-inline" style="width: 100px;">
+            <input type="text" name="stock_date" placeholder="" autocomplete="off" class="layui-input" id="date2" onclick="layui.laydate({elem: this})">
           </div>
         </div>
 
-        <div class="layui-inline">
+        <div class="layui-inline form-right">
           <a href="javascript:;" class="layui-btn layui-btn-small layui-btn-warm" id="search">
             <i class="layui-icon">&#xe615;</i> 搜索
           </a>
           <a href="javascript:;" class="layui-btn layui-btn-small layui-btn-normal" id="add">
             <i class="layui-icon">&#xe608;</i> 添加信息
           </a>
-          <a href="#" class="layui-btn layui-btn-small layui-btn-disabled" id="import">
-            <i class="layui-icon">&#xe608;</i> 导入信息
-          </a>
-          <a href="#" class="layui-btn layui-btn-small layui-btn-disabled">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i> 导出信息
-          </a>
         </div>
- 
-        
-      </blockquote>
-      <div class="layui-field-box">
-          <div>
-            <table class="site-table table-hover">
-              <thead>
-                <tr>
-                  <th><input type="checkbox" id="selected-all"></th>
-                  <th>姓名</th>
-                  <th>年龄</th>
-                  <th>创建时间</th>
-                  <th>操作</th>
-                </tr>
-              </thead>
-              <!--内容容器-->
-              <tbody id="con">
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>Layui</td>
-                  <td>Beginner</td>
-                  <td>2016-11-16 11:50</td>
-                  <td>
-                    <a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
-                    <a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
-                    <a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--分页容器-->
-            <div id="paged"></div>
-    </div>
+        </form>
+      </div>
+     
   </body>
 </html>

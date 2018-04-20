@@ -1,3 +1,5 @@
+//缓存菜单使用对象
+var menuCache = [];
 layui.config({
 	base: '/javascripts/layUI/'
 }).use(['navbar','tab', 'code','element'], function() {
@@ -89,14 +91,16 @@ layui.config({
 		console.log(data.field.icon);
 		console.log(data.field.href);*/
 		//layer.msg(data.field.href);
-		tab.tabAdd({
+		var menu ={
 			title: data.field.title,
 	        href:data.field.href,
 	        icon:data.field.icon,
 	        id: data.field.id
-		});
+		}
+		tab.tabAdd(menu);
+		menuCache.push(menu);
+		//window.sessionStorage.setItem("lockcms",false);
 	});
-
 	//手机设备的简单适配
 	var treeMobile = $('.site-tree-mobile'),
 		shadeMobile = $('.site-mobile-shade')
@@ -150,4 +154,8 @@ var lockPage = function(){
         closeBtn : 0,
         shade : 0.4
     });
+}
+var cacheMenu =function(){
+
+	window.sessionStorage.setItem("lockcms",false);
 }

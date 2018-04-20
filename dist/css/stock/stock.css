@@ -1,0 +1,12 @@
+.form-search {
+  padding: 10px;
+  line-height: 22px;
+  border-radius: 0 2px 2px 0;
+  background-color: #f2f2f2; }
+
+.form-right {
+  float: right; }
+
+.form-label {
+  padding-left: 10px;
+  padding-right: 10px; }

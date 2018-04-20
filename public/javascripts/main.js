@@ -90,10 +90,10 @@ layui.config({
 	});
 	navbar.render();
 	navbar.on('click(nav_bar)', function(data) {
-		console.log(data.elem);
+		/*console.log(data.elem);
 		console.log(data.field.title);
 		console.log(data.field.icon);
-		console.log(data.field.href);
+		console.log(data.field.href);*/
 		//layer.msg(data.field.href);
 		tab.tabAdd({
 			title: data.field.title,
@@ -116,55 +116,14 @@ layui.config({
 	});
 
 	//锁屏相关判定
-	$(".lockcms").on("click",function(){
-		window.sessionStorage.setItem("lockcms",true);
-		lockPage();
-	});
 	// 判断是否显示锁屏
 	if(window.sessionStorage.getItem("lockcms") == "true"){
 		lockPage();
 	}
-	//绑定解锁事件
-	$("#unlock").on("click",function(){
-		if($(this).siblings(".admin-header-lock-input").val() == ''){
-			layer.msg("请输入解锁密码！");
-		}else{
-			if($(this).siblings(".admin-header-lock-input").val() == "123456"){
-				window.sessionStorage.setItem("lockcms",false);
-				$(this).siblings(".admin-header-lock-input").val('');
-				layer.closeAll();
-				$(".admin-header-lock").hide();
-			}else{
-				layer.msg("密码错误，请重新输入！");
-			}
-		}
-	});
-
-	
-});
-
-/*
-$(document).ready(function(){
-	//拼接左侧菜单
-	
-	//初始化页面元素
-	element.init();
-	//显示左侧菜单
-	if($(".navBar").html() == ''){
-		$(".navBar").html(initMenu(navs)).height($(window).height()-230);
-		$(window).resize(function(){
-			$(".navBar").height($(window).height()-230);
-		});
-	}
-	//锁屏相关判定
 	$(".lockcms").on("click",function(){
 		window.sessionStorage.setItem("lockcms",true);
 		lockPage();
 	});
-	// 判断是否显示锁屏
-	if(window.sessionStorage.getItem("lockcms") == "true"){
-		lockPage();
-	}
 	//绑定解锁事件
 	$("#unlock").on("click",function(){
 		if($(this).siblings(".admin-header-lock-input").val() == ''){
@@ -185,20 +144,9 @@ $(document).ready(function(){
 			$("#unlock").click();
 		}
 	});
-	//手机设备的简单适配
-	var treeMobile = $('.site-tree-mobile'),
-		shadeMobile = $('.site-mobile-shade')
 
-	treeMobile.on('click', function(){
-		$('body').addClass('site-mobile');
-	});
-
-	shadeMobile.on('click', function(){
-		$('body').removeClass('site-mobile');
-	});
 	
-
-});*/
+});
 //锁屏
 var lockPage = function(){
     layer.open({

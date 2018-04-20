@@ -30,6 +30,15 @@
 	-moz-transition: all 0.3s ease-in-out;
 	-ms-transition: all 0.3s ease-in-out; 
 }
+.weather{
+	color:#fff; 
+	float:left; 
+	margin:18px 0 0 50px;
+}
+.weather iframe{
+	width: 300px;
+	height:25px;
+}
 
 .logo{ 
 	color: #fff; 
@@ -39,11 +48,6 @@
 	padding:0 25px; 
 	text-align: center; 
 	margin-right: 15px; 
-}
-.weather{ 
-	color:#fff; 
-	float:left; 
-	margin:15px 0 0 50px;
 }
 .component{ 
 	float: left; 
@@ -353,7 +357,7 @@
 @media screen and (max-width:1050px){
 	.layui-nav.top_menu .layui-nav-item a{ padding:0 10px; }
 	/*天气信息*/
-	.weather[pc]{ display: none !important; }
+	.weather { display: none !important; }
 	.sysNotice{ width:100%; }
 }
 @media screen and (max-width: 750px){

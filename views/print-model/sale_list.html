@@ -16,14 +16,26 @@
     <!--html5shiv.min.js：为了在IE8下面支持HTML标签
     respond.min.js：为了在IE8下面支持媒体查询-->
     <!--[if lt IE 9]> <!--只有IE9之前才会加载这两个文件  lt:less than-->
-    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js" integrity="sha384-CchuzHs077vGtfhGYl9Qtc7Vx64rXBXdIAZIPbItbNyWIRTdG0oYAqki3Ry13Yzu" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+    <script src="/Jquery/jquery-3.3.1.min.js"></script>
     <script src="/Jquery/jquery-barcode-2.0.1.js"></script>
+     <script src="/Jquery/qrcode.min.js"></script>
     <script src="/Jquery/jQuery.print.min.js"></script>
     <script type="text/javascript">
       $(function(){
         //生成
         $(".order_id_barcode").barcode("20170309XNI3321XIIN", "code93",{barWidth:1, barHeight:40});
+        // 设置参数方式
+        /*var qrcode = new QRCode('wx_code', {
+          text: 'https://u.wechat.com/13241413155',
+          width: 50,
+          height: 50,
+          colorDark : '#000000',
+          colorLight : '#ffffff',
+          correctLevel : QRCode.CorrectLevel.H
+        });*/
       });
       var order_id = "20170309XNI3321XIIN";
       var printToPdf = function(){
@@ -66,74 +78,70 @@
               </div>
               <div class="sub-title">
                 销售联系人：李中星 | 联系电话：13241413155 (010)63420059 | 微信：13241413155
+                <span class="wx_code" id="wx_code" style="display: none;"></span>
               </div>
               <div>
                 <table>
                   <tr>
-                    <td colspan="9">客户名称：成龙（个人客户）</td>
-                    <td colspan="5">订单编号：20170309XNI3321XIIN | 2018年10月13日</td>
+                    <td colspan="7">客户名称：成龙（个人客户）</td>
+                    <td colspan="4">订单编号：20170309XNI3321XIIN | 2018年10月13日</td>
                   </tr>
                   <tr>
-                    <td colspan="9">采购联系人：成龙 | 电话：18611699091</td>
-                    <td  colspan="5">付款方式：对公全额付款 </td>
+                    <td colspan="7">采购联系人：成龙 | 电话：18611699091</td>
+                    <td  colspan="4">付款方式：对公全额付款 </td>
                   </tr>
                   <tr>
-                    <td colspan="9">收货信息：北京市东城区朝内大街188号 成龙 18611699091 030001</td>
-                   <td colspan="5">客户收货要求：货到自提点</td>
+                    <td colspan="7">收货信息：北京市东城区朝内大街188号 成龙 18611699091 030001</td>
+                   <td colspan="4">客户收货要求：货到自提点</td>
                   </tr>
                   <tr>
-                    <td colspan="9">发票寄至：北京市东城区朝内大街188号 成龙 18611699091 030001</td>
-                    <td colspan="5">物流付款方式：客户自付</td>
+                    <td colspan="7">发票寄至：北京市东城区朝内大街188号 成龙 18611699091 030001</td>
+                    <td colspan="4">物流付款方式：客户自付</td>
                   </tr>
                    <tr>
-                    <th colspan="14">订购列表</th>
+                    <th colspan="11">订购列表</th>
                   </tr>
                   <tr>
+                    <th nowrap="nowrap">序号</th>
                     <th>品名</th>
-                    <td>透明红茶</td>
-                    <th>样品图片</th>
-                    <td>图片</td>
                     <th>规格</th>
-                    <td>瓶装500ml*24/箱</td>
-                    <th>产地</th>
-                    <td>日本</td>
-                    <th>保质期</th>
-                    <td>9个月</td>
                     <th>条码</th>
-                    <td>400102909</td>
+                    <th>产地</th>
+                    <th>保质期</th>
+                    <th>重量（kg）</th>
+                    <th>体积（M3）</th>
+                    <th>价格（元）</th>
                     <th>订购数量</th>
-                    <td>20</td>
-                  </tr>
-                  <tr>
-                    <th>单价（元）</th>
-                    <td>12</td>
-                    <th>总价（元）</th>
-                    <td>4500</td>
-                    <th>单箱重（kg）</th>
-                    <td>34</td>
-                    <th>总重（kg）</th>
-                    <td>1200</td>
-                    <th>单箱体积</th>
-                    <td>2021</td>
-                    <th>总体积</th>
-                    <td>1111</td>
                     <th>搭赠</th>
-                    <td>20</td>
+                  </tr>
+                  <tr style="text-align: center;" nowrap="nowrap">
+                    <td>1</td>
+                    <td nowrap="nowrap">透明红茶</td>
+                    <td nowrap="nowrap">瓶装500ml*24/箱</td>
+                    <td>40011923</td>
+                    <td>日本</td>
+                    <td>24个月</td>
+                    <td>34/箱|1200</td>
+                    <td>0.1/箱|120</td>
+                    <td>28元/箱|8640元</td>
+                    <td>20箱</td>
+                    <td>无</td>
                   </tr>
                   
                   <tr>
-                    <td colspan="2">合计</td>
-                    <td colspan="12"><b>
+                    <th colspan="1">合计</th>
+                    <td colspan="10"><b>
+                      共计：1类商品 | 
                       总箱数：20箱 | 
                       总重量：405KG | 
                       总体积：0.681M3 | 
-                      总价：8640元
+                      订单总价（¥）：8640元
                       </b>
                     </td>
                   </tr>
                   <tr>
-                    <td colspan="2">注意</td>
-                    <td colspan="12">
+                    <th colspan="1">注意</th>
+                    <td colspan="10">
                       <b>
                         请务必确认货品完好无损再签收，否则我司概不负责，由此带来的不便敬请谅解！
                         如对货品有疑议，请及时与我司销售联系人联络。食品饮料品类属特殊商品，一旦签收，无法退换。
@@ -141,9 +149,9 @@
                     </td>
                   </tr>
                   <tr>
-                    <td colspan="2">备注</td>
-                    <td colspan="12">
-                      交货期：预计2018年4月17日发货，最终交货时间根据实际情况由卖方安排。
+                    <th colspan="1">备注</th>
+                    <td colspan="10">
+                      交货期：预计2018年4月17日发货，最终交货时间根据实际到货与物流情况、由卖方具体安排。
                     </td>
                   </tr>
                 </table>
@@ -166,6 +174,5 @@
         <a onclick="printToPdf();" href="javascript:void(0);">[导出订单PDF]</a>
         <a onclick="printToPrinter();" href="javascript:void(0);">[打印]</a>
       </div>
-      <img src="" id="testImg">
   </body>
 </html>

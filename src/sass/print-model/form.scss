@@ -33,6 +33,10 @@ body{
 	font-size:calculateRem(14);
 	text-align:center;
 }
+.form-contain .sub-title .wx_code{
+	display:inline-block;
+	background-color:#FFF;
+}
 .form-contain table{  
 	border-collapse:collapse;  
 	border: 1px solid #000000;

@@ -1,67 +1,41 @@
 //示例代码
 layui.config({
     base: '/javascripts/layUI/'
-}).use(['paging', 'code','form','laydate','btable'], function() {
-    layui.code();
+}).use(['laydate','btable'], function() {
     var $ = layui.jquery,
-        form = layui.form(),
-        laydate = layui.laydate,
         btable = layui.btable(),
-        layer = layui.layer,
-        paging = layui.paging();
+        layer = layui.layer;
+
         $('#add').on('click', function() {
-            layer.open({
-                content: '',
-                type: 1,
-                anim: 4, //动画类型
-                title: '添加表单',
-                area: ['100%', '100%'],
-                btn: ['保存', '取消'],
-                full: function(elem) {
-                    var win = window.top === window.self ? window : parent.window;
-                    $(win).on('resize', function() {
-                        var $this = $(this);
-                        elem.width($this.width()).height($this.height()).css({
-                            top: 0,
-                            left: 0
+            //打开弹出窗口加载内容
+            $.get('/stock/stock_edit', {}, function(doms){
+                layer.open({
+                    content: doms,
+                    type: 1,
+                    anim: 4, //动画类型
+                    title: '添加表单',
+                    area: ['100%', '100%'],
+                    btn: ['保存', '取消'],
+                    full: function(elem) {
+                        var win = window.top === window.self ? window : parent.window;
+                        $(win).on('resize', function() {
+                            var $this = $(this);
+                            elem.width($this.width()).height($this.height()).css({
+                                top: 0,
+                                left: 0
+                            });
+                            elem.children('div.layui-layer-content').height($this.height() - 95);
                         });
-                        elem.children('div.layui-layer-content').height($this.height() - 95);
-                    });
-                }
+                    }
+                });
             });
         });
            
-    var data={
-        "rel": true,
-        "msg": "获取成功",
-        "list": [
-            {
-                "name": "张三",
-                "age":21,
-                "createtime": "2017-01-10 10:42:36"
-            },
-            {
-                "name": "李四",
-                "age":31,
-                "createtime": "2017-01-10 10:42:36"
-            },{
-                "name": "王五",
-                "age":23,
-                "createtime": "2017-01-10 10:42:36"
-            },{
-                "name": "赵六",
-                "age":18,
-                "createtime": "2017-01-10 10:42:36"
-            }
-        ],
-        "count": 57
-    }
-
-    btable.set({
+        btable.set({
                 openWait: true,//开启等待框
                 elem: '#table_content',
                 url: '/BeginnerAdmin/datas/btable_data.json', //数据源地址
-                pageSize: 3,//页大小
+                pageSize: 10,//页大小
                 params: {//额外的请求参数
                     t: new Date().getTime()
                 },
@@ -108,14 +82,14 @@ layui.config({
                             $that.on('click', function () {
                                 switch (action) {
                                     case 'edit':
-                                        layerTips.msg(action + ":" + id);
+                                        layer.msg(action + ":" + id);
                                         break;
                                     case 'del': //删除
                                         var name = $that.parent('td').siblings('td[data-field=name]').text();
                                         //询问框
-                                        layerTips.confirm('确定要删除[ <span style="color:red;">' + name + '</span> ] ？', { icon: 3, title: '系统提示' }, function (index) {
+                                        layer.confirm('确定要删除[ <span style="color:red;">' + name + '</span> ] ？', { icon: 3, title: '系统提示' }, function (index) {
                                             $that.parent('td').parent('tr').remove();
-                                            layerTips.msg('删除成功.');
+                                            layer.msg('删除成功.');
                                         });
                                         break;
                                 }
@@ -126,5 +100,4 @@ layui.config({
             });
             btable.render();
 
-    
 });

@@ -7,8 +7,30 @@ layui.config({
         form = layui.form(),
         laydate = layui.laydate,
         btable = layui.btable(),
+        layer = layui.layer,
         paging = layui.paging();
-
+        $('#add').on('click', function() {
+            layer.open({
+                content: '',
+                type: 1,
+                anim: 4, //动画类型
+                title: '添加表单',
+                area: ['100%', '100%'],
+                btn: ['保存', '取消'],
+                full: function(elem) {
+                    var win = window.top === window.self ? window : parent.window;
+                    $(win).on('resize', function() {
+                        var $this = $(this);
+                        elem.width($this.width()).height($this.height()).css({
+                            top: 0,
+                            left: 0
+                        });
+                        elem.children('div.layui-layer-content').height($this.height() - 95);
+                    });
+                }
+            });
+        });
+           
     var data={
         "rel": true,
         "msg": "获取成功",

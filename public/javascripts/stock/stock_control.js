@@ -33,6 +33,7 @@ layui.config({
            
         btable.set({
                 openWait: true,//开启等待框
+                height:'100%',
                 elem: '#table_content',
                 url: '/BeginnerAdmin/datas/btable_data.json', //数据源地址
                 pageSize: 10,//页大小

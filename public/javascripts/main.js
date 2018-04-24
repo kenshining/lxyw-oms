@@ -33,7 +33,7 @@ layui.config({
 			{
 				"id" : "4",
 				"title" : "供货商管理",
-				"icon" : "&#xe613;",
+				"icon" : "&#xe62e;",
 				"href" : "",
 				"spread" : false
 			}
@@ -48,21 +48,21 @@ layui.config({
 			{
 				"id" : "99",
 				"title" : "销售订单",
-				"icon" : "&#xe531;",
+				"icon" : "&#xe609;",
 				"href" : "/stock/stock_control",
 				"spread" : false
 			},
 			{
 				"id" : "992",
 				"title" : "异常订单处理",
-				"icon" : "&#xe631;",
+				"icon" : "&#xe60a;",
 				"href" : "/stock/stock_control",
 				"spread" : false
 			},
 			{
 				"id" : "41",
 				"title" : "销售业绩",
-				"icon" : "&#xe610;",
+				"icon" : "&#xe62f;",
 				"href" : "",
 				"spread" : false
 			}
@@ -77,14 +77,14 @@ layui.config({
 			{
 				"id" : "939",
 				"title" : "销售数据",
-				"icon" : "&#xe571;",
+				"icon" : "&#xe62c;",
 				"href" : "/stock/stock_control",
 				"spread" : false
 			},
 			{
 				"id" : "9292",
 				"title" : "库存数据",
-				"icon" : "&#xe666;",
+				"icon" : "&#xe632;",
 				"href" : "/stock/stock_control",
 				"spread" : false
 			},
@@ -105,7 +105,7 @@ layui.config({
 	},{
 		"id" : "8",
 		"title" : "系统设置",
-		"icon" : "&#xe631;",
+		"icon" : "&#xe620;",
 		"href" : "",
 		"spread" : false,
 		"children" : [

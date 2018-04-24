@@ -128,6 +128,58 @@
         </div>
       </div>
 </fieldset>
+<fieldset class="layui-elem-field field-block">
+    <legend class="form-label">库存操作</legend>
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <label class="layui-form-label">库存状态：</label>
+        <div class="layui-input-inline" style="min-width: 100px;">
+           <select name="city" lay-verify="">
+            <option selected="true">在途（可预售）</option>
+            <option>在售</option>
+            <option>已售罄</option>
+            <option>退货（在途）</option>
+            <option>已退货</option>
+          </select>
+        </div>
+        <label class="layui-form-label">使用仓库：</label>
+       <div class="layui-input-inline" style="min-width: 90px;">
+         <select name="city" lay-verify="">
+          <option>在途销售|无库存</option>
+          <option>青岛1库|新城区</option>
+          <option>青岛2库|老城区</option>
+          <option>上海1库|宝山区</option>
+          <option>天津1库|和平区</option>
+          <option>重庆1库|南岸</option>
+        </select>
+      </div>
+      </div>
+      <div class="layui-inline">
+        <label class="layui-form-label">损耗个数：</label>
+        <div class="layui-input-inline" style="min-width: 100px;">
+           <input type="text" name="" autocomplete="off" class="layui-input">
+        </div>
+        <label class="layui-form-label">库存费：</label>
+        <div class="layui-input-inline" style="min-width: 100px;">
+           <input type="text" name="" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    </div>
+</fieldset>
+<fieldset class="layui-elem-field field-block">
+    <legend class="form-label">供应商</legend>
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <label class="layui-form-label">供货商：</label>
+        <div class="layui-input-inline" style="min-width: 100px;width: 400px;">
+            <input type="text" name="" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-label">
+             <button class="layui-btn layui-btn-mini layui-btn-danger"> <i class="layui-icon">&#xe615;</i>筛选供应商</button>
+        </div>
+      </div>
+    </div>
+</fieldset>
 </form>
 
 

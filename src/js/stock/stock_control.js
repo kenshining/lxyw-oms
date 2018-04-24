@@ -1,9 +1,10 @@
 //示例代码
 layui.config({
     base: '/javascripts/layUI/'
-}).use(['laydate','btable'], function() {
+}).use(['laydate','btable','form'], function() {
     var $ = layui.jquery,
         btable = layui.btable(),
+        form = layui.form(),
         layer = layui.layer;
 
         $('#add').on('click', function() {
@@ -14,18 +15,13 @@ layui.config({
                     type: 1,
                     anim: 4, //动画类型
                     title: '添加表单',
-                    area: ['100%', '100%'],
+                    area:  ['60%', '90%'],
                     btn: ['保存', '取消'],
-                    full: function(elem) {
-                        var win = window.top === window.self ? window : parent.window;
-                        $(win).on('resize', function() {
-                            var $this = $(this);
-                            elem.width($this.width()).height($this.height()).css({
-                                top: 0,
-                                left: 0
-                            });
-                            elem.children('div.layui-layer-content').height($this.height() - 95);
-                        });
+                    maxmin: true,
+                    success: function(layero, index){
+                        //console.log(layero, index);
+                        //弹出页面不渲染表单的问题。需要重新渲染。
+                        form.render();
                     }
                 });
             });
@@ -53,9 +49,9 @@ layui.config({
                     field: 'sign',
                     format: function (id, obj) {
                         //id
-                        console.log(id);
+                        //console.log(id);
                         //行数据对象
-                        console.log(obj);
+                        //console.log(obj);
                         //返回值：格式化的纯文本或html文本
                         return obj.sign;
                     }

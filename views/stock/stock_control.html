@@ -3,17 +3,18 @@
   <head>
   <% include ../include.html %>
   <link rel="stylesheet" href="/stylesheets/stock/stock.min.css">
+  <link rel="stylesheet" href="/stylesheets/form.min.css">
   <script type="text/javascript" src="/javascripts/stock/stock_control.min.js"></script>
   </head>
     <div class="admin-main">
       <div class="form-search">
       <form class="layui-form">
        <div class="layui-inline">
-          <label class="form-label">品名：</label>
+          <label>品名：</label>
           <div class="layui-input-inline" style="width: 200px;">
             <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
           </div>
-          <label class="form-label">状态：</label>
+          <label>状态：</label>
           <div class="layui-input-inline" style="width: 100px;">
            <select name="city" lay-verify="">
               <option value="100" selected="true">全部</option>
@@ -22,13 +23,13 @@
               <option value="-1">售罄</option>
             </select>     
           </div>
-          <label class="form-label">入库日期：</label>
+          <!-- <label>入库日期：</label>
           <div class="layui-input-inline" style="width: 100px;">
             <input type="text" name="stock_date" placeholder="" autocomplete="off" class="layui-input" id="date1" onclick="layui.laydate({elem: this})">
           </div>-
            <div class="layui-input-inline" style="width: 100px;">
             <input type="text" name="stock_date" placeholder="" autocomplete="off" class="layui-input" id="date2" onclick="layui.laydate({elem: this})">
-          </div>
+          </div> -->
         </div>
 
         <div class="layui-inline form-right">

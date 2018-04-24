@@ -1,0 +1,44 @@
+@import "common.scss";
+html {
+	font-size: 62.5%;
+}
+.form-search{
+	padding: 10px;
+    line-height: 22px;
+    border-radius: 0 2px 2px 0;
+    background-color: #f2f2f2;
+}
+.form-right{
+	float:right;
+}
+.layui-elem-field legend.form-label{
+	font-size:calculateRem(14);
+}
+.field-block{
+	margin:calculateRem(10);
+	padding-top:calculateRem(10);
+}
+.table-form{
+	border-right:1px solid #e2e2e2;
+	border-bottom:1px solid #e2e2e2;
+	font-size:calculateRem(14);
+}
+.table-form td,th{
+	border-left:1px solid #e2e2e2;
+	border-top:1px solid #e2e2e2;
+	align:center;
+	valign:middle;
+	padding: 0 calculateRem(10);
+	font-family:normal;
+	font-weight:normal;
+}
+.table-form tr{
+	height:calculateRem(35);
+}
+.form-input{
+	border:1px solid #e2e2e2;
+	background-color: rgba(250, 255, 189, 0.5);
+	height:calculateRem(20);
+	color:#103c80;
+	padding-left:calculateRem(5);
+}

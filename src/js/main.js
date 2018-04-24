@@ -39,17 +39,63 @@ layui.config({
 			}
 		]
 	},{
-		"id" : "5",
-		"title" : "百度",
-		"icon" : "&#xe629;",
-		"href" : "http://www.baidu.com/",
-		"spread" : false
+		"id" : "9",
+		"title" : "销售管理",
+		"icon" : "&#xe61c;",
+		"href" : "",
+		"spread" : false,
+		"children" : [
+			{
+				"id" : "99",
+				"title" : "销售订单",
+				"icon" : "&#xe531;",
+				"href" : "/stock/stock_control",
+				"spread" : false
+			},
+			{
+				"id" : "992",
+				"title" : "异常订单处理",
+				"icon" : "&#xe631;",
+				"href" : "/stock/stock_control",
+				"spread" : false
+			},
+			{
+				"id" : "41",
+				"title" : "销售业绩",
+				"icon" : "&#xe610;",
+				"href" : "",
+				"spread" : false
+			}
+		]
 	},{
 		"id" : "6",
-		"title" : "404页面",
+		"title" : "报表与数据",
 		"icon" : "&#xe61c;",
-		"href" : "page/404.html",
-		"spread" : false
+		"href" : "",
+		"spread" : false,
+		"children" : [
+			{
+				"id" : "939",
+				"title" : "销售数据",
+				"icon" : "&#xe571;",
+				"href" : "/stock/stock_control",
+				"spread" : false
+			},
+			{
+				"id" : "9292",
+				"title" : "库存数据",
+				"icon" : "&#xe666;",
+				"href" : "/stock/stock_control",
+				"spread" : false
+			},
+			{
+				"id" : "441",
+				"title" : "客户数据",
+				"icon" : "&#xe616;",
+				"href" : "",
+				"spread" : false
+			}
+		]
 	},{
 		"id" : "7",
 		"title" : "系统基本参数",
@@ -58,21 +104,21 @@ layui.config({
 		"spread" : false
 	},{
 		"id" : "8",
-		"title" : "二级菜单演示",
-		"icon" : "&#xe61c;",
+		"title" : "系统设置",
+		"icon" : "&#xe631;",
 		"href" : "",
 		"spread" : false,
 		"children" : [
 			{
 				"id" : "9",
-				"title" : "二级菜单1",
+				"title" : "用户管理",
 				"icon" : "&#xe631;",
 				"href" : "page/systemParameter/systemParameter.html",
 				"spread" : false
 			},
 			{
 				"id" : "10",
-				"title" : "二级菜单2",
+				"title" : "权限分配",
 				"icon" : "&#xe631;",
 				"href" : "",
 				"spread" : false

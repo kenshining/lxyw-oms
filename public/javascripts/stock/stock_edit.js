@@ -13,10 +13,15 @@ layui.config({
         });
 
 });
-var fadeDiv = function(fadeInId,fadeOutId){
-	$(fadeInId).fadeOut(50,function(){
-        $(fadeOutId).fadeIn(50);
+var fadeDiv = function(fadeOutId,fadeInId){
+	$(fadeOutId).fadeOut(50,function(){
+        $(fadeInId).fadeIn(50);
     });
+}
+var showStockWin = function(id){
+    fadeDiv("#supplier_select","#product_form");
+    $('html,body').animate({scrollTop:$("body").height()},'fast');
+    $("#supplier_select_input").val(id);
 }
 var findSupplierByPage = function(stable){
 	stable.set({
@@ -51,7 +56,7 @@ var findSupplierByPage = function(stable){
             fieldName: '操作',
             field: 'id',
             format: function (val,obj) {
-                var html = '<input type="button" value="选择供应商" data-action="edit" data-id="' + val + '" class="layui-btn layui-btn-mini"  onclick="fadeDiv(\'#supplier_select\',\'#product_form\');"/> ' ;
+                var html = '<input type="button" value="选择供应商" data-action="edit" data-id="' + val + '" class="layui-btn layui-btn-mini"  onclick="showStockWin(\''+val+'\');"/> ' ;
                    
                 return html;
             }
@@ -63,28 +68,8 @@ var findSupplierByPage = function(stable){
         paged: true, //是否显示分页
         singleSelect: false, //只允许选择一行，checkbox为true生效
         onSuccess: function ($elem) { //$elem当前窗口的jq对象
-            $elem.children('tr').each(function () {
-                $(this).children('td:last-child').children('input').each(function () {
-                    var $that = $(this);
-                    var action = $that.data('action');
-                    var id = $that.data('id');
-                    $that.on('click', function () {
-                        switch (action) {
-                            case 'edit':
-                                layer.msg(action + ":" + id);
-                                break;
-                            case 'del': //删除
-                                var name = $that.parent('td').siblings('td[data-field=name]').text();
-                                //询问框
-                                layer.confirm('确定要删除[ <span style="color:red;">' + name + '</span> ] ？', { icon: 3, title: '系统提示' }, function (index) {
-                                    $that.parent('td').parent('tr').remove();
-                                    layer.msg('删除成功.');
-                                });
-                                break;
-                        }
-                    });
-                });
-            });
+
+           $('html,body').animate({scrollTop:0},'fast');
         }
     });
     stable.render();

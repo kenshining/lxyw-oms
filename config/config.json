@@ -21,8 +21,8 @@
             {"type": "console", "category": "console"},
             {
               "type": "dateFile",
-              "filename": "D:/weblogs/logs/",
-              "pattern": "debug/yyyyMMddhh.txt",
+              "filename": "logs/",
+              "pattern": "yyyyMMddhh.txt",
               "absolute": true,
               "alwaysIncludePattern": true,   
               "category": "logInfo"

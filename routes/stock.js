@@ -14,4 +14,11 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
   
       res.render('stock/stock_edit', {title: 'Express' });
   });
+
+  /**新增或修改库存**/
+  app.get('/stock/stock_supplier', function(req, res){
+  
+      res.render('stock/stock_supplier', {title: 'Express' });
+  });
+  
 };

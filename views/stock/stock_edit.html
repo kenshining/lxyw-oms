@@ -1,4 +1,13 @@
-<form class="layui-form" action="">
+<!DOCTYPE html>
+<html>
+  <head>
+  <% include ../include.html %>
+  <link rel="stylesheet" href="/stylesheets/stock/stock.min.css">
+  <link rel="stylesheet" href="/stylesheets/form.min.css">
+  <script type="text/javascript" src="/javascripts/stock/stock_edit.js"></script>
+  </head>
+  <body>
+<form class="layui-form" action="" id="product_form">
     <fieldset class="layui-elem-field field-block">
     <legend class="form-label">产品基本信息</legend>
      <div class="layui-form-item">
@@ -127,6 +136,7 @@
           <span class="highlight">12.50元</span>
         </div>
       </div>
+      </div>
 </fieldset>
 <fieldset class="layui-elem-field field-block">
     <legend class="form-label">库存操作</legend>
@@ -175,11 +185,37 @@
             <input type="text" name="" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-form-label">
-             <button class="layui-btn layui-btn-mini layui-btn-danger"> <i class="layui-icon">&#xe615;</i>筛选供应商</button>
+            <a href="javascript:;" id="selectSupplier" class="layui-btn layui-btn-mini layui-btn-danger">
+              <i class="layui-icon">&#xe615;</i> 筛选供应商
+            </a>
         </div>
       </div>
     </div>
 </fieldset>
 </form>
 
+
+<div id="supplier_select" style="display: none;">
+  <div style="margin-top: 15px;">
+  <form class="layui-form">
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label" style="width: 100px;">供货商名称：</label>
+          <div class="layui-input-inline" style="min-width: 200px;">
+             <input type="text" name="" autocomplete="off" class="layui-input">
+          </div>
+          <span>
+            <a href="javascript:;" class="layui-btn layui-btn-small layui-btn-warm" id="searchSupplier" style="margin-top: 4px;">
+              <i class="layui-icon">&#xe615;</i> 搜索
+            </a>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="supplier_List">
+  </div>
+</div>
+</body>
+</html>
 

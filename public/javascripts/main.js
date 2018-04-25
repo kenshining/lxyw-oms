@@ -1,7 +1,7 @@
 //缓存菜单使用对象
 var menuCache = [];
 layui.config({
-	base: '/javascripts/layUI/'
+  base: '/layui/lay/modules/' //假设这是你存放拓展模块的根目录
 }).use(['navbar','tab', 'code','element'], function() {
 	var navbar = layui.navbar(),
 		layer = parent.layer === undefined ? layui.layer : parent.layer,

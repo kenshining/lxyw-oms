@@ -1,6 +1,6 @@
 //示例代码
 layui.config({
-    base: '/javascripts/layUI/'
+  base: '/layui/lay/modules/' //假设这是你存放拓展模块的根目录
 }).use(['laydate','btable','form'], function() {
     var $ = layui.jquery,
         btable = layui.btable(),
@@ -9,24 +9,21 @@ layui.config({
 
         $('#add').on('click', function() {
             //打开弹出窗口加载内容
-            $.get('/stock/stock_edit', {}, function(doms){
                 layer.open({
-                    content: doms,
-                    type: 1,
+                    content: '/stock/stock_edit',
+                    type: 2,
                     anim: 4, //动画类型
-                    title: '添加表单',
+                    title: '编辑库存',
                     area:  ['60%', '90%'],
                     btn: ['保存', '取消'],
                     maxmin: true,
                     success: function(layero, index){
                         //console.log(layero, index);
-                        //弹出页面不渲染表单的问题。需要重新渲染。
-                        form.render();
                     }
                 });
-            });
+            
         });
-           
+
         btable.set({
                 openWait: true,//开启等待框
                 height:120,

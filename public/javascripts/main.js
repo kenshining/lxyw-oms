@@ -49,7 +49,7 @@ layui.config({
 				"id" : "99",
 				"title" : "销售订单",
 				"icon" : "&#xe609;",
-				"href" : "/stock/stock_control",
+				"href" : "/sales/sales_control",
 				"spread" : false
 			},
 			{

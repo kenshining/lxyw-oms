@@ -33,6 +33,11 @@ module.exports = function(app,logger){
 	app.get('/print', function(req, res, next) {
 	  res.render('print-model/sale_list', { title: 'Express' });
 	});
+
+	app.get('/comingSoon', function(req, res, next) {
+	  res.render('comingSoon', { title: 'Express' });
+	});
+	
 	//导入路由配置。
 	stockRoutes.init(app,serviceInstance,serviceEnumerationInstance,logger);
 	usersRoutes.init(app,serviceInstance,serviceEnumerationInstance,logger);

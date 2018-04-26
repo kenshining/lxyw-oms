@@ -56,14 +56,14 @@ layui.config({
 				"id" : "992",
 				"title" : "异常订单处理",
 				"icon" : "&#xe60a;",
-				"href" : "/stock/stock_control",
+				"href" : "/comingSoon",
 				"spread" : false
 			},
 			{
 				"id" : "41",
 				"title" : "销售业绩",
 				"icon" : "&#xe62f;",
-				"href" : "",
+				"href" : "/comingSoon",
 				"spread" : false
 			}
 		]
@@ -78,21 +78,21 @@ layui.config({
 				"id" : "939",
 				"title" : "销售数据",
 				"icon" : "&#xe62c;",
-				"href" : "/stock/stock_control",
+				"href" : "/comingSoon",
 				"spread" : false
 			},
 			{
 				"id" : "9292",
 				"title" : "库存数据",
 				"icon" : "&#xe632;",
-				"href" : "/stock/stock_control",
+				"href" : "/comingSoon",
 				"spread" : false
 			},
 			{
 				"id" : "441",
 				"title" : "客户数据",
 				"icon" : "&#xe616;",
-				"href" : "",
+				"href" : "/comingSoon",
 				"spread" : false
 			}
 		]
@@ -100,7 +100,7 @@ layui.config({
 		"id" : "7",
 		"title" : "系统基本参数",
 		"icon" : "&#xe631;",
-		"href" : "page/systemParameter/systemParameter.html",
+		"href" : "/comingSoon",
 		"spread" : false
 	},{
 		"id" : "8",
@@ -120,7 +120,7 @@ layui.config({
 				"id" : "10",
 				"title" : "权限分配",
 				"icon" : "&#xe631;",
-				"href" : "",
+				"href" : "/comingSoon",
 				"spread" : false
 			}
 		]

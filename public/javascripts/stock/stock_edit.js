@@ -13,15 +13,21 @@ layui.config({
         });
 
 });
-var fadeDiv = function(fadeOutId,fadeInId){
+var fadeDiv = function(fadeOutId,fadeInId,callback){
 	$(fadeOutId).fadeOut(50,function(){
-        $(fadeInId).fadeIn(50);
+        $(fadeInId).fadeIn(50,function(){
+        	if(typeof callback == "function"){
+  				callback();
+        	}
+        });
     });
 }
 var showStockWin = function(id){
-    fadeDiv("#supplier_select","#product_form");
-    $('html,body').animate({scrollTop:$("body").height()},'fast');
-    $("#supplier_select_input").val(id);
+    fadeDiv("#supplier_select","#product_form",function(){
+    	$('html,body').animate({scrollTop:$("body").height()},'fast');
+    	$("#supplier_select_input").val(id);
+    });
+    
 }
 var findSupplierByPage = function(stable){
 	stable.set({

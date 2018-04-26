@@ -10,12 +10,132 @@
 	<form class="layui-form" action="" id="product_form">
 		<fieldset class="layui-elem-field field-block">
 		    <legend class="form-label">基础信息</legend>
+		    客户名称 人？企业？
+		    采购联系人：选择+录入，联系人电话
+		    收货地址：
+		    发票寄送地址：
+			订单编号：XXXX
+			付款方式：
+			客户收货要求
+			物流付款方式
+			物流公司
+			我方物流费用
+			备注 
+			免责注意
 		</fieldset>
 		<fieldset class="layui-elem-field field-block">
-		    <legend class="form-label">订购列表</legend>
+		   <legend class="form-label">订购列表</legend>
+		   <div class="layui-form-item" style="margin-left: 10px;">
+		        <div class="layui-inline">
+		           <div class="layui-btn-group">
+				    <button class="layui-btn layui-btn-small layui-btn-normal">新增商品<i class="layui-icon ">&#xe608;</i></button>
+				    <button class="layui-btn layui-btn-small layui-btn-danger">删除商品<i class="layui-icon">&#xe640;</i></button>
+				  </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item" style="padding-left: 10px;padding-right: 10px;">
+		    	<table class="layui-table">
+				  <thead>
+				    <tr>
+				      <th nowrap="nowrap">
+				      	<input type="checkbox" name="like[write]" lay-skin="primary">
+				      </th>
+				      <th>品名</th>
+				      <th>条码</th>
+				      <th>规格</th>
+				      <th>其他数据</th>
+				      <th>单品售价</th>
+				      <th>订购数量(箱)</th>
+				      <th>搭赠(件)</th>
+				    </tr> 
+				  </thead>
+				  <tbody>
+
+				    <tr>
+				      <td rowspan="2" align="center" valign="middle">
+						<input type="checkbox" name="like[write]" lay-skin="primary">
+				      </td>
+				      <td>日本透明奶茶</td>
+				      <td>4200340</td>
+				      <td nowrap="nowrap">瓶装500ml*24/箱</td>
+				      <td>日本|24个月|34kg/箱|0.1M3/箱</td>
+				      <td>
+				      	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="单品金额（元）">
+				      </td>
+				      <td>
+				      	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="订购数量（箱）">
+				      </td>
+				      <td>
+				      	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="搭赠量（件）">
+				      </td>
+				    </tr>
+				    <tr style="background-color:rgb(250, 255, 189);">
+				      <td>
+				      <select name="city" lay-verify="">
+			              <option value="100" selected="true">无优惠</option>
+			              <option>折扣优惠</option>
+			              <option>抹零优惠</option>
+			              <option>免单</option>
+			            </select>     
+			          </td>
+				      <td>
+				      	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="优惠后总售价（元）">
+				      </td>
+				      <td colspan="5">单品类参考成本（元）：<em class="highlight">454.22</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单品类总价（元）：<em class="highlight">532.9</em></td>
+				    </tr>
+
+				    <tr>
+				      <td rowspan="2" align="center" valign="middle">
+						<input type="checkbox" name="like[write]" lay-skin="primary">
+				      </td>
+				      <td>日本透明奶茶</td>
+				      <td>4200340</td>
+				      <td nowrap="nowrap">瓶装500ml*24/箱</td>
+				      <td>日本|24个月|34kg/箱|0.1M3/箱</td>
+				      <td>
+				      	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="单品金额（元）">
+				      </td>
+				      <td>
+				      	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="订购数量（箱）">
+				      </td>
+				      <td>
+				      	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="搭赠量（件）">
+				      </td>
+				    </tr>
+				    <tr style="background-color:rgb(250, 255, 189);">
+				      <td>
+				      <select name="city" lay-verify="">
+			              <option value="100" selected="true">无优惠</option>
+			              <option>折扣优惠</option>
+			              <option>抹零优惠</option>
+			              <option>免单</option>
+			            </select>     
+			          </td>
+				      <td>
+				      	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="优惠后总售价（元）">
+				      </td>
+				      <td colspan="5">单品类参考成本（元）：<em class="highlight">454.22</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单品类总价（元）：<em class="highlight">532.9</em></td>
+				    </tr>
+				    
+
+				     <tr style="text-align: right;padding-right: 10px;background-color: #eee;">
+				     	<td colspan="8" style="padding-top: 10px;padding-bottom: 10px;">
+				     		共计：<b class="highlight">6</b>&nbsp;&nbsp;类商品&nbsp;&nbsp;|&nbsp;&nbsp;
+				     		总重量：<b class="highlight">454.22</b>kg&nbsp;&nbsp;|&nbsp;&nbsp;
+				     		总体积：<b class="highlight">45</b>M3&nbsp;&nbsp;|&nbsp;&nbsp;
+				     		总价格：<b class="highlight">8400</b>元
+				     	</td>
+				     	</td>
+				     </tr>
+				  </tbody>
+				</table>
+		    </div>
 		</fieldset>
 		<fieldset class="layui-elem-field field-block">
 		    <legend class="form-label">销售人信息</legend>
+		    销售人
+		    销售人联系电话
+		    微信
 		</fieldset>
 	</form>
   </body>

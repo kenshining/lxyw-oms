@@ -34,7 +34,7 @@ layui.config({
 				"id" : "4",
 				"title" : "供货商管理",
 				"icon" : "&#xe62e;",
-				"href" : "",
+				"href" : "/stock/supplier_control",
 				"spread" : false
 			}
 		]
@@ -188,6 +188,9 @@ layui.config({
 			$("#unlock").click();
 		}
 	});
+	//绑定修改密码按钮事件
+	modifyPasswordWin();
+	modifySelfInfo();
 
 	
 });
@@ -204,4 +207,47 @@ var lockPage = function(){
 var cacheMenu =function(){
 
 	window.sessionStorage.setItem("lockcms",false);
+}
+//用户修改密码
+var modifyPasswordWin = function(){
+
+	$('#main_password_modify').on('click', function() {
+        //打开弹出窗口加载内容
+        layer.open({
+            content: '/user/modify_password',
+            type: 2,
+            anim: 4, //动画类型
+            title: '修改密码',
+            skin: 'layui-layer-rim', //加上边框
+            btnAlign:'c',
+            area:  ['400px', '280px;'],
+            btn: ['修改密码', '取消'],
+            success: function(layero, index){
+                //console.log(layero, index);
+            }
+    	});
+            
+   });
+	
+}
+//编辑个人信息
+var modifySelfInfo = function(){
+
+	$("#main_self_modify").on('click', function() {
+        //打开弹出窗口加载内容
+        layer.open({
+            content: '/user/modify_self_information',
+            type: 2,
+            anim: 4, //动画类型
+            title: '修改密码',
+            skin: 'layui-layer-rim', //加上边框
+            btnAlign:'c',
+            area:  ['400px', '480px;'],
+            btn: ['保存', '取消'],
+            success: function(layero, index){
+                //console.log(layero, index);
+            }
+    	});
+            
+   });
 }

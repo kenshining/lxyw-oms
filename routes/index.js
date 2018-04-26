@@ -8,6 +8,7 @@ var config=require('../config/config.json');
 
 //导入路由配置
 var stockRoutes = require("./stock");
+var usersRoutes = require("./users");
 
 module.exports = function(app,logger){
 
@@ -33,4 +34,5 @@ module.exports = function(app,logger){
 	});
 	//导入路由配置。
 	stockRoutes.init(app,serviceInstance,serviceEnumerationInstance,logger);
+	usersRoutes.init(app,serviceInstance,serviceEnumerationInstance,logger);
 };

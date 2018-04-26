@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <% include ../include.html %>
+  <link rel="stylesheet" href="/stylesheets/stock/stock.min.css">
+  <link rel="stylesheet" href="/stylesheets/form.min.css">
+  <script type="text/javascript" src="/javascripts/stock/stock_edit.js"></script>
+  </head>
+  <body>
+<form class="layui-form" action="" id="product_form">
+  <fieldset class="layui-elem-field field-block">
+    <legend class="form-label">供货商基本信息</legend>
+     <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label" style="width: 100px;">供货商公司名：</label>
+          <div class="layui-input-inline" style="min-width: 490px;">
+            <input type="text" name="" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+       <div class="layui-inline">
+          <label class="layui-form-label" style="width: 100px;">Email：</label>
+          <div class="layui-input-inline" style="width: 210px;">
+            <input type="text" name="" autocomplete="off" class="layui-input">
+          </div>
+          <label class="layui-form-label" style="width: 100px;">国家和地区：</label>
+          <div class="layui-input-inline" style="width: 140px;">
+            <select name="city" lay-verify="" lay-search>
+              <option value="0">录入搜索</option>
+              <option value="bl">日本</option>
+              <option value="jp">美国</option>
+              <option value="ch">中国大陆</option>
+              <option value="cn">中国台湾</option>
+              <option value="sq">中国香港</option>
+              <option value="sh">印度尼西亚</option>
+              <option value="tl">泰国</option>
+            </select>   
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label" style="width: 100px;">联系电话：</label>
+          <div class="layui-input-inline" style="min-width: 490px;">
+            <input type="text" name="" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label" style="width: 100px;">备注：</label>
+          <div class="layui-input-inline" style="min-width: 490px;">
+           <textarea name="" lay-verify="" placeholder="请输入备注信息..." class="layui-textarea"></textarea>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset class="layui-elem-field field-block">
+      <legend class="form-label">供货联系人信息</legend>
+      <table class="layui-table" lay-size="lg" style="width: 98%;margin: 0 auto;margin-bottom: 10px;">
+          <tr>
+            <th>姓名</th>
+            <th style="width: 50px;">职位</th>
+            <th style="width: 120px;">电话（移动电话）</th>
+            <th>Email</th>
+            <th>语种</th>
+            <th>备注</th>
+            <th style="width: 80px;">操作</th>
+          </tr>
+          <tr>
+            <td>Tom Green</td>
+            <td>CEO</td>
+            <td>18611699091</td>
+            <td>tomgreen@foxmail.com</td>
+            <td>英语（美国）</td>
+            <td>喜欢茶文化。</td>
+            <td>
+              <div class="layui-btn-group">
+                <button class="layui-btn layui-btn-primary layui-btn-mini">
+                  <i class="layui-icon">&#xe642;</i>
+                </button>
+                <button class="layui-btn layui-btn-primary layui-btn-mini">
+                  <i class="layui-icon">&#xe640;</i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="text" name="" autocomplete="off" class="layui-input"></td>
+            <td><input type="text" name="" autocomplete="off" class="layui-input"></td>
+            <td><input type="text" name="" autocomplete="off" class="layui-input"></td>
+            <td><input type="text" name="" autocomplete="off" class="layui-input"></td>
+            <td><input type="text" name="" autocomplete="off" class="layui-input"></td>
+            <td><input type="text" name="" autocomplete="off" class="layui-input"></td>
+            <td>
+              <div class="layui-btn-group">
+                <button class="layui-btn layui-btn-primary layui-btn-mini">
+                  <i class="layui-icon">&#xe654;</i>
+                </button>
+                <button class="layui-btn layui-btn-primary layui-btn-mini">
+                  <i class="layui-icon">&#xe640;</i>
+                </button>
+              </div>
+            </td>
+          </tr>
+      </table>
+    </fieldset>
+</form>
+</body>
+</html>
+

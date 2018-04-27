@@ -10,26 +10,134 @@
 	<form class="layui-form" action="" id="product_form">
 		<fieldset class="layui-elem-field field-block">
 		    <legend class="form-label">基础信息</legend>
-		    客户名称 人？企业？
-		    采购联系人：选择+录入，联系人电话
-		    收货地址：
-		    发票寄送地址：
-			订单编号：XXXX
-			付款方式：
-			客户收货要求
-			物流付款方式
-			物流公司
-			我方物流费用
-			备注 
-			免责注意
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">客户名称：</label>
+		          <div class="layui-input-inline" style="min-width: 520px;">
+		            <input type="text" name="" autocomplete="off" class="layui-input">	
+		          </div>
+		          <label><a class="layui-btn layui-btn-normal"><i class="layui-icon ">&#xe615;</i>选择客户</a></label>
+		        </div>
+		    </div>
+		     <div class="layui-form-item">
+		     	<div class="layui-inline">
+		     		<label class="layui-form-label">客户类别：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="city" lay-verify="">
+			              <option value="100" selected="true">企业</option>
+			              <option>个人</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		        <div class="layui-inline">
+		     		<label class="layui-form-label" style="width: 85px;">采购联系人：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="city" lay-verify="">
+			              <option value="100" selected="true">成龙|18611699091</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+		     	<div class="layui-inline">
+		     		<label class="layui-form-label">付款方式：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="city" lay-verify="">
+			              <option value="100" selected="true">对公全额付款</option>
+			              <option>支付宝</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		        <div class="layui-inline">
+		     		<label class="layui-form-label" style="width: 85px;">收货要求：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="city" lay-verify="">
+			              <option value="100" selected="true">货到自提点</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+		     	<div class="layui-inline">
+		     		<label class="layui-form-label">物流公司：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="city" lay-verify="">
+			              <option value="100" selected="true">达达物流</option>
+			              <option>京东物流</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		        <div class="layui-inline">
+		     		<label class="layui-form-label" style="width: 85px;">物流付款：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="city" lay-verify="">
+			              <option value="100" selected="true">客户自付</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">物流费用：</label>
+		          <div class="layui-input-inline" style="min-width: 520px;">
+		            <input type="text" name="" autocomplete="off" class="layui-input">	
+		          </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">物流单号：</label>
+		          <div class="layui-input-inline" style="min-width: 520px;">
+		            <input type="text" name="" autocomplete="off" class="layui-input">	
+		          </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">收货地址：</label>
+		          <div class="layui-input-inline" style="width: 520px;">
+		            <textarea name="" autocomplete="off" class="layui-textarea"></textarea>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">发票地址：</label>
+		          <div class="layui-input-inline" style="width: 520px;">
+		            <textarea name="" autocomplete="off" class="layui-textarea"></textarea>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">备注：</label>
+		          <div class="layui-input-inline" style="width: 520px;">
+		            <textarea name="" autocomplete="off" class="layui-textarea" placeholder="交货期：预计XXXX年X月X日发货，最终交货时间根据实际到货与物流情况、由卖方具体安排。"></textarea>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">免责事项：</label>
+		          <div class="layui-input-inline" style="width: 520px;">
+		            <textarea name="" autocomplete="off" class="layui-textarea">请务必确认货品完好无损再签收，否则我司概不负责，由此带来的不便敬请谅解！ 如对货品有疑议，请及时与我司销售联系人联络。食品饮料品类属特殊商品，一旦签收，无法退换。</textarea>
+		          </div>
+		        </div>
+		    </div>	
 		</fieldset>
 		<fieldset class="layui-elem-field field-block">
 		   <legend class="form-label">订购列表</legend>
 		   <div class="layui-form-item" style="margin-left: 10px;">
 		        <div class="layui-inline">
 		           <div class="layui-btn-group">
-				    <button class="layui-btn layui-btn-small layui-btn-normal">新增商品<i class="layui-icon ">&#xe608;</i></button>
-				    <button class="layui-btn layui-btn-small layui-btn-danger">删除商品<i class="layui-icon">&#xe640;</i></button>
+				    <button class="layui-btn layui-btn-small layui-btn-normal"><i class="layui-icon ">&#xe608;</i>新增商品</button>
+				    <button class="layui-btn layui-btn-small layui-btn-danger"><i class="layui-icon">&#xe640;</i>删除商品</button>
 				  </div>
 		        </div>
 		    </div>
@@ -133,9 +241,38 @@
 		</fieldset>
 		<fieldset class="layui-elem-field field-block">
 		    <legend class="form-label">销售人信息</legend>
-		    销售人
-		    销售人联系电话
-		    微信
+		    <div class="layui-form-item">
+		     	<div class="layui-inline">
+		     		<label class="layui-form-label">销售人：</label>
+		     		<div class="layui-input-inline">
+		            	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="">
+			          </td>
+		          	</div>
+		        </div>
+		        <div class="layui-inline">
+		     		<label class="layui-form-label">电话：</label>
+		     		<div class="layui-input-inline">
+		            	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="">
+			          </td>
+		          	</div>
+		        </div>
+		    </div>
+		     <div class="layui-form-item">
+		     	<div class="layui-inline">
+		     		<label class="layui-form-label">Email：</label>
+		     		<div class="layui-input-inline">
+		            	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="">
+			          </td>
+		          	</div>
+		        </div>
+		        <div class="layui-inline">
+		     		<label class="layui-form-label">微信：</label>
+		     		<div class="layui-input-inline">
+		            	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="">
+			          </td>
+		          	</div>
+		        </div>
+		    </div>
 		</fieldset>
 	</form>
   </body>

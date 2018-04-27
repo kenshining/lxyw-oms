@@ -53,6 +53,13 @@ layui.config({
 				"spread" : false
 			},
 			{
+				"id" : "9292",
+				"title" : "客户管理",
+				"icon" : "&#xe613;",
+				"href" : "/comingSoon",
+				"spread" : false
+			},
+			{
 				"id" : "992",
 				"title" : "异常订单处理",
 				"icon" : "&#xe60a;",

@@ -80,8 +80,12 @@
 		     		<label class="layui-form-label" style="width: 85px;">物流付款：</label>
 		     		<div class="layui-input-inline">
 		            	<select name="city" lay-verify="">
-			              <option value="100" selected="true">预付</option>
-			              <option>到付</option>
+			              <option value="100" selected="true">客户预付</option>
+			              <option>客户到付</option>
+			              <option>我方预付</option>
+			              <option>我方到付</option>
+			              <option>双方预付</option>
+			              <option>双方到付</option>
 			            </select>     
 			          </td>
 		          	</div>
@@ -89,8 +93,14 @@
 		    </div>
 		    <div class="layui-form-item">
 			    <div class="layui-inline">
-		          <label class="layui-form-label">物流费用：</label>
-		          <div class="layui-input-inline" style="min-width: 520px;">
+		          <label class="layui-form-label">客户运费：</label>
+		          <div class="layui-input-inline">
+		            <input type="text" name="" autocomplete="off" class="layui-input">	
+		          </div>
+		        </div>
+		        <div class="layui-inline">
+		          <label class="layui-form-label" style="width: 85px;">我方运费：</label>
+		          <div class="layui-input-inline">
 		            <input type="text" name="" autocomplete="off" class="layui-input">	
 		          </div>
 		        </div>

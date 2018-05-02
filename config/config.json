@@ -5,7 +5,7 @@
         "_comment":"使用的服务和端口号"
     },
     "redisConfig":{
-        "host":"118.192.22.167",
+        "host":"127.0.0.1",
         "post":"6379",
         "sessionDay":0.04
     },
@@ -14,7 +14,7 @@
         "_comment":"使用的后端服务"
     },
     "roleURL":[
-        "/index"
+        "/main"
     ],
     "log4js": { 
         "appenders": [ 

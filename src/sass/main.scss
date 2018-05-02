@@ -427,6 +427,46 @@ html {
 	height: 38px;
 }
 
+/*修改个人信息头像*/
+.main-modify-photo{
+	width:200px;
+    height: 120px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    margin: 0 auto;
+    background-color:#e2e2e2;
+}
+.main-modify-photo a.img {
+    display: block;
+    width: 76px;
+    height: 76px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+.main-modify-photo a.img img {
+    display: block;
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border: 4px solid #44576b;
+    cursor:pointer;
+}
+.main-modify-photo p {
+    display: block;
+    width: 100%;
+    height: 25px;
+    color: #44576b;
+    text-align: center;
+    font-size: 12px;
+    white-space: nowrap;
+    line-height: 25px;
+    overflow: hidden;
+}
+
+
 /*响应式*/
 @media screen and (max-width:1282px){
 	.panel{ width:33.3333%; }

@@ -21,6 +21,23 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.engine('.html', ejs.__express);
 
+
+//connect to redits to configrate session state
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+// session configerations
+app.use(session({
+  store: new RedisStore({
+    host: config.redisConfig.host,
+    port: config.redisConfig.post
+  }),
+  secret: 'cookie-parser',
+  //session invalid configeration
+  cookie: {maxAge: 60000*60*24*config.redisConfig.sessionDay },
+  resave:true,
+  saveUninitialized:false
+}));
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -28,6 +45,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//引用过滤器
+var filters = require('./services/SystemFilter');
+filters(app,log);
 
 //引用路由
 routes(app,log);

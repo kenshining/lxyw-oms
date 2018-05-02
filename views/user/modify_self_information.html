@@ -2,15 +2,15 @@
 <html>
   <head>
   <% include ../include.html %>
-  <link rel="stylesheet" href="/stylesheets/stock/stock.min.css">
+  <link rel="stylesheet" href="/stylesheets/main.min.css">
   <link rel="stylesheet" href="/stylesheets/form.min.css">
   </head>
   <body style="margin: 10px;">
   <form class="layui-form" action="" id="pass_form">
       <div class="layui-form-item">
-        <div class="user-photo">
-          <a class="img" title="我的头像"><img src="images/face.jpg"></a>
-          <p>KenCheng</p>
+        <div class="main-modify-photo">
+          <a class="img" title="我的头像"><img src="/images/face.jpg"></a>
+          <p>点击头像上传图片</p>
         </div>
       </div>
       <div class="layui-form-item">
@@ -21,6 +21,12 @@
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">手机：</label>
+        <div class="layui-input-inline">
+           <input type="password" name="password" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">微信号：</label>
         <div class="layui-input-inline">
            <input type="password" name="password" lay-verify="required" autocomplete="off" class="layui-input">
         </div>

@@ -197,6 +197,7 @@ layui.config({
 	});
 	//绑定修改密码按钮事件
 	modifyPasswordWin();
+	//绑定编辑个人信息按钮事件
 	modifySelfInfo();
 
 	
@@ -249,7 +250,7 @@ var modifySelfInfo = function(){
             title: '修改密码',
             skin: 'layui-layer-rim', //加上边框
             btnAlign:'c',
-            area:  ['400px', '480px;'],
+            area:  ['400px', '500px;'],
             btn: ['保存', '取消'],
             success: function(layero, index){
                 //console.log(layero, index);

@@ -6,5 +6,7 @@ layui.config({
         supplier_table = layui.btable(),
         layer = layui.layer,
         element = layui.element;
-	
+		form.on('select', function(data){
+			$(data.elem).find("option:contains('"+data.value+"')").attr("selected",true);
+		});
 });

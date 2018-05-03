@@ -18,6 +18,10 @@ html {
 	margin:calculateRem(10);
 	padding-top:calculateRem(10);
 }
+.table-block{
+	padding-left:calculateRem(10);
+	padding-right:calculateRem(10);
+}
 .table-form{
 	border-right:1px solid #e2e2e2;
 	border-bottom:1px solid #e2e2e2;

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <% include ../include.html %>
+  <link rel="stylesheet" href="/stylesheets/form.min.css">
+  <script type="text/javascript" src="/javascripts/sales/customer_edit.js"></script>
+  </head>
+  <body>
+	<form class="layui-form" action="" id="sales_form">
+		<fieldset class="layui-elem-field field-block">
+		    <legend class="form-label">客户信息</legend>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">客户名称：</label>
+		          <div class="layui-input-inline" style="min-width: 520px;">
+		            <input type="text" name="customer_name" id="customer_name" autocomplete="off" class="layui-input">	
+		          </div>
+		        </div>
+		    </div>
+		     <div class="layui-form-item">
+		     	<div class="layui-inline">
+		     		<label class="layui-form-label">客户类别：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="customer_type">
+			              <option selected="true">企业</option>
+			              <option>个人</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		    </div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+		     		<label class="layui-form-label" style="width: 85px;">公司电话：</label>
+		     		<div class="layui-input-inline">
+		     			<input type="text" name="customer_transport_fee" autocomplete="off" class="layui-input">
+		     		</div>
+		        </div>
+		        <div class="layui-inline">
+		     		<label class="layui-form-label" style="width: 85px;">服务邮箱：</label>
+		     		<div class="layui-input-inline">
+		     			<input type="text" name="customer_transport_fee" autocomplete="off" class="layui-input">
+		     		</div>
+		        </div>
+			</div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">公司地址：</label>
+		          <div class="layui-input-inline" style="width: 520px;">
+		            <textarea name="transport_address" autocomplete="off" class="layui-textarea"></textarea>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">备注：</label>
+		          <div class="layui-input-inline" style="width: 520px;">
+		            <textarea name="remarks" autocomplete="off" class="layui-textarea" placeholder=""></textarea>
+		          </div>
+		        </div>
+		    </div>
+		</fieldset>
+		<fieldset class="layui-elem-field field-block">
+		   <legend class="form-label">采购联系人</legend>
+		   <div class="layui-form-item" style="margin-left: 10px;">
+		        <div class="layui-inline">
+		           <div class="layui-btn-group">
+				    <button class="layui-btn layui-btn-small layui-btn-normal"><i class="layui-icon ">&#xe608;</i>新增采购联系恶人</button>
+				  </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item" style="padding-left: 10px;padding-right: 10px;">
+		    	<table class="layui-table">
+				  <thead>
+				    <tr style="text-align: center;">
+				      <th>联系人</th>
+				      <th>电话</th>
+				      <th>Email</th>
+				      <th>操作</th>
+				    </tr> 
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>成龙</td>
+				      <td>18611699091</td>
+				      <td nowrap="nowrap">kencheng@foxmail.com</td>
+				       <td nowrap="nowrap">
+				       	<div class="layui-btn-group">
+			                <button class="layui-btn layui-btn-primary layui-btn-mini">
+			                  <i class="layui-icon">&#xe642;编辑</i>
+			                </button>
+			                <button class="layui-btn layui-btn-primary layui-btn-mini">
+			                  <i class="layui-icon">&#xe640;删除</i>
+			                </button>
+			              </div>
+				       </td>
+				    </tr> 
+				  </tbody>
+				</table>
+		    </div>
+		</fieldset>
+	</form>
+  </body>
+</html>

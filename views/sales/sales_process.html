@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <% include ../include.html %>
+  <link rel="stylesheet" href="/stylesheets/sales/sales.min.css">
+  <link rel="stylesheet" href="/stylesheets/form.min.css">
+  <script type="text/javascript" src="/javascripts/sales/sales_edit.js"></script>
+  </head>
+  <body>
+	<fieldset class="layui-elem-field field-block table-block">
+		<legend class="form-label">基础信息</legend>
+			<table class="layui-table display-table">
+				<tr>
+					<th>订单编号</th>
+					<td>20180901189032MXL</td>
+					<th>客户名称</th>
+					<td>北京乐享御味贸易有限公司</td>
+					<th>客户类型</th>
+					<td>个人</td>
+				</tr>
+				<tr>
+					<th>采购联系人</th>
+					<td>成龙|18611699091</td>
+					<th>付款方式</th>
+					<td>对公全额付款</td>
+					<th>物流付款方式</th>
+					<td>客户自付</td>
+				</tr>
+				<tr>
+					<th>客户收货要求</th>
+					<td>送货上门</td>
+					<th>客户运费</th>
+					<td>34</td>
+					<th>我方运费</th>
+					<td>0</td>
+				</tr>
+				<tr>
+					<th>物流公司（发货）</th>
+					<td>申通物流</td>
+					<th>单号（发货）</th>
+					<td colspan="3">230098202939393</td>
+				</tr>
+				<tr>
+					<th>物流公司（回库）</th>
+					<td>申通物流</td>
+					<th>单号（回库）</th>
+					<td colspan="3">230098202939393</td>
+				</tr>
+				<tr>
+					<th>收货地址</th>
+					<td colspan="5">送货上门</td>
+				</tr>
+				<tr>
+					<th>发票寄送地址</th>
+					<td colspan="5">送货上门</td>
+				</tr>
+				<tr>
+					<th>备注</th>
+					<td colspan="5">送货上门</td>
+				</tr>
+				<tr>
+					<th>免责声明</th>
+					<td colspan="5">送货上门</td>
+				</tr>
+			</table>
+		</div>
+	</fieldset>
+	<fieldset class="layui-elem-field field-block table-block">
+		<legend class="form-label">订购列表</legend>
+			<table class="layui-table">
+				<thead>
+					<tr>
+	                    <th nowrap="nowrap">序号</th>
+	                    <th>品名</th>
+	                    <th>规格</th>
+	                    <th>条码</th>
+	                    <th>产地</th>
+	                    <th>保质期</th>
+	                    <th>重量（kg）</th>
+	                    <th>体积（M3）</th>
+	                    <th>价格（元）</th>
+	                    <th>订购数量</th>
+	                    <th>搭赠</th>
+                  </tr>
+               	</thead>
+               	<tbody>
+               		<tr style="text-align: center;" nowrap="nowrap">
+	                    <td>1</td>
+	                    <td nowrap="nowrap">透明红茶</td>
+	                    <td nowrap="nowrap">瓶装500ml*24/箱</td>
+	                    <td>40011923</td>
+	                    <td>日本</td>
+	                    <td>24个月</td>
+	                    <td>34/箱|1200</td>
+	                    <td>0.1/箱|120</td>
+	                    <td>28元/箱|8640元</td>
+	                    <td>20箱</td>
+	                    <td>无</td>
+                  	</tr>
+                  	<tr style="text-align: center;" nowrap="nowrap">
+	                    <td>2</td>
+	                    <td nowrap="nowrap">透明红茶</td>
+	                    <td nowrap="nowrap">瓶装500ml*24/箱</td>
+	                    <td>40011923</td>
+	                    <td>日本</td>
+	                    <td>24个月</td>
+	                    <td>34/箱|1200</td>
+	                    <td>0.1/箱|120</td>
+	                    <td>28元/箱|8640元</td>
+	                    <td>20箱</td>
+	                    <td>无</td>
+                  	</tr>
+                  	<tr style="text-align: center;">
+                    <th colspan="1">合计</th>
+                    <td colspan="10" style="text-align: left;"><b>
+                      共计：<b class="strength-orange">1类商品</b> | 
+                      总箱数：<b class="strength-orange">20箱</b> | 
+                      总重量：<b class="strength-orange">405KG</b> | 
+                      总体积：<b class="strength-orange">0.681M3</b> | 
+                      订单总价（¥）：<b class="strength-orange">8640元</b>
+                      </b>
+                    </td>
+                  </tr>
+               	</tbody>
+			</table>
+	</fieldset>
+	<fieldset class="layui-elem-field field-block table-block">
+		<legend class="form-label">订单状态</legend>
+			<table class="layui-table display-table">
+				<tr>
+					<th width="100">订单创建时间</th>
+					<td>2018年5月3日10:17:54</td>
+				</tr>
+				<tr>
+					<th width="100">流转日志</th>
+					<td>
+						<ol>
+							<li>审核 2018年5月3日10:18:46</li>
+							<li>发货 2018年5月3日10:18:46</li>
+							<li class="strength-blue">完结 2018年5月3日10:18:46（当前状态）</li>
+						</ol>
+					</td>
+				</tr>
+				<tr>
+					<th width="100">订单流转</th>
+					<td>
+						<div class="layui-btn-group">
+			                <button class="layui-btn layui-btn-warm layui-btn-small">
+			                  <i class="layui-icon">&#xe618;批准</i>
+			                </button>
+			                <button class="layui-btn layui-btn-normal layui-btn-small">
+			                  <i class="layui-icon">&#xe609;发货</i>
+			                </button>
+			                <button class="layui-btn layui-btn layui-btn-small">
+			                  <i class="layui-icon">&#x1005;完结</i>
+			                </button>
+			                <button class="layui-btn layui-btn-danger layui-btn-small">
+			                  <i class="layui-icon">&#xe63c;退货</i>
+			                </button>
+			                <button class="layui-btn layui-btn-normal layui-btn-small">
+			                  <i class="layui-icon">&#xe60b;回库</i>
+			                </button>
+			                <button class="layui-btn layui-btn-danger layui-btn-small">
+			                  <i class="layui-icon">&#xe640;作废</i>
+			                </button>
+			              </div>
+					</td>
+				</tr>
+			</table>
+	</fieldset>
+  </body>
+</html>

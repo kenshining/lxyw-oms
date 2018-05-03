@@ -56,7 +56,7 @@ layui.config({
 				"id" : "9292",
 				"title" : "客户管理",
 				"icon" : "&#xe613;",
-				"href" : "/comingSoon",
+				"href" : "/sales/customer_control",
 				"spread" : false
 			},
 			{

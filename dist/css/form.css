@@ -27,6 +27,10 @@ html {
   margin: 1rem;
   padding-top: 1rem; }
 
+.table-block {
+  padding-left: 1rem;
+  padding-right: 1rem; }
+
 .table-form {
   border-right: 1px solid #e2e2e2;
   border-bottom: 1px solid #e2e2e2;

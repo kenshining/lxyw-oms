@@ -65,7 +65,7 @@
 		   <div class="layui-form-item" style="margin-left: 10px;">
 		        <div class="layui-inline">
 		           <div class="layui-btn-group">
-				    <button class="layui-btn layui-btn-small layui-btn-normal"><i class="layui-icon ">&#xe608;</i>新增采购联系恶人</button>
+				    <button id="addNewConnectorBtn" type="button" class="layui-btn layui-btn-small layui-btn-normal"><i class="layui-icon ">&#xe608;</i>新增采购联系恶人</button>
 				  </div>
 		        </div>
 		    </div>
@@ -79,23 +79,7 @@
 				      <th>操作</th>
 				    </tr> 
 				  </thead>
-				  <tbody>
-				    <tr>
-				      <td>成龙</td>
-				      <td>18611699091</td>
-				      <td nowrap="nowrap">kencheng@foxmail.com</td>
-				       <td nowrap="nowrap">
-				       	<div class="layui-btn-group">
-			                <button class="layui-btn layui-btn-primary layui-btn-mini">
-			                  <i class="layui-icon">&#xe642;编辑</i>
-			                </button>
-			                <button class="layui-btn layui-btn-primary layui-btn-mini">
-			                  <i class="layui-icon">&#xe640;删除</i>
-			                </button>
-			              </div>
-				       </td>
-				    </tr> 
-				  </tbody>
+				  <tbody id="con_body"></tbody>
 				</table>
 		    </div>
 		</fieldset>

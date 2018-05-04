@@ -10,18 +10,18 @@ layui.config({
 	//绑定新增事件
 	$('#add').on('click', function() {
         //打开弹出窗口加载内容
-        layer.open({
+       var index = layer.open({
             content: '/stock/supplier_edit',
             type: 2,
             anim: 4, //动画类型
             title: '编辑供货商',
-            area:  ['88%', '96%'],
             btn: ['保存', '取消'],
-            maxmin: true,
             success: function(layero, index){
                 //console.log(layero, index);
             }
         });
+        //默认全屏显示
+        layer.full(index);
             
     });
         

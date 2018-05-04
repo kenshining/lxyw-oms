@@ -9,18 +9,18 @@ layui.config({
 
         $('#add').on('click', function() {
             //打开弹出窗口加载内容
-                layer.open({
+            var index = layer.open({
                     content: '/stock/stock_edit',
                     type: 2,
                     anim: 4, //动画类型
                     title: '编辑库存',
-                    area:  ['60%', '90%'],
                     btn: ['保存', '取消'],
-                    maxmin: true,
                     success: function(layero, index){
                         //console.log(layero, index);
                     }
                 });
+                 //默认全屏显示
+                layer.full(index);
             
         });
 

@@ -2,9 +2,8 @@
 <html>
   <head>
   <% include ../include.html %>
-  <link rel="stylesheet" href="/stylesheets/stock/stock.min.css">
   <link rel="stylesheet" href="/stylesheets/form.min.css">
-  <script type="text/javascript" src="/javascripts/stock/stock_edit.js"></script>
+  <script type="text/javascript" src="/javascripts/stock/supplier_edit.js"></script>
   </head>
   <body>
 <form class="layui-form" action="" id="product_form">
@@ -51,52 +50,25 @@
     </fieldset>
     <fieldset class="layui-elem-field field-block">
       <legend class="form-label">供货联系人信息</legend>
+      <div class="layui-form-item" style="margin-left: 10px;">
+            <div class="layui-inline">
+               <div class="layui-btn-group">
+                  <button id="addNewConnectorBtn" type="button" class="layui-btn layui-btn-small layui-btn-normal"><i class="layui-icon ">&#xe608;</i>新增供货联系人</button>
+                </div>
+            </div>
+      </div>
       <table class="layui-table" lay-size="lg" style="width: 98%;margin: 0 auto;margin-bottom: 10px;">
+        <thead>
           <tr>
             <th>姓名</th>
             <th style="width: 50px;">职位</th>
             <th style="width: 120px;">电话（移动电话）</th>
             <th>Email</th>
-            <th>语种</th>
             <th>备注</th>
             <th style="width: 80px;">操作</th>
           </tr>
-          <tr>
-            <td>Tom Green</td>
-            <td>CEO</td>
-            <td>18611699091</td>
-            <td>tomgreen@foxmail.com</td>
-            <td>英语（美国）</td>
-            <td>喜欢茶文化。</td>
-            <td>
-              <div class="layui-btn-group">
-                <button class="layui-btn layui-btn-primary layui-btn-mini">
-                  <i class="layui-icon">&#xe642;</i>
-                </button>
-                <button class="layui-btn layui-btn-primary layui-btn-mini">
-                  <i class="layui-icon">&#xe640;</i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><input type="text" name="" autocomplete="off" class="layui-input"></td>
-            <td><input type="text" name="" autocomplete="off" class="layui-input"></td>
-            <td><input type="text" name="" autocomplete="off" class="layui-input"></td>
-            <td><input type="text" name="" autocomplete="off" class="layui-input"></td>
-            <td><input type="text" name="" autocomplete="off" class="layui-input"></td>
-            <td><input type="text" name="" autocomplete="off" class="layui-input"></td>
-            <td>
-              <div class="layui-btn-group">
-                <button class="layui-btn layui-btn-primary layui-btn-mini">
-                  <i class="layui-icon">&#xe654;</i>
-                </button>
-                <button class="layui-btn layui-btn-primary layui-btn-mini">
-                  <i class="layui-icon">&#xe640;</i>
-                </button>
-              </div>
-            </td>
-          </tr>
+          </thead>
+          <tbody id="con_body"></tbody>
       </table>
     </fieldset>
 </form>

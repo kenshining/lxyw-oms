@@ -120,7 +120,7 @@ layui.config({
 				"id" : "9",
 				"title" : "用户管理",
 				"icon" : "&#xe631;",
-				"href" : "page/systemParameter/systemParameter.html",
+				"href" : "/user/user_control",
 				"spread" : false
 			},
 			{

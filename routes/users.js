@@ -13,4 +13,8 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
   
       res.render('user/modify_self_information', {title: 'Express' });
   });
+  app.get('/user/user_control', function(req, res){
+  
+      res.render('user/user_control', {title: 'Express' });
+  });
 };

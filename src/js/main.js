@@ -2,11 +2,11 @@
 var menuCache = [];
 layui.config({
   base: '/layui/lay/modules/' //假设这是你存放拓展模块的根目录
-}).use(['navbar','tab', 'code','element'], function() {
+}).use(['navbar','tab', 'code','element','jquery'], function() {
 	var navbar = layui.navbar(),
 		layer = parent.layer === undefined ? layui.layer : parent.layer,
 		$ = layui.jquery,
-		element = layui.element();
+		element = layui.element;
 		layui.code();
 
 	var tab = layui.tab();
@@ -169,11 +169,23 @@ layui.config({
 	//锁屏相关判定
 	// 判断是否显示锁屏
 	if(window.sessionStorage.getItem("lockcms") == "true"){
-		lockPage();
+		layer.open({
+        title : false,
+        type : 1,
+        content : $("#lock-box"),
+        closeBtn : 0,
+        shade : 0.4
+    });
 	}
 	$(".lockcms").on("click",function(){
 		window.sessionStorage.setItem("lockcms",true);
-		lockPage();
+		layer.open({
+        title : false,
+        type : 1,
+        content : $("#lock-box"),
+        closeBtn : 0,
+        shade : 0.4
+    });
 	});
 	//绑定解锁事件
 	$("#unlock").on("click",function(){
@@ -195,67 +207,7 @@ layui.config({
 			$("#unlock").click();
 		}
 	});
-	//绑定修改密码按钮事件
-	modifyPasswordWin();
-	//绑定编辑个人信息按钮事件
-	modifySelfInfo();
-
 	
 });
-//锁屏
-var lockPage = function(){
-    layer.open({
-        title : false,
-        type : 1,
-        content : $("#lock-box"),
-        closeBtn : 0,
-        shade : 0.4
-    });
-}
-var cacheMenu =function(){
 
-	window.sessionStorage.setItem("lockcms",false);
-}
-//用户修改密码
-var modifyPasswordWin = function(){
 
-	$('#main_password_modify').on('click', function() {
-        //打开弹出窗口加载内容
-        layer.open({
-            content: '/user/modify_password',
-            type: 2,
-            anim: 4, //动画类型
-            title: '修改密码',
-            skin: 'layui-layer-rim', //加上边框
-            btnAlign:'c',
-            area:  ['400px', '280px;'],
-            btn: ['修改密码', '取消'],
-            success: function(layero, index){
-                //console.log(layero, index);
-            }
-    	});
-            
-   });
-	
-}
-//编辑个人信息
-var modifySelfInfo = function(){
-
-	$("#main_self_modify").on('click', function() {
-        //打开弹出窗口加载内容
-        layer.open({
-            content: '/user/modify_self_information',
-            type: 2,
-            anim: 4, //动画类型
-            title: '修改密码',
-            skin: 'layui-layer-rim', //加上边框
-            btnAlign:'c',
-            area:  ['400px', '500px;'],
-            btn: ['保存', '取消'],
-            success: function(layero, index){
-                //console.log(layero, index);
-            }
-    	});
-            
-   });
-}

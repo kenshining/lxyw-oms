@@ -1,7 +1,7 @@
-layui.use(['layer', 'form'], function() {
+layui.use(['layer', 'form','jquery'], function() {
 	var layer = layui.layer,
 		$ = layui.jquery,
-		form = layui.form();
+		form = layui.form;
 
 	$("#loginBtn").on('click',function(data){
 		var username = $("#username").val();
@@ -10,7 +10,7 @@ layui.use(['layer', 'form'], function() {
 			layer.alert("用户名与密码不能为空", {icon: 2});
 			return false;
 		}
-		$.lxywAjax({
+		$.ajax({
 			url	:'/login',
 			type:'POST',
 			dataType:'json',

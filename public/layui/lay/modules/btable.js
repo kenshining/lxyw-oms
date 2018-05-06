@@ -43,6 +43,7 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
     BTable.prototype.render = function () {
         var that = this;
         var _config = that.config;
+
         var columns = _config.columns;
         var th = '';
         for (var i = 0; i < columns.length; i++) {
@@ -310,7 +311,6 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
     var btable = new BTable();
 
     exports('btable', function (options) {
-        //console.info(JSON.stringify(options));
         return btable.set(options);
     });
 });

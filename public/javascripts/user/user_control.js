@@ -7,17 +7,30 @@ layui.config({
         layer = layui.layer,
         element = layui.element;
 
+
+        var data={
+              "rel": true,
+              "msg": "获取成功",
+              "list": [
+                {
+                  "id": 1,
+                  "username": "zhangsan",
+                  "name": "张三",
+                  "mobile": "18611699091",
+                  "createtime": "2017-01-10 10:42:36",
+                  "sign": "人生就像是一场修行"
+                }
+              ],
+              "count": 100
+        }
         user_table.set({
                 openWait: true,//开启等待框
                 height:120,
                 elem: '#table_content',
-                url: '/user/user_findUserByPage', //数据源地址
+                url: data, //数据源地址
                 pageSize: 10,//页大小
                 params: {//额外的请求参数
-                    t: new Date().getTime(),
-                    username:$('#username').val(),
-                    name:$('#name').val(),
-                    cellphoneNo:$('#cellphoneNo').val()
+                    t: new Date().getTime()
                 },
                 columns: [{ //配置数据列
                     fieldName: '用户名', //显示名称
@@ -28,25 +41,20 @@ layui.config({
                     field: 'name',
                     sortable: true
                 }, {
-                    fieldName: '性别',
-                    field: 'sex',
-                    format: function (id, obj) {
-                        if(obj.sex == "F"){
-                            return "女";
-                        }else{
-                            return "男";
-                        }
-
-                    }
-                },{
                     fieldName: '手机号',
-                    field: 'cellphoneNo',
+                    field: 'mobile',
                     format: function (id, obj) {
-
+                        //id
+                        //console.log(id);
+                        //行数据对象
+                        //console.log(obj);
+                        //返回值：格式化的纯文本或html文本
+                        return obj.sign;
                     }
                 }, {
                     fieldName: '创建时间',
-                    field: 'createdDate'
+                    field: 'createtime',
+                    sortable: true
                 }, {
                     fieldName: '操作',
                     field: 'id',
@@ -89,9 +97,5 @@ layui.config({
                 }
             });
             user_table.render();
-            
-    form.on('submit(search)', function (data) {
-        user_table.get(data.field);
-        return false;
-    });
+
 });

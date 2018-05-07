@@ -85,6 +85,7 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
     var params = {
       id: req.body.id,
       username: req.body.username,
+      name: req.body.name,
       sex:req.body.sex,
       email:req.body.email,
       idcardNo:req.body.idcardNo,

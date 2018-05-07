@@ -61,7 +61,7 @@ layui.use(['table','layer','element','jquery'], function() {
             title: '新增用户信息',
             btn: ['新增', '取消'],
             skin: 'layui-layer-rim', //加上边框
-            area: ['500px', '400px'], //宽高
+            area: ['500px', '80%'], //宽高
             success: function(layero, index){
                 //console.log(layero, index);
             },
@@ -70,6 +70,7 @@ layui.use(['table','layer','element','jquery'], function() {
                //dataForm.contents().find("input[name='username']").val()
                var loadIndex = layer.load(2);
                $.post('/user/saveUser',{
+                name:dataForm.contents().find("input[name='name']").val(),
                 username:dataForm.contents().find("input[name='username']").val(),
                 sex:dataForm.contents().find("select[name='sex']").val(),
                 email:dataForm.contents().find("input[name='email']").val(),
@@ -83,7 +84,7 @@ layui.use(['table','layer','element','jquery'], function() {
                     layer.close(loadIndex);
                     layer.close(index);
                     layer.msg("用户数据保存成功");
-
+                    table.reload('user_table');
                },'json');
             }
         });
@@ -114,7 +115,7 @@ layui.use(['table','layer','element','jquery'], function() {
                 title: '编辑客户信息',
                 btn: ['保存', '取消'],
                 skin: 'layui-layer-rim', //加上边框
-                area: ['500px', '400px'], //宽高
+                area: ['500px', '80%'], //宽高
                 success: function(layero, index){
                     //console.log(layero, index);
                 },
@@ -123,6 +124,7 @@ layui.use(['table','layer','element','jquery'], function() {
                    //dataForm.contents().find("input[name='username']").val()
                    var loadIndex = layer.load(2);
                    $.post('/user/saveUser',{
+                    name:dataForm.contents().find("input[name='name']").val(),
                     id:dataForm.contents().find("input[name='id']").val(),
                     username:dataForm.contents().find("input[name='username']").val(),
                     sex:dataForm.contents().find("select[name='sex']").val(),
@@ -137,7 +139,7 @@ layui.use(['table','layer','element','jquery'], function() {
                         layer.close(loadIndex);
                         layer.close(index);
                         layer.msg("用户数据保存成功");
-
+                         table.reload('user_table');
                    },'json');
                 }
             });

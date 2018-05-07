@@ -53,5 +53,68 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
         res.json(msg);
       },serviceEnumerationInstance.USER_SEARCH_LIST,"POST"); 
   });
+  app.get('/user/user_edit', function(req, res){
+    //区别是新增还是修改
+    if(req.query.id == null || req.query.id == ''){
+      res.render('user/user_edit', {
+          msg:{}
+      });
+    }
+    var params = {
+      id:req.query.id
+    }
+    serviceInstance.callServer(params,function(msg){
+        console.info(msg);
+        res.render('user/user_edit', {
+          msg:msg
+        });
+      },function(msg){
+        console.error(msg);
+        res.render('user/user_edit', {
+          msg:msg
+        });
+      },serviceEnumerationInstance.USER_SEARCH_BY_PRIMARYKEY,"POST");
+      
+  });
+
+  /*用户管理*/
+  app.post('/user/saveUser', function(req, res){
+
+    var id = req.body.id;
+    //准备用户参数
+    var params = {
+      id: req.body.id,
+      username: req.body.username,
+      sex:req.body.sex,
+      email:req.body.email,
+      idcardNo:req.body.idcardNo,
+      birthday:req.body.birthday,
+      cellphoneNo:req.body.cellphoneNo,
+      wechat:req.body.wechat,
+      postCode:req.body.postCode,
+      address:req.body.address
+    };
+    console.info(params);
+    if( id != null && id != ''){
+      //更新用户
+      serviceInstance.callServer(params,function(msg){
+        console.info(msg);
+        res.json(msg); 
+      },function(msg){
+        res.json(msg);
+      },serviceEnumerationInstance.USER_SAVE_UPDATE,"POST"); 
+    }else{
+      //新增用户
+      serviceInstance.callServer(params,function(msg){
+        console.info(msg);
+        res.json(msg); 
+      },function(msg){
+        res.json(msg);
+      },serviceEnumerationInstance.USER_SAVE_NEW,"POST");
+    }
+  
+      
+  });
+  
 
 };

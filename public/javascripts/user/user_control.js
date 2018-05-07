@@ -2,8 +2,7 @@ layui.use(['table','layer','element','jquery'], function() {
     var table = layui.table,
     layer = layui.layer,
     element = layui.element,
-    $ = layui.jquery,
-    lxywJQ = layui.lxywJQ;
+    $ = layui.jquery;
 
     table.render({
         elem: '#table_content'

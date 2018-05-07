@@ -94,7 +94,15 @@ layui.use(['table','layer','element','jquery'], function() {
         var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
         var tr = obj.tr; //获得当前行 tr 的DOM对象
         if(layEvent === 'del'){ //删除
-
+            layer.confirm("确认要删除用户吗？",{
+                btn : [ '删除', '取消' ]//按钮
+            },function(index){
+                 layer.close(index);
+                 var loadIndex = layer.load(2);
+                 layer.close(loadIndex);
+                 alert(data.id);
+                 table.reload('user_table');
+            });
         }else if (layEvent === 'edit'){//编辑
             //打开编辑窗口
             var index = layer.open({

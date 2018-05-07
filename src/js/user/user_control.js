@@ -95,7 +95,9 @@ layui.use(['table','layer','element','jquery'], function() {
         var tr = obj.tr; //获得当前行 tr 的DOM对象
         if(layEvent === 'del'){ //删除
             layer.confirm("确认要删除用户吗？",{
-                btn : [ '删除', '取消' ]//按钮
+                icon: 4
+                ,title:'删除'
+                ,btn : [ '删除', '取消' ]//按钮
             },function(index){
                  layer.close(index);
                  var loadIndex = layer.load(2);

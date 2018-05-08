@@ -1,10 +1,8 @@
-layui.config({
-  base: '/layui/lay/modules/' //假设这是你存放拓展模块的根目录
-}).use(['form','layer','btable'], function() {
+layui.use(['form','layer','table'], function() {
 
  	var $ = layui.jquery,
-        form = layui.form(),
-        stable = layui.btable(),
+        form = layui.form,
+        stable = layui.table,
         layer = layui.layer;
 
         $('#selectSupplier').on('click', function() {

@@ -2,9 +2,10 @@
 var menuCache = [];
 layui.config({
   base: '/layui/lay/modules/' //假设这是你存放拓展模块的根目录
-}).use(['navbar','tab', 'code','element','jquery'], function() {
+}).use(['navbar','tab','layer','code','element','jquery','form'], function() {
 	var navbar = layui.navbar(),
-		layer = parent.layer === undefined ? layui.layer : parent.layer,
+		layer = layui.layer,
+		form = layui.form,
 		$ = layui.jquery,
 		element = layui.element;
 		layui.code();
@@ -154,6 +155,47 @@ layui.config({
 		menuCache.push(menu);
 		//window.sessionStorage.setItem("lockcms",false);
 	});
+
+	//修改用户密码
+	$("#main_password_modify").on("click",function(){
+		var index = layer.open({
+            content: '/user/modify_password',
+            type: 2,
+            anim: 2, //动画类型
+            title: '修改密码',
+            btn: ['修改', '取消'],
+            skin: 'layui-layer-rim', //加上边框
+            area: ['450px', '280px'], //宽高
+            success: function(layero, index){
+                //console.log(layero, index);
+                form.render();
+            },
+            yes: function(index,layero){
+               /*var dataForm = layer.getChildFrame('form', index);
+               //dataForm.contents().find("input[name='username']").val()
+               var loadIndex = layer.load(2);
+               $.post('/user/saveUser',{
+                name:dataForm.contents().find("input[name='name']").val(),
+                username:dataForm.contents().find("input[name='username']").val(),
+                sex:dataForm.contents().find("select[name='sex']").val(),
+                email:dataForm.contents().find("input[name='email']").val(),
+                idcardNo:dataForm.contents().find("input[name='idcardNo']").val(),
+                birthday:dataForm.contents().find("input[name='birthday']").val(),
+                cellphoneNo:dataForm.contents().find("input[name='cellphoneNo']").val(),
+                wechat:dataForm.contents().find("input[name='wechat']").val(),
+                postCode:dataForm.contents().find("input[name='postCode']").val(),
+                address:dataForm.contents().find("textarea[name='address']").val()
+               },function(data, textStatus, jqXHR){
+                    layer.close(loadIndex);
+                    layer.close(index);
+                    layer.msg("用户数据保存成功");
+                    table.reload('user_table');
+               },'json');*/
+            }
+        });
+	});
+
+
 	//手机设备的简单适配
 	var treeMobile = $('.site-tree-mobile'),
 		shadeMobile = $('.site-mobile-shade')

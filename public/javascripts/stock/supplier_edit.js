@@ -33,6 +33,10 @@ layui.use(['form','layer','jquery','table','element'], function() {
           btn: ['保存', '取消'],
           skin: 'layui-layer-rim', //加上边框
           area: ['500px', '90%'], //宽高
+          success:function(){
+            //未完成选择前禁用外层保存按钮
+            $('.layui-layer-btn0', parent.document).hide();
+          },
           yes:function(index, layero){
             var item = {
               id:new Date().getTime(),
@@ -42,11 +46,23 @@ layui.use(['form','layer','jquery','table','element'], function() {
               email:$('#tmp_add_email').val(),
               remark:$('#tmp_add_remark').val()
             }
+            //判断属性都不能为空
+            if(item.name == "" || 
+              item.position == "" ||
+              item.cellphoneNo == "" ||
+              item.email == "" ){
+              layer.msg("字段[姓名、职位、电话、email]均不能为空。");
+              return;
+            }
             contectList.push(item);
             table.reload('contact_table',{
               data:contectList
             });
             layer.close(index);
+          },
+          end:function(){
+            //完成选择前启用外层保存按钮
+            $('.layui-layer-btn0', parent.document).show();
           }
       });
   });

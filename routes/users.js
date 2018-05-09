@@ -95,7 +95,7 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
       postCode:req.body.postCode,
       address:req.body.address
     };
-    console.info(params);
+    console.info("=============="+id+"================");
     if( id != null && id != ''){
       //更新用户
       serviceInstance.callServer(params,function(msg){
@@ -116,6 +116,27 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
   
       
   });
+
+  //删除用户数据
+  app.post('/user/deleteUser', function(req, res){
+
+    var id = req.body.id;
+    //准备用户参数
+    var params = {
+      id: req.body.id
+    };
+    console.info("============== delete:"+id+"================");
+    //更新用户
+    serviceInstance.callServer(params,function(msg){
+      console.info(msg);
+      res.json(msg); 
+    },function(msg){
+      res.json(msg);
+    },serviceEnumerationInstance.USER_SAVE_DELETE,"POST");
+    
+  });
+
+  
   
 
 };

@@ -103,7 +103,16 @@ layui.use(['table','layer','element','jquery'], function() {
                  layer.close(index);
                  var loadIndex = layer.load(2);
                  layer.close(loadIndex);
-                 alert(data.id);
+                 //alert(data.id);
+                $.post('/user/deleteUser',{
+                  id:data.id,
+                  t: new Date().getTime()
+                 },function(data, textStatus, jqXHR){
+                      layer.close(loadIndex);
+                      layer.close(index);
+                      layer.msg("用户数据已删除！");
+                      table.reload('user_table');
+                 },'json');
                  table.reload('user_table');
             });
         }else if (layEvent === 'edit'){//编辑
@@ -123,9 +132,10 @@ layui.use(['table','layer','element','jquery'], function() {
                    var dataForm = layer.getChildFrame('form', index);
                    //dataForm.contents().find("input[name='username']").val()
                    var loadIndex = layer.load(2);
+                   alert(dataForm.contents().find("#user_id").val());
                    $.post('/user/saveUser',{
                     name:dataForm.contents().find("input[name='name']").val(),
-                    id:dataForm.contents().find("input[name='id']").val(),
+                    id:dataForm.contents().find("#user_id").val(),
                     username:dataForm.contents().find("input[name='username']").val(),
                     sex:dataForm.contents().find("select[name='sex']").val(),
                     email:dataForm.contents().find("input[name='email']").val(),

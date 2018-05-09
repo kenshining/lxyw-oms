@@ -10,6 +10,8 @@ function ServiceEnumeration(){
  	this.USER_SAVE_NEW = "userInfo/addUserInfo";
  	//更新用户
  	this.USER_SAVE_UPDATE = "userInfo/updateUserInfo";
+ 	//删除用户
+ 	this.USER_SAVE_DELETE = "userInfo/deleteUserInfo";
  	//验证用户名唯一
  	this.USER_VALIDATE_QUNIQUE = "userInfo/isUniqueUserName";
 

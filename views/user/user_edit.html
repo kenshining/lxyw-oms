@@ -6,9 +6,10 @@
   <link rel="stylesheet" href="/stylesheets/form.min.css">
   </head>
   <body style="margin: 10px;">
+
   <form class="layui-form layui-form-pane" method="post" action="/user/saveUser" id="pass_form" lay-filter="pass_form">
     <%if(msg.data && msg.data != ""){%>
-      <input type="hidden" name="id" value="<%=msg.data.id%>">  
+      <input name="id" id="user_id" value="<%=msg.data.id%>">  
     <%}%>
     <div class="layui-form-item">
       <label class="layui-form-label">用户名</label>
@@ -68,7 +69,7 @@
         <input type="text" name="birthday" id="date" autocomplete="off" class="layui-input"
           
           <%if(msg.data && msg.data != ""){%>
-            value="<%=msg.data.birthday%>"
+            value="<%=msg.data.birthdayStr%>"
           <%}%>
 
         >

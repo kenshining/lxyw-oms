@@ -12,6 +12,7 @@ layui.use(['form','layer','table','jquery'], function() {
             table.render({
                 elem: '#supplier_select_List'
                 ,id: 'supplier_select_List'
+                ,cellMinWidth: 200 //全局定义常规单元格的最小宽度，
                 ,where:{
                     t: new Date().getTime()
                 }

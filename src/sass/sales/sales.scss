@@ -1,0 +1,16 @@
+@import "../common.scss";
+html {
+	font-size: 62.5%;
+}
+.strength-orange{
+	font-size:calculateRem(18);
+	color:#FF5722;
+}
+.strength-blue{
+	color:blue;
+	font-weight:bold;
+}
+.display-table th{
+	color:#054e8e;
+	text-align:right;
+}

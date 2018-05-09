@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <% include ../include.html %>
+  <link rel="stylesheet" href="/stylesheets/stock/stock.min.css">
+  <link rel="stylesheet" href="/stylesheets/form.min.css">
+  <script type="text/javascript" src="/javascripts/stock/supplier_control.js"></script>
+  </head>
+    <div class="admin-main">
+      <div class="form-search">
+      <form class="layui-form">
+       <div class="layui-inline">
+          <label>供货商名称：</label>
+          <div class="layui-input-inline" style="width: 350px;">
+            <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-inline form-right">
+          <a href="javascript:;" class="layui-btn layui-btn-small layui-btn-warm" id="search">
+            <i class="layui-icon">&#xe615;</i> 搜索
+          </a>
+          <a href="javascript:;" class="layui-btn layui-btn-small layui-btn-normal" id="add">
+            <i class="layui-icon">&#xe608;</i> 新供货商
+          </a>
+        </div>
+        </form>
+      </div>
+      <div id="table_content">
+      </div>
+       <script type="text/html" id="table_control_bar">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+      </script>
+  </body>
+</html>

@@ -1,5 +1,81 @@
+.hidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute; }
+
 html {
   font-size: 62.5%; }
 
-.form-contain {
-  margin: 2rem; }
+body {
+  font-size: 1.4rem; }
+
+.outer {
+  background-color: #FFF;
+  padding: 2rem; }
+
+.form-contain .order_id_barcode {
+  position: absolute;
+  width: 20rem;
+  height: 5rem; }
+
+.form-contain .company-title {
+  font-size: 2.4rem;
+  font-weight: bold;
+  text-align: center; }
+
+.form-contain .item-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem; }
+
+.form-contain .sub-title {
+  font-size: 1.4rem;
+  text-align: center; }
+
+.form-contain .sub-title .wx_code {
+  display: inline-block;
+  background-color: #FFF; }
+
+.form-contain table {
+  border-collapse: collapse;
+  border: 1px solid #000000;
+  width: 100%; }
+  .form-contain table td {
+    border-collapse: collapse;
+    border: 1px solid #000000;
+    padding: 0.6rem; }
+  .form-contain table th {
+    border-collapse: collapse;
+    border: 1px solid #000000; }
+
+.form-contain .sign-company {
+  text-align: right;
+  font-size: 1.8rem;
+  font-weight: bold; }
+
+.form-contain .sign-signature {
+  bottom: 10rem;
+  z-index: 99; }
+
+.form-contain .sign-seal {
+  bottom: 0rem;
+  z-index: 90; }
+
+.form-contain .sign-float {
+  position: relative;
+  right: 5rem; }
+
+.form-contain .sign-float img {
+  width: 12rem; }
+
+.float-bar {
+  position: absolute;
+  right: 2rem;
+  top: 2rem; }

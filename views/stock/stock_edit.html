@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <% include ../include.html %>
+  <link rel="stylesheet" href="/stylesheets/stock/stock.min.css">
+  <link rel="stylesheet" href="/stylesheets/form.min.css">
+  <script type="text/javascript" src="/javascripts/stock/stock_edit.js"></script>
+  </head>
+  <body>
+<form class="layui-form" action="" id="product_form">
+    <fieldset class="layui-elem-field field-block">
+    <legend class="form-label">产品基本信息</legend>
+     <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">品名：</label>
+          <div class="layui-input-inline" style="min-width: 450px;">
+            <input type="text" name="" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+       <div class="layui-inline">
+          <label class="layui-form-label">条形码：</label>
+          <div class="layui-input-inline" style="width: 210px;">
+            <input type="text" name="" autocomplete="off" class="layui-input">
+          </div>
+          <label class="layui-form-label">产地：</label>
+          <div class="layui-input-inline" style="width: 120px;">
+            <input type="text" name="" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+       <div class="layui-inline">
+          <label class="layui-form-label">入库数量：</label>
+          <div class="layui-input-inline" style="width: 210px;">
+            <input type="text" name="" autocomplete="off" class="layui-input">
+          </div>
+          <label class="layui-form-label">单位：</label>
+          <div class="layui-input-inline" style="width: 120px;">
+            <select name="city" lay-verify="">
+              <option value="箱">箱</option>
+              <option value="瓶">瓶</option>
+              <option value="件">件</option>
+            </select>   
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">非整件品：</label>
+          <div class="layui-input-inline" style="width: 210px;">
+            <input type="text" name="" autocomplete="off" class="layui-input">
+          </div>
+          <label class="layui-form-label">单位：</label>
+          <div class="layui-input-inline" style="width: 120px;">
+            <select name="city" lay-verify="">
+              <option value="箱">个</option>
+              <option value="瓶">瓶</option>
+              <option value="件">件</option>
+            </select>   
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">每<em class="label-trans">箱</em>个数：</label>
+          <div class="layui-input-inline" style="width: 210px;">
+            <input type="text" name="" autocomplete="off" class="layui-input">
+          </div>
+          <label class="layui-form-label">保质期：</label>
+          <div class="layui-input-inline" style="width: 120px;">
+            <input type="text" name="" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+         <div class="layui-inline">
+            <label class="layui-form-label">单件重-kg：</label>
+            <div class="layui-input-inline" style="width: 210px;">
+              <input type="text" name="" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label" style="min-width: 120px;">单件体积-m3：</label>
+            <div class="layui-input-inline" style="width: 80px;">
+              <input type="text" name="" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+     </div>
+</fieldset>
+<fieldset class="layui-elem-field field-block">
+    <legend class="form-label">成本费用</legend>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+          <button class="layui-btn layui-btn-small  layui-btn-sm" style="margin-left: 15px;"> <i class="layui-icon">&#xe654;</i>增加费用</button>
+        </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-inline">
+          <label class="layui-form-label">费用种类：</label>
+          <div class="layui-input-inline" style="min-width: 100px;">
+             <select name="city" lay-verify="">
+              <option>预付款</option>
+              <option>尾款</option>
+              <option>增值税</option>
+              <option>关税</option>
+              <option>报关费</option>
+              <option>物流费（国外）</option>
+              <option>物流费（国内）</option>
+              <option>海运费</option>
+              <option>保险费</option>
+              <option>其他费用</option>
+            </select>
+          </div>
+          <div class="layui-input-inline" style="width: 200px;">
+              <input type="text" name="" autocomplete="off" class="layui-input" placeholder="请输入金额（元）">
+            </div>
+      </div>
+       <div class="layui-inline">
+          <label class="layui-form-label">费用种类：</label>
+          <div class="layui-input-inline" style="min-width: 100px;">
+             <select name="city" lay-verify="">
+              <option>预付款</option>
+              <option>尾款</option>
+              <option>增值税</option>
+              <option>报关费</option>
+              <option>物流费（国外）</option>
+              <option>物流费（国内）</option>
+              <option>海运费</option>
+              <option>其他费用</option>
+            </select>
+          </div>
+          <div class="layui-input-inline" style="width: 200px;">
+              <input type="text" name="" autocomplete="off" class="layui-input" placeholder="请输入金额（元）">
+          </div>
+          <div class="layui-form-label">
+             <button class="layui-btn layui-btn-xs layui-btn-danger"> <i class="layui-icon">&#xe640;</i>删除</button>
+          </div>
+      </div>
+      <div class="layui-inline">
+          <label class="layui-form-label">费用种类：</label>
+          <div class="layui-input-inline" style="min-width: 100px;">
+             <select name="city" lay-verify="">
+              <option>预付款</option>
+              <option>尾款</option>
+              <option>增值税</option>
+              <option>报关费</option>
+              <option>物流费（国外）</option>
+              <option>物流费（国内）</option>
+              <option>海运费</option>
+              <option>其他费用</option>
+            </select>
+          </div>
+          <div class="layui-input-inline" style="width: 200px;">
+              <input type="text" name="" autocomplete="off" class="layui-input" placeholder="请输入金额（元）">
+          </div>
+          <div class="layui-form-label">
+             <button class="layui-btn layui-btn-xs layui-btn-danger"> <i class="layui-icon">&#xe640;</i>删除</button>
+          </div>
+      </div>
+      <div class="layui-inline">
+          <label class="layui-form-label">费用种类：</label>
+          <div class="layui-input-inline" style="min-width: 100px;">
+             <select name="city" lay-verify="">
+              <option>预付款</option>
+              <option>尾款</option>
+              <option>增值税</option>
+              <option>报关费</option>
+              <option>物流费（国外）</option>
+              <option>物流费（国内）</option>
+              <option>海运费</option>
+              <option>其他费用</option>
+            </select>
+          </div>
+          <div class="layui-input-inline" style="width: 200px;">
+              <input type="text" name="" autocomplete="off" class="layui-input" placeholder="请输入金额（元）">
+          </div>
+          <div class="layui-form-label">
+             <button class="layui-btn layui-btn-xs layui-btn-danger"> <i class="layui-icon">&#xe640;</i>删除</button>
+          </div>
+      </div>
+      <div class="layui-inline">
+          <label class="layui-form-label">费用种类：</label>
+          <div class="layui-input-inline" style="min-width: 100px;">
+             <select name="city" lay-verify="">
+              <option>预付款</option>
+              <option>尾款</option>
+              <option>增值税</option>
+              <option>报关费</option>
+              <option>物流费（国外）</option>
+              <option>物流费（国内）</option>
+              <option>海运费</option>
+              <option>其他费用</option>
+            </select>
+          </div>
+          <div class="layui-input-inline" style="width: 200px;">
+              <input type="text" name="" autocomplete="off" class="layui-input" placeholder="请输入金额（元）">
+          </div>
+          <div class="layui-form-label">
+             <button class="layui-btn layui-btn-xs layui-btn-danger"> <i class="layui-icon">&#xe640;</i>删除</button>
+          </div>
+      </div>
+      <div class="layui-inline">
+          <label class="layui-form-label">费用种类：</label>
+          <div class="layui-input-inline" style="min-width: 100px;">
+             <select name="city" lay-verify="">
+              <option>预付款</option>
+              <option>尾款</option>
+              <option>增值税</option>
+              <option>报关费</option>
+              <option>物流费（国外）</option>
+              <option>物流费（国内）</option>
+              <option>海运费</option>
+              <option>其他费用</option>
+            </select>
+          </div>
+          <div class="layui-input-inline" style="width: 200px;">
+              <input type="text" name="" autocomplete="off" class="layui-input" placeholder="请输入金额（元）">
+          </div>
+          <div class="layui-form-label">
+             <button class="layui-btn layui-btn-xs layui-btn-danger"> <i class="layui-icon">&#xe640;</i>删除</button>
+          </div>
+      </div>
+      <div class="layui-inline">
+          <label class="layui-form-label">费用种类：</label>
+          <div class="layui-input-inline" style="min-width: 100px;">
+             <select name="city" lay-verify="">
+              <option>预付款</option>
+              <option>尾款</option>
+              <option>增值税</option>
+              <option>报关费</option>
+              <option>物流费（国外）</option>
+              <option>物流费（国内）</option>
+              <option>海运费</option>
+              <option>其他费用</option>
+            </select>
+          </div>
+          <div class="layui-input-inline" style="width: 200px;">
+              <input type="text" name="" autocomplete="off" class="layui-input" placeholder="请输入金额（元）">
+          </div>
+          <div class="layui-form-label">
+             <button class="layui-btn layui-btn-xs layui-btn-danger"> <i class="layui-icon">&#xe640;</i>删除</button>
+          </div>
+      </div>
+      <div class="layui-inline">
+        <label class="layui-form-label">总成本：</label>
+        <div class="layui-input-inline" style="min-width: 100px;">
+          <span class="highlight">9820.0元</span>
+        </div>
+        <label class="layui-form-label">单品成本：</label>
+        <div class="layui-input-inline" style="min-width: 100px;">
+          <span class="highlight">12.50元</span>
+        </div>
+      </div>
+      </div>
+</fieldset>
+<fieldset class="layui-elem-field field-block">
+    <legend class="form-label">库存操作</legend>
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <label class="layui-form-label">库存状态：</label>
+        <div class="layui-input-inline" style="min-width: 100px;">
+           <select name="city" lay-verify="">
+            <option selected="true">在途（可预售）</option>
+            <option>在售</option>
+            <option>已售罄</option>
+            <option>退货（在途）</option>
+            <option>已退货</option>
+          </select>
+        </div>
+        <label class="layui-form-label">使用仓库：</label>
+       <div class="layui-input-inline" style="min-width: 90px;">
+         <select name="city" lay-verify="">
+          <option>在途销售|无库存</option>
+          <option>青岛1库|新城区</option>
+          <option>青岛2库|老城区</option>
+          <option>上海1库|宝山区</option>
+          <option>天津1库|和平区</option>
+          <option>重庆1库|南岸</option>
+        </select>
+      </div>
+      </div>
+      <div class="layui-inline">
+        <label class="layui-form-label">损耗个数：</label>
+        <div class="layui-input-inline" style="min-width: 100px;">
+           <input type="text" name="" autocomplete="off" class="layui-input">
+        </div>
+        <label class="layui-form-label">库存费：</label>
+        <div class="layui-input-inline" style="min-width: 100px;">
+           <input type="text" name="" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    </div>
+</fieldset>
+<fieldset class="layui-elem-field field-block">
+    <legend class="form-label">供应商</legend>
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <label class="layui-form-label">供货商：</label>
+        <div class="layui-input-inline" style="min-width: 100px;width: 400px;">
+            <input type="text" name="" autocomplete="off" class="layui-input" id="supplier_select_input">
+        </div>
+        <div class="layui-form-label">
+            <a href="javascript:;" id="selectSupplier" class="layui-btn layui-btn-xs layui-btn-warm">
+              <i class="layui-icon">&#xe615;</i> 筛选供应商
+            </a>
+        </div>
+      </div>
+    </div>
+</fieldset>
+</form>
+
+
+<div id="supplier_select" style="display: none;">
+  <div style="margin-top: 15px;">
+  <form class="layui-form">
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label" style="width: 100px;">供货商名称：</label>
+          <div class="layui-input-inline" style="min-width: 200px;">
+             <input type="text" name="supplierName" id="supplierName" autocomplete="off" class="layui-input">
+          </div>
+          <span>
+            <a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-warm" id="searchSelectSupplierBtn" style="margin-top: 4px;">
+              <i class="layui-icon">&#xe615;</i> 搜索
+            </a>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="supplier_select_List" lay-filter="supplier_select_List"></div>
+  <script type="text/html" id="table_control_bar">
+    <a class="layui-btn layui-btn-sm" lay-event="selectSupplierBtn">选择此供应商</a>
+  </script>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <% include ../include.html %>
+  <link rel="stylesheet" href="/stylesheets/sales/sales.min.css">
+  <link rel="stylesheet" href="/stylesheets/form.min.css">
+  <script type="text/javascript" src="/javascripts/sales/sales_edit.js"></script>
+  </head>
+  <body>
+	<form class="layui-form" action="" id="sales_form">
+		<fieldset class="layui-elem-field field-block">
+		    <legend class="form-label">基础信息</legend>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">客户名称：</label>
+		          <div class="layui-input-inline" style="min-width: 520px;">
+		            <input type="text" name="customer_name" id="customer_name" autocomplete="off" class="layui-input">	
+		          </div>
+		          <label><a class="layui-btn layui-btn-normal"><i class="layui-icon ">&#xe615;</i>选择客户</a></label>
+		        </div>
+		    </div>
+		     <div class="layui-form-item">
+		     	<div class="layui-inline">
+		     		<label class="layui-form-label">客户类别：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="customer_type">
+			              <option selected="true">企业</option>
+			              <option>个人</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		        <div class="layui-inline">
+		     		<label class="layui-form-label" style="width: 85px;">采购联系人：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="purchasing_contact">
+			              <option selected="true">成龙|18611699091</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+		     	<div class="layui-inline">
+		     		<label class="layui-form-label">付款方式：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="pay_type">
+			              <option selected="true">对公全额付款</option>
+			              <option>对私全额付款</option>
+			              <option>其他</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		        <div class="layui-inline">
+		     		<label class="layui-form-label" style="width: 85px;">收货要求：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="recive_requirment" id="recive_requirment">
+			              <option selected="true">货到自提点</option>
+			              <option>送货上门</option>
+			              <option>客户自提</option>
+			              <option>其他</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+		     	<div class="layui-inline">
+		     		<label class="layui-form-label">物流公司：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="transport_company" lay-verify="">
+			              <option selected="true">达达物流</option>
+			              <option>京东物流</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		        <div class="layui-inline">
+		     		<label class="layui-form-label" style="width: 85px;">物流付款：</label>
+		     		<div class="layui-input-inline">
+		            	<select name="transport_pay_type" lay-verify="">
+			              <option selected="true">客户预付</option>
+			              <option>客户到付</option>
+			              <option>我方预付</option>
+			              <option>我方到付</option>
+			              <option>双方预付</option>
+			              <option>双方到付</option>
+			            </select>     
+			          </td>
+		          	</div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">客户运费：</label>
+		          <div class="layui-input-inline">
+		            <input type="text" name="customer_transport_fee" autocomplete="off" class="layui-input">	
+		          </div>
+		        </div>
+		        <div class="layui-inline">
+		          <label class="layui-form-label" style="width: 85px;">我方运费：</label>
+		          <div class="layui-input-inline">
+		            <input type="text" name="our_transport_fee" autocomplete="off" class="layui-input">	
+		          </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">物流单号：</label>
+		          <div class="layui-input-inline" style="min-width: 520px;">
+		            <input type="text" name="transport_no" autocomplete="off" class="layui-input">	
+		          </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">收货地址：</label>
+		          <div class="layui-input-inline" style="width: 520px;">
+		            <textarea name="transport_address" autocomplete="off" class="layui-textarea"></textarea>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">发票地址：</label>
+		          <div class="layui-input-inline" style="width: 520px;">
+		            <textarea name="invoice_address" autocomplete="off" class="layui-textarea"></textarea>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">备注：</label>
+		          <div class="layui-input-inline" style="width: 520px;">
+		            <textarea name="remarks" autocomplete="off" class="layui-textarea" placeholder="交货期：预计XXXX年X月X日发货，最终交货时间根据实际到货与物流情况、由卖方具体安排。"></textarea>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <div class="layui-inline">
+		          <label class="layui-form-label">免责事项：</label>
+		          <div class="layui-input-inline" style="width: 520px;">
+		            <textarea name="disclaimer" autocomplete="off" class="layui-textarea">请务必确认货品完好无损再签收，否则我司概不负责，由此带来的不便敬请谅解！ 如对货品有疑议，请及时与我司销售联系人联络。食品饮料品类属特殊商品，一旦签收，无法退换。</textarea>
+		          </div>
+		        </div>
+		    </div>	
+		</fieldset>
+		<fieldset class="layui-elem-field field-block">
+		   <legend class="form-label">订购列表</legend>
+		   <div class="layui-form-item" style="margin-left: 10px;">
+		        <div class="layui-inline">
+		           <div class="layui-btn-group">
+				    <button class="layui-btn layui-btn-small layui-btn-normal"><i class="layui-icon ">&#xe608;</i>新增商品</button>
+				    <button class="layui-btn layui-btn-small layui-btn-danger"><i class="layui-icon">&#xe640;</i>删除商品</button>
+				  </div>
+		        </div>
+		    </div>
+		    <div class="layui-form-item" style="padding-left: 10px;padding-right: 10px;">
+		    	<table class="layui-table">
+				  <thead>
+				    <tr>
+				      <th nowrap="nowrap">
+				      	<input type="checkbox" lay-skin="primary">
+				      </th>
+				      <th>品名</th>
+				      <th>条码</th>
+				      <th>规格</th>
+				      <th>其他数据</th>
+				      <th>单品售价</th>
+				      <th>订购数量(箱)</th>
+				      <th>搭赠(件)</th>
+				    </tr> 
+				  </thead>
+				  <tbody>
+
+				    <tr>
+				      <td rowspan="2" align="center" valign="middle">
+						<input type="checkbox" name="checked" lay-skin="primary">
+				      </td>
+				      <td>日本透明奶茶</td>
+				      <td>4200340</td>
+				      <td nowrap="nowrap">瓶装500ml*24/箱</td>
+				      <td>日本|24个月|34kg/箱|0.1M3/箱</td>
+				      <td>
+				      	<input type="text" name="single_price" autocomplete="off" class="layui-input" placeholder="单品金额（元）">
+				      </td>
+				      <td>
+				      	<input type="text" name="count" autocomplete="off" class="layui-input" placeholder="订购数量（箱）">
+				      </td>
+				      <td>
+				      	<input type="text" name="present" autocomplete="off" class="layui-input" placeholder="搭赠量（件）">
+				      </td>
+				    </tr>
+				    <tr style="background-color:rgb(250, 255, 189);">
+				      <td>
+				      <select name="discount" lay-verify="">
+			              <option selected="true">无优惠</option>
+			              <option>折扣优惠</option>
+			              <option>抹零优惠</option>
+			              <option>免单</option>
+			            </select>     
+			          </td>
+				      <td>
+				      	<input type="text" name="total" autocomplete="off" class="layui-input" placeholder="优惠后总售价（元）">
+				      </td>
+				      <td colspan="5">单品类总价（元）：<em class="highlight">454.22</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠后总价（元）：<em class="highlight">532.9</em>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠金额（元）：<em class="highlight">532.9</em>
+				      </td>
+				    </tr>
+
+				    <tr>
+				      <td rowspan="2" align="center" valign="middle">
+						<input type="checkbox" name="checked" lay-skin="primary">
+				      </td>
+				      <td>日本透明奶茶</td>
+				      <td>4200340</td>
+				      <td nowrap="nowrap">瓶装500ml*24/箱</td>
+				      <td>日本|24个月|34kg/箱|0.1M3/箱</td>
+				      <td>
+				      	<input type="text" name="single_price" autocomplete="off" class="layui-input" placeholder="单品金额（元）">
+				      </td>
+				      <td>
+				      	<input type="text" name="count" autocomplete="off" class="layui-input" placeholder="订购数量（箱）">
+				      </td>
+				      <td>
+				      	<input type="text" name="present" autocomplete="off" class="layui-input" placeholder="搭赠量（件）">
+				      </td>
+				    </tr>
+				    <tr style="background-color:rgb(250, 255, 189);">
+				      <td>
+				      <select name="discount" lay-verify="">
+			              <option selected="true">无优惠</option>
+			              <option>折扣优惠</option>
+			              <option>抹零优惠</option>
+			              <option>免单</option>
+			            </select>     
+			          </td>
+				      <td>
+				      	<input type="text" name="total" autocomplete="off" class="layui-input" placeholder="优惠后总售价（元）">
+				      </td>
+				      <td colspan="5">单品类总价（元）：<em class="highlight">454.22</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠后总价（元）：<em class="highlight">532.9</em>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠金额（元）：<em class="highlight">532.9</em>
+				      </td>
+				    </tr>
+
+				     <tr style="text-align: right;padding-right: 10px;background-color: #eee;">
+				     	<td colspan="8" style="padding-top: 10px;padding-bottom: 10px;">
+				     		共计：<b class="highlight">6</b>&nbsp;&nbsp;类商品&nbsp;&nbsp;|&nbsp;&nbsp;
+				     		总重量：<b class="highlight">454.22</b>kg&nbsp;&nbsp;|&nbsp;&nbsp;
+				     		总体积：<b class="highlight">45</b>M3&nbsp;&nbsp;|&nbsp;&nbsp;
+				     		总价格：<b class="highlight">8400</b>元
+				     	</td>
+				     	</td>
+				     </tr>
+				  </tbody>
+				</table>
+		    </div>
+		</fieldset>
+		<fieldset class="layui-elem-field field-block">
+		    <legend class="form-label">销售人信息</legend>
+		    <div class="layui-form-item">
+		     	<div class="layui-inline">
+		     		<label class="layui-form-label">销售人：</label>
+		     		<div class="layui-input-inline">
+		            	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="">
+			          </td>
+		          	</div>
+		        </div>
+		        <div class="layui-inline">
+		     		<label class="layui-form-label">电话：</label>
+		     		<div class="layui-input-inline">
+		            	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="">
+			          </td>
+		          	</div>
+		        </div>
+		    </div>
+		     <div class="layui-form-item">
+		     	<div class="layui-inline">
+		     		<label class="layui-form-label">Email：</label>
+		     		<div class="layui-input-inline">
+		            	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="">
+			          </td>
+		          	</div>
+		        </div>
+		        <div class="layui-inline">
+		     		<label class="layui-form-label">微信：</label>
+		     		<div class="layui-input-inline">
+		            	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="">
+			          </td>
+		          	</div>
+		        </div>
+		    </div>
+		</fieldset>
+	</form>
+  </body>
+</html>

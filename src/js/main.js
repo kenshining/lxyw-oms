@@ -69,7 +69,7 @@ layui.config({
 			},
 			{
 				"id" : "41",
-				"title" : "销售业绩",
+				"title" : "销售业绩（个人）",
 				"icon" : "&#xe62f;",
 				"href" : "/comingSoon",
 				"spread" : false
@@ -84,32 +84,26 @@ layui.config({
 		"children" : [
 			{
 				"id" : "939",
-				"title" : "销售数据",
+				"title" : "销售数据统计",
 				"icon" : "&#xe62c;",
 				"href" : "/comingSoon",
 				"spread" : false
 			},
 			{
 				"id" : "9292",
-				"title" : "库存数据",
+				"title" : "库存数据统计",
 				"icon" : "&#xe632;",
 				"href" : "/comingSoon",
 				"spread" : false
 			},
 			{
 				"id" : "441",
-				"title" : "客户数据",
+				"title" : "客户活跃统计",
 				"icon" : "&#xe616;",
 				"href" : "/comingSoon",
 				"spread" : false
 			}
 		]
-	},{
-		"id" : "7",
-		"title" : "系统基本参数",
-		"icon" : "&#xe631;",
-		"href" : "/comingSoon",
-		"spread" : false
 	},{
 		"id" : "8",
 		"title" : "系统设置",
@@ -126,7 +120,7 @@ layui.config({
 			},
 			{
 				"id" : "10",
-				"title" : "权限分配",
+				"title" : "用户组与权限",
 				"icon" : "&#xe631;",
 				"href" : "/comingSoon",
 				"spread" : false

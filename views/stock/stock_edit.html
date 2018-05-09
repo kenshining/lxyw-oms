@@ -307,10 +307,10 @@
         <div class="layui-inline">
           <label class="layui-form-label" style="width: 100px;">供货商名称：</label>
           <div class="layui-input-inline" style="min-width: 200px;">
-             <input type="text" name="" autocomplete="off" class="layui-input">
+             <input type="text" name="supplierName" id="supplierName" autocomplete="off" class="layui-input">
           </div>
           <span>
-            <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-warm" id="searchSupplier" style="margin-top: 4px;">
+            <a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-warm" id="searchSelectSupplierBtn" style="margin-top: 4px;">
               <i class="layui-icon">&#xe615;</i> 搜索
             </a>
           </span>
@@ -318,8 +318,10 @@
       </div>
     </form>
   </div>
-  <div id="supplier_List">
-  </div>
+  <div id="supplier_select_List" lay-filter="supplier_select_List"></div>
+  <script type="text/html" id="table_control_bar">
+    <a class="layui-btn layui-btn-sm" lay-event="selectSupplierBtn">选择此供应商</a>
+  </script>
 </div>
 </body>
 </html>

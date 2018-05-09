@@ -1,80 +1,82 @@
-layui.use(['form','layer','table'], function() {
+layui.use(['form','layer','table','jquery'], function() {
 
  	var $ = layui.jquery,
         form = layui.form,
-        stable = layui.table,
+        table = layui.table,
         layer = layui.layer;
 
+        //选择供应商切换视图和渲染表格
         $('#selectSupplier').on('click', function() {
             fadeDiv("#product_form","#supplier_select");
-            findSupplierByPage(stable);
+            //渲染供应商选择列表 
+            table.render({
+                elem: '#supplier_select_List'
+                ,id: 'supplier_select_List'
+                ,where:{
+                    t: new Date().getTime()
+                }
+                //,url:'/user/user_findUserByPage'
+                ,cols: [[
+                  {type:'checkbox'}
+                  ,{field:'name',  align:'center',title: '供货商名称'}
+                  ,{field:'type',  align:'center',title: '供货商类别' ,templet: function(d){
+                      if(d.sex == '0'){
+                        return "公司客户";
+                      }else{
+                        return "个人客户";
+                      }
+                    }}
+                  ,{field:'email', align:'center', title: '邮件'}
+                  ,{field:'phone', align:'center', title: '联系电话'}
+                  ,{field:'location', align:'center', title: '供货商所属地区'}
+                  ,{fixed: 'right', align:'center',title: '操作', toolbar:'#table_control_bar'}
+                ]]
+                ,page: true
+                ,loading:true
+                ,limits:[10,20,50,90]
+            });
+            //未完成选择前禁用外层保存按钮
+            $('.layui-layer-btn0', parent.document).hide();
         });
-
+        //供应商查询按钮，检索供应商
+        $('#searchSelectSupplierBtn').on("click",function(){
+            table.reload('supplier_select_List',{
+              page: {
+              curr: 1 //重新从第 1 页开始
+              }
+            ,where:{
+                t: new Date().getTime(),
+                supplierName:$('#supplierName').val()
+            }
+            ,loading:true
+            });
+        });
+        //绑定监听按钮事件，处理点选供应商
+        table.on('tool(supplier_select_List)', function(obj){
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的DOM对象
+            //console.log(data);
+            if(layEvent === 'selectSupplierBtn'){ //删除
+                layer.msg(obj.data.id);
+                 fadeDiv("#supplier_select","#product_form",function(){
+                    //滚动到最底部，显示赋值。
+                    $('html,body').animate({scrollTop:$("body").height()},'fast');
+                    $("#supplier_select_input").val(obj.data.id);
+                    //完成选择前启用外层保存按钮
+                    $('.layui-layer-btn0', parent.document).show();
+                });
+                
+            }
+      });
+    //切换显示DIV内容
+    var fadeDiv = function(fadeOutId,fadeInId,callback){
+        $(fadeOutId).fadeOut(50,function(){
+            $(fadeInId).fadeIn(50,function(){
+                if(typeof callback == "function"){
+                    callback();
+                }
+            });
+        });
+    }
 });
-var fadeDiv = function(fadeOutId,fadeInId,callback){
-	$(fadeOutId).fadeOut(50,function(){
-        $(fadeInId).fadeIn(50,function(){
-        	if(typeof callback == "function"){
-  				callback();
-        	}
-        });
-    });
-}
-var showStockWin = function(id){
-    fadeDiv("#supplier_select","#product_form",function(){
-    	$('html,body').animate({scrollTop:$("body").height()},'fast');
-    	$("#supplier_select_input").val(id);
-    });
-    
-}
-var findSupplierByPage = function(stable){
-	stable.set({
-        openWait: true,//开启等待框
-        elem:'#supplier_List',
-        height:120,
-        url: '/BeginnerAdmin/datas/btable_data.json', //数据源地址
-        pageSize: 10,//页大小
-        params: {//额外的请求参数
-            t: new Date().getTime()
-        },
-        columns: [{ //配置数据列
-            fieldName: '昵称', //显示名称
-            field: 'name', //字段名
-            sortable: true //是否显示排序
-        }, {
-            fieldName: '加入时间',
-            field: 'createtime',
-            sortable: true
-        }, {
-            fieldName: '签名',
-            field: 'sign',
-            format: function (id, obj) {
-                //id
-                //console.log(id);
-                //行数据对象
-                //console.log(obj);
-                //返回值：格式化的纯文本或html文本
-                return obj.sign;
-            }
-        }, {
-            fieldName: '操作',
-            field: 'id',
-            format: function (val,obj) {
-                var html = '<input type="button" value="选择供应商" data-action="edit" data-id="' + val + '" class="layui-btn layui-btn-mini"  onclick="showStockWin(\''+val+'\');"/> ' ;
-                   
-                return html;
-            }
-        }],
-        even: true,//隔行变色
-        field: 'id', //主键ID
-        //skin: 'row',
-        checkbox: false,//是否显示多选框
-        paged: true, //是否显示分页
-        singleSelect: false, //只允许选择一行，checkbox为true生效
-        onSuccess: function ($elem) { //$elem当前窗口的jq对象
-
-           $('html,body').animate({scrollTop:0},'fast');
-        }
-    });
-    stable.render();
-}

@@ -135,9 +135,9 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         calculateFee();
     });
     //绑定计算事件
-    $('body').on("change",'input[name="fee_input"]',function() {
-        //录入结束计算费用
-        calculateFee();
+    $('body').on("change",'input[name="fee_input"],input[name="stock_num_input"]',function() {
+            //录入结束计算费用
+            calculateFee();
     });
     //统计并显示费用
     var calculateFee = function(){
@@ -165,10 +165,12 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         var box_num = $("#box_num").val();
         var plus_num = $("#plus_num").val();
         var format_num = $("#format_num").val();
+        var wastage = $("#wastage").val();
 
-        if(!cvu.isNull(box_num) && !cvu.isNull(plus_num) && !cvu.isNull(format_num)){
+        if(!cvu.isNull(box_num) && !cvu.isNull(plus_num) && !cvu.isNull(format_num) && !cvu.isNull(wastage)){
             //计算单品数量
             var num = cu.floatMul(box_num,format_num);
+            num = cu.floatSub(num,wastage);
             var totalNum = cu.floatAdd(num,plus_num);
             $("#everage_fee").html(cu.formatMoney(cu.floatDiv(total,totalNum))+"元");
         }else{

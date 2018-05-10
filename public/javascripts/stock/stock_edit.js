@@ -135,7 +135,7 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         calculateFee();
     });
     //绑定计算事件
-    $('body').on("change",'input[name="fee_input"],input[name="stock_num_input"]',function() {
+    $('body').on("change",'input[name="fee_input"],input[name="stock_num_input"],input[name="storage_fee"]',function() {
             //录入结束计算费用
             calculateFee();
     });
@@ -159,6 +159,12 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
                 $("#total_fee").html(total);
                 return;
             }
+        }
+        //增加库存费
+        var storage_fee = $("#storage_fee").val();
+        console.log(storage_fee);
+        if(cvu.isNumber(storage_fee) || cvu.isDecimal(fee)){
+            total = cu.floatAdd(total,storage_fee);
         }
         $("#total_fee").html(cu.formatMoney(total)+"元");
         //计算单品成本

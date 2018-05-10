@@ -117,7 +117,7 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         feeList.push({
             id:id
         });
-        console.log(JSON.stringify(feeList));
+        //console.log(JSON.stringify(feeList));
     }
     //绑定删除事件
     $('body').on('click','button[name="deleteFeeBtn"]',function() {
@@ -130,7 +130,7 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         feeList = tempArr;
         //删除对象
         $(this).parent().parent().remove();
-        console.log(JSON.stringify(feeList));
+        //console.log(JSON.stringify(feeList));
         //删除后重新计算费用
         calculateFee();
     });
@@ -162,7 +162,7 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         }
         //增加库存费
         var storage_fee = $("#storage_fee").val();
-        console.log(storage_fee);
+        //console.log(storage_fee);
         if(cvu.isNumber(storage_fee) || cvu.isDecimal(fee)){
             total = cu.floatAdd(total,storage_fee);
         }

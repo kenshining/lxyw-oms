@@ -161,5 +161,21 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
             }
         }
         $("#total_fee").html(cu.formatMoney(total)+"元");
+        //计算单品成本
+        var box_num = $("#box_num").val();
+        var plus_num = $("#plus_num").val();
+        var format_num = $("#format_num").val();
+
+        if(!cvu.isNull(box_num) && !cvu.isNull(plus_num) && !cvu.isNull(format_num)){
+            //计算单品数量
+            var num = cu.floatMul(box_num,format_num);
+            var totalNum = cu.floatAdd(num,plus_num);
+            $("#everage_fee").html(cu.formatMoney(cu.floatDiv(total,totalNum))+"元");
+        }else{
+            $("#everage_fee").html("-元");
+        }
+
+
+
     }
 });

@@ -9,9 +9,9 @@ layui.use(['table','layer','element','jquery'], function() {
         ,id: 'user_table'
         ,where:{
             t: new Date().getTime(),
-            username:$('#username').val(),
-            name:$('#name').val(),
-            cellphoneNo:$('#cellphoneNo').val()
+            username:$('#username_search').val(),
+            name:$('#name_search').val(),
+            cellphoneNo:$('#cellphoneNo_search').val()
         }
         ,url:'/user/user_findUserByPage'
         ,cols: [[
@@ -45,9 +45,9 @@ layui.use(['table','layer','element','jquery'], function() {
           }
         ,where:{
             t: new Date().getTime(),
-            username:$('#username').val(),
-            name:$('#name').val(),
-            cellphoneNo:$('#cellphoneNo').val()
+            username:$('#username_search').val(),
+            name:$('#name_search').val(),
+            cellphoneNo:$('#cellphoneNo_search').val()
         }
         ,loading:true
         });
@@ -68,6 +68,12 @@ layui.use(['table','layer','element','jquery'], function() {
             yes: function(index,layero){
                var dataForm = layer.getChildFrame('form', index);
                //dataForm.contents().find("input[name='username']").val()
+               //进行必要验证
+               var msg = saveValidate(dataForm);
+               if(msg != ''){
+                layer.msg(msg);
+                return;
+               }
                var loadIndex = layer.load(2);
                $.post('/user/saveUser',{
                 name:dataForm.contents().find("input[name='name']").val(),
@@ -131,11 +137,18 @@ layui.use(['table','layer','element','jquery'], function() {
                 yes: function(index,layero){
                    var dataForm = layer.getChildFrame('form', index);
                    //dataForm.contents().find("input[name='username']").val()
+                   //进行必要验证
+                   var msg = saveValidate(dataForm);
+                   if(msg != ''){
+                    layer.msg(msg);
+                    return;
+                   }
+                   //取不到ID使用逐层查找的方式找ID
+                   var id = $(layero).find("iframe")[0].contentWindow.document.getElementById("user_id").value;
                    var loadIndex = layer.load(2);
-                   alert(dataForm.contents().find("#user_id").val());
                    $.post('/user/saveUser',{
                     name:dataForm.contents().find("input[name='name']").val(),
-                    id:dataForm.contents().find("#user_id").val(),
+                    id:id,
                     username:dataForm.contents().find("input[name='username']").val(),
                     sex:dataForm.contents().find("select[name='sex']").val(),
                     email:dataForm.contents().find("input[name='email']").val(),
@@ -155,5 +168,45 @@ layui.use(['table','layer','element','jquery'], function() {
             });
         }
     });
+
+    //更新保存用户对象验证
+    var saveValidate = function(dataForm){
+      //表单验证对象
+      var cvu = new CommonValidationUtils();
+      var emu = new CommonValidationEmu();
+      var name=dataForm.contents().find("input[name='name']").val(),
+          username=dataForm.contents().find("input[name='username']").val(),
+          sex=dataForm.contents().find("select[name='sex']").val(),
+          email=dataForm.contents().find("input[name='email']").val(),
+          idcardNo=dataForm.contents().find("input[name='idcardNo']").val(),
+          birthday=dataForm.contents().find("input[name='birthday']").val(),
+          cellphoneNo=dataForm.contents().find("input[name='cellphoneNo']").val(),
+          wechat=dataForm.contents().find("input[name='wechat']").val(),
+          postCode=dataForm.contents().find("input[name='postCode']").val(),
+          address=dataForm.contents().find("textarea[name='address']").val();
+      //为空校验
+      if(cvu.isNull(name) 
+        || cvu.isNull(username) 
+        || cvu.isNull(email) 
+        || cvu.isNull(idcardNo) 
+        || cvu.isNull(birthday) 
+        || cvu.isNull(cellphoneNo) 
+        || cvu.isNull(wechat) 
+        || cvu.isNull(postCode) 
+        || cvu.isNull(address) ){
+        return emu.errorMsg.all_not_null;
+      }
+      //分类校验
+      if(!cvu.checkMobileNo(cellphoneNo)){
+        return emu.errorMsg.all_worng_cellphoneNo;
+      }
+      if(!cvu.checkIdCard(idcardNo)){
+        return emu.errorMsg.all_worng_idcardNo;
+      }
+      if(!cvu.isEmail(email)){
+        return emu.errorMsg.all_worng_email;
+      }
+      return '';
+    }
     
 });

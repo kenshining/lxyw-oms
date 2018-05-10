@@ -179,7 +179,6 @@ CommonValidationUtils.prototype = {
 	如果通过验证返回true,否则返回false
 	*/
 	isDecimal : function(str){
-		if(isInteger(str)) return true;
 			var re = /^[-]{0,1}(\d+)[\.]+(\d+)$/;
 			if (re.test(str)) {
 				if(RegExp.$1===0&&RegExp.$2===0) return false;

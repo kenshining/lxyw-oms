@@ -1,8 +1,9 @@
-layui.use(['form','layer','table','jquery'], function() {
+layui.use(['form','layer','table','jquery','laydate'], function() {
 
  	var $ = layui.jquery,
         form = layui.form,
         table = layui.table,
+        laydate = layui.laydate,
         layer = layui.layer;
 
         //选择供应商切换视图和渲染表格
@@ -79,5 +80,86 @@ layui.use(['form','layer','table','jquery'], function() {
                 }
             });
         });
+    }
+
+    $("#addFeeBtn").on("click",function(){
+        addNewFeeItem();
+    });
+
+    var feeList = [];
+    //增加成本费用
+    var addNewFeeItem = function(){
+        var id = "fee_item_"+new Date().getTime();
+        var itemHtml = '<div class="layui-inline" id="'+id+'">'+
+            '<label class="layui-form-label">费用种类：</label>'+
+            '<div class="layui-input-inline" style="min-width: 100px;">'+
+               '<select name="fee_select" id="'+id+'_select" lay-verify="">'+
+                '<option>预付款</option>'+
+               ' <option>尾款</option>'+
+                '<option>增值税</option>'+
+                '<option>报关费</option>'+
+                '<option>物流费（国外）</option>'+
+                '<option>物流费（国内）</option>'+
+                '<option>海运费</option>'+
+                '<option>其他费用</option>'+
+             ' </select>'+
+            '</div>'+
+           ' <div class="layui-input-inline" style="width: 200px;">'+
+                '<input type="text" name="fee_input" id="'+id+'_input" autocomplete="off" class="layui-input" placeholder="请输入金额（元）">'+
+            '</div>'+
+            '<div class="layui-form-label">'+
+               '<button class="layui-btn layui-btn-xs layui-btn-danger" type="button" name="deleteFeeBtn"> <i class="layui-icon">&#xe640;</i>删除</button>'+
+            '</div>'+
+        '</div>';
+        $("#fee_container").append(itemHtml);
+        //添加HTML时需要重新渲染表单。
+        form.render();
+        feeList.push({
+            id:id
+        });
+        console.log(JSON.stringify(feeList));
+    }
+    //绑定删除事件
+    $('body').on('click','button[name="deleteFeeBtn"]',function() {
+        var tempArr = [];
+        for(var i = 0; i < feeList.length ; i++){
+          if(feeList[i].id != $(this).parent().parent().attr("id")){
+              tempArr.push(feeList[i]);
+          }
+        }
+        feeList = tempArr;
+        //删除对象
+        $(this).parent().parent().remove();
+        console.log(JSON.stringify(feeList));
+        //删除后重新计算费用
+        calculateFee();
+    });
+    //绑定计算事件
+    $('body').on("change",'input[name="fee_input"]',function() {
+        //录入结束计算费用
+        calculateFee();
+    });
+    //统计并显示费用
+    var calculateFee = function(){
+        //遍历所有费用项目并显示成本计算内容
+        //表单验证对象
+        var cvu = new CommonValidationUtils();
+        var cu = new CommonUtils();
+        //总成本计算
+        var feeInputs = $("input[name='fee_input']");
+        var total = 0;
+        for(var i = 0 ; i< feeInputs.length ; i++){
+            var fee = $(feeInputs[i]).val();
+            if(cvu.isNumber(fee) || cvu.isDecimal(fee)){
+                total = cu.floatAdd(total,fee);
+            }else if(fee == "" || cvu.isNull()){
+                total = cu.floatAdd(total,0);
+            }else{
+                total = "-元";
+                $("#total_fee").html(total);
+                return;
+            }
+        }
+        $("#total_fee").html(cu.formatMoney(total)+"元");
     }
 });

@@ -7,8 +7,8 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         layer = layui.layer;
 
         //选择供应商切换视图和渲染表格
-        $('#selectSupplier').on('click', function() {
-            fadeDiv("#product_form","#supplier_select");
+        $('#selectSupplier_show').on('click', function() {
+            fadeDiv("#stock_form","#supplier_select");
             //渲染供应商选择列表 
             table.render({
                 elem: '#supplier_select_List'
@@ -61,7 +61,7 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
             //console.log(data);
             if(layEvent === 'selectSupplierBtn'){ //删除
                 layer.msg(obj.data.id);
-                 fadeDiv("#supplier_select","#product_form",function(){
+                 fadeDiv("#supplier_select","#stock_form",function(){
                     //滚动到最底部，显示赋值。
                     $('html,body').animate({scrollTop:$("body").height()},'fast');
                     $("#supplier_select_input").val(obj.data.id);

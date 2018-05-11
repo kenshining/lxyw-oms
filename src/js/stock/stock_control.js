@@ -137,6 +137,10 @@ layui.use(['layer','jquery','form','table'], function() {
         if(cvu.isNull(feelist[i].fee)){
           return "未设置["+feelist[i].type+"],若无需保存此项，请删除。";
         }
+        if(cvu.isNumber(feelist[i].fee) || cvu.isDecimal(feelist[i].fee)){
+        }else{
+          return "["+feelist[i].type+"],要求输入数字。";
+        }
       }
 
       return "";

@@ -13,12 +13,12 @@ layui.use(['form','layer','jquery','table','element'], function() {
         ,page:false
         ,data:contectList
         ,cols:[[
-           {field:'name',  align:'center',title: '姓名'}
-          ,{field:'position',  align:'center',title: '职位'}
-          ,{field:'cellphoneNo',  align:'center',title: '移动电话'}
-          ,{field:'email',  align:'center',title: 'Email'}
-          ,{field:'remark',  align:'center',title: '备注'}
-          ,{align:'center',title: '操作', toolbar:'#table_control_bar'}
+           {field:'name', minWidth:'120', align:'center',title: '姓名'}
+          ,{field:'position', minWidth:'120',  align:'center',title: '职位'}
+          ,{field:'cellphoneNo', minWidth:'120',  align:'center',title: '移动电话'}
+          ,{field:'email', minWidth:'240',  align:'center',title: 'Email'}
+          ,{field:'remark', minWidth:'240',  align:'center',title: '备注'}
+          ,{align:'center',minWidth:'120', title: '操作', toolbar:'#table_control_bar'}
         ]]
         ,loading:true
   });

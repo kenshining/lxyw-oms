@@ -25,17 +25,17 @@ layui.config({
 		"spread" : false,
 		"children" : [
 			{
-				"id" : "3",
-				"title" : "货品库存",
-				"icon" : "&#xe622;",
-				"href" : "/stock/stock_control",
-				"spread" : false
-			},
-			{
 				"id" : "4",
 				"title" : "供货商管理",
 				"icon" : "&#xe62e;",
 				"href" : "/stock/supplier_control",
+				"spread" : false
+			},
+			{
+				"id" : "3",
+				"title" : "货品库存",
+				"icon" : "&#xe622;",
+				"href" : "/stock/stock_control",
 				"spread" : false
 			}
 		]
@@ -47,13 +47,6 @@ layui.config({
 		"spread" : false,
 		"children" : [
 			{
-				"id" : "99",
-				"title" : "销售订单",
-				"icon" : "&#xe609;",
-				"href" : "/sales/sales_control",
-				"spread" : false
-			},
-			{
 				"id" : "9292",
 				"title" : "客户管理",
 				"icon" : "&#xe613;",
@@ -61,8 +54,15 @@ layui.config({
 				"spread" : false
 			},
 			{
+				"id" : "99",
+				"title" : "销售订单",
+				"icon" : "&#xe609;",
+				"href" : "/sales/sales_control",
+				"spread" : false
+			},
+			{
 				"id" : "992",
-				"title" : "异常订单处理",
+				"title" : "订单异常处理",
 				"icon" : "&#xe60a;",
 				"href" : "/comingSoon",
 				"spread" : false

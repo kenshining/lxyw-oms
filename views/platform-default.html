@@ -8,7 +8,7 @@
   </head>
   <body style="margin: 10px;">
   <fieldset class="layui-elem-field field-block">
-  	<legend>一周销售情况</legend>
+  	<legend>七日销售情况</legend>
   	<div id="container" style="width: 100%;height: 400px;" ></div>
   </fieldset>
   	
@@ -18,7 +18,7 @@
 	var myChart = echarts.init(dom);
 	var app = {};
 	option = null;
-  	app.title = '一周销售情况';
+  	app.title = '七日销售情况';
 
 	option = {
 	    tooltip : {
@@ -39,7 +39,7 @@
 	    xAxis : [
 	        {
 	            type : 'category',
-	            data : ['周一','周二','周三','周四','周五','周六','周日']
+	            data : ['2018年5月11日','2018年5月10日','2018年5月09日','2018年5月08日','2018年5月07日','2018年5月06日','2018年5月05日']
 	        }
 	    ],
 	    yAxis : [
@@ -60,15 +60,15 @@
 	            data:[120, 132, 101, 134, 90, 230, 210]
 	        },
 	        {
-	            name:'联盟广告',
+	            name:'三得利绿茶',
 	            type:'bar',
-	            stack: '广告',
+	            stack: '茶',
 	            data:[220, 182, 191, 234, 290, 330, 310]
 	        },
 	        {
-	            name:'视频广告',
+	            name:'三得利乌龙茶',
 	            type:'bar',
-	            stack: '广告',
+	            stack: '茶',
 	            data:[150, 232, 201, 154, 190, 330, 410]
 	        },
 	        {
@@ -94,21 +94,21 @@
 	            data:[620, 732, 701, 734, 1090, 1130, 1120]
 	        },
 	        {
-	            name:'谷歌',
+	            name:'三得利柠檬',
 	            type:'bar',
-	            stack: '搜索引擎',
+	            stack: '碳酸',
 	            data:[120, 132, 101, 134, 290, 230, 220]
 	        },
 	        {
-	            name:'必应',
+	            name:'橙汁',
 	            type:'bar',
-	            stack: '搜索引擎',
+	            stack: '碳酸',
 	            data:[60, 72, 71, 74, 190, 130, 110]
 	        },
 	        {
 	            name:'其他',
 	            type:'bar',
-	            stack: '搜索引擎',
+	            stack: '零食',
 	            data:[62, 82, 91, 84, 109, 110, 120]
 	        }
 	    ]

@@ -14,16 +14,15 @@ layui.use(['form','layer','table','jquery','element'], function() {
         ,page:false
         ,data:cusList
         ,cols:[[
-           {field:'name',  align:'center',title: '姓名'}
-          ,{field:'cellphoneNo',  align:'center',title: '移动电话'}
-          ,{field:'email',  align:'center',title: 'Email'}
-          ,{field:'address',  align:'center',title: '地址'}
-          ,{align:'center',title: '操作', toolbar:'#table_control_bar'}
+           {field:'name', minWidth:'150',   align:'center',title: '姓名'}
+          ,{field:'cellphoneNo',  minWidth:'150',  align:'center',title: '移动电话'}
+          ,{field:'email', minWidth:'150',   align:'center',title: 'Email'}
+          ,{field:'address',  minWidth:'150',  align:'center',title: '地址'}
+          ,{align:'center', minWidth:'150', title: '操作', toolbar:'#table_control_bar'}
         ]]
         ,loading:true
   });
   form.render();
-  table.reload('cus_table');
     $("#addNewCusBtn").on('click',function(){
         //新增联系人
         layer.open({

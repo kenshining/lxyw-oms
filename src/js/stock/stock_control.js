@@ -67,8 +67,7 @@ layui.use(['layer','jquery','form','table'], function() {
                 t: new Date().getTime()
             }
             ,cols: [[
-              {type:'checkbox'}
-              ,{field:'productName',  align:'center',title: '品名'}
+              {field:'productName',  align:'center',title: '品名'}
               ,{field:'qNo', align:'center', title: '条形码'}
               ,{field:'batch', align:'center', title: '批次'}
               ,{field:'location', align:'center', title: '产地'}

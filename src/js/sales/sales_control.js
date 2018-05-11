@@ -28,8 +28,7 @@ layui.use(['form','layer','element','jquery','table'], function() {
                 t: new Date().getTime()
             }
             ,cols: [[
-              {type:'checkbox'}
-              ,{field:'batch', align:'center', title: '订单号'}
+                {field:'batch', align:'center', title: '订单号'}
               ,{field:'name',  align:'center',title: '客户名称'}
               ,{field:'qNo', align:'center', title: '客户类别'}
               ,{field:'location', align:'center', title: '总价'}

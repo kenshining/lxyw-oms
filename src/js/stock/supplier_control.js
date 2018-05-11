@@ -29,8 +29,7 @@ layui.use(['form','layer','jquery','table'], function() {
         }
         //,url:'/user/user_findUserByPage'
         ,cols: [[
-          {type:'checkbox'}
-          ,{field:'name',  align:'center',title: '供货商名称'}
+          {field:'name',  align:'center',title: '供货商名称'}
           ,{field:'type',  align:'center',title: '供货商类别' ,templet: function(d){
               if(d.sex == '0'){
                 return "公司客户";

@@ -15,8 +15,7 @@ layui.use(['table','layer','element','jquery'], function() {
         }
         ,url:'/user/user_findUserByPage'
         ,cols: [[
-          {type:'checkbox'}
-          ,{field:'username',  align:'center',title: '用户名'}
+         {field:'username',  align:'center',title: '用户名'}
           ,{field:'name', align:'center', title: '姓名'}
           ,{field:'sex',  align:'center',title: '性别' ,templet: function(d){
               

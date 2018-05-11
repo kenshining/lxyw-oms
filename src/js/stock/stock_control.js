@@ -5,6 +5,21 @@ layui.use(['layer','jquery','form','table'], function() {
         table = layui.table,
         layer = layui.layer;
 
+        //检索库存数据
+        $("#search").on("click",function(){
+            table.reload('stock_table',{
+              page: {
+                curr: 1 //重新从第 1 页开始
+              }
+            ,where:{
+                t: new Date().getTime(),
+                productName:$('#productName_search').val(),
+                cellphoneNo:$('#productId_search').val()
+            }
+            ,loading:true
+            });
+        });
+        //新增库存
         $('#add').on('click', function() {
             //打开弹出窗口加载内容
             var index = layer.open({
@@ -15,6 +30,29 @@ layui.use(['layer','jquery','form','table'], function() {
                     btn: ['保存', '取消'],
                     success: function(layero, index){
                         //console.log(layero, index);
+                    },
+                    yes:function(index,layero){
+                      //创建保存库存数据
+                      var dataForm = layer.getChildFrame('#stock_form', index);
+                      var msg = validateSave(dataForm);
+                      if(msg != ""){
+                        //验证错误提示用户错误
+                        layer.msg(msg);
+                        return;
+                      }
+
+                       layer.msg("正在提交");
+
+                      //提交数据
+                       /*var loadIndex = layer.load(2);
+                       $.post('/user/saveUser',{
+                        
+                       },function(data, textStatus, jqXHR){
+                            layer.close(loadIndex);
+                            layer.close(index);
+                            layer.msg("库存保存成功");
+                            table.reload('stock_table');
+                       },'json');*/
                     }
                 });
                  //默认全屏显示
@@ -51,5 +89,57 @@ layui.use(['layer','jquery','form','table'], function() {
             ,loading:true
             ,limits:[10,20,50,90]
         });
+    //保存验证存储数据
+    var validateSave = function(dataForm){
+
+      //验证输入框不能为空
+      var cvu = new CommonValidationUtils();
+      var emu = new CommonValidationEmu();
+
+      var productName=dataForm.contents().find("input[name='productName']").val(),
+          productBatch=dataForm.contents().find("input[name='productBatch']").val(),
+          qno=dataForm.contents().find("input[name='qno']").val(),
+          location=dataForm.contents().find("input[name='location']").val(),
+          box_num=dataForm.contents().find("#box_num").val(),
+          positon=dataForm.contents().find("select[name='positon']").val(),
+          plus_num=dataForm.contents().find("#plus_num").val(),
+          plusPosition=dataForm.contents().find("select[name='plusPosition']").val(),
+          format_num=dataForm.contents().find("#format_num").val(),
+          guaranteeTime=dataForm.contents().find("#guaranteeTime").val(),
+          singleNetWeight=dataForm.contents().find("#singleNetWeight").val(),
+          singleCapacity=dataForm.contents().find("#singleCapacity").val(),
+          state=dataForm.contents().find("#state").val(),
+          storage=dataForm.contents().find("#storage").val(),
+          wastage=dataForm.contents().find("#wastage").val(),
+          supplierId=dataForm.contents().find("#supplierId").val(),
+          storage_fee=dataForm.contents().find("#storage_fee").val();
+      //为空校验
+      if(cvu.isNull(productName) 
+        || cvu.isNull(productBatch) 
+        || cvu.isNull(qno) 
+        || cvu.isNull(location) 
+        || cvu.isNull(box_num) 
+        || cvu.isNull(positon) 
+        || cvu.isNull(plus_num) 
+        || cvu.isNull(plusPosition) 
+        || cvu.isNull(format_num) 
+        || cvu.isNull(guaranteeTime) 
+        || cvu.isNull(singleNetWeight) 
+        || cvu.isNull(singleCapacity) 
+        || cvu.isNull(wastage) 
+        //|| cvu.isNull(supplierId)
+        || cvu.isNull(storage_fee)){
+        return emu.errorMsg.all_not_null;
+      }
+      //验证feeList项目是否都填写数据
+      var feelist = $.parseJSON(dataForm.contents().find("#fee_container").attr("data"));
+      for(var i = 0; i < feelist.length ; i++ ){
+        if(cvu.isNull(feelist[i].fee)){
+          return "未设置["+feelist[i].type+"],若无需保存此项，请删除。";
+        }
+      }
+
+      return "";
+    }
 
 });

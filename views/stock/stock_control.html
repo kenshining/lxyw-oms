@@ -8,16 +8,16 @@
   </head>
     <div class="admin-main">
       <div class="form-search">
-      <form class="layui-form">
+      <form class="layui-form" id="search_stock_form" name="search_stock_form" lay-filter="search_stock_form">
        <div class="layui-inline">
           <label>品名：</label>
           <div class="layui-input-inline" style="width: 200px;">
-            <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
+            <input type="text" name="productName_search" id="productName_search" placeholder="" autocomplete="off" class="layui-input">
           </div>
           <label>状态：</label>
           <div class="layui-input-inline" style="width: 180px;">
-           <select name="city" lay-verify="">
-              <option value="100" selected="true">全部</option>
+           <select name="productId_search" id="productId_search" lay-verify="">
+              <option value="" selected="true">全部</option>
               <option>在途（可预售）</option>
               <option>在售</option>
               <option>已售罄</option>

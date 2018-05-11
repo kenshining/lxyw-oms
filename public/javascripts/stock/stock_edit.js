@@ -90,18 +90,18 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
     //增加成本费用
     var addNewFeeItem = function(){
         var id = "fee_item_"+new Date().getTime();
-        var itemHtml = '<div class="layui-inline" id="'+id+'">'+
+        var itemHtml = '<div class="layui-inline" id="'+id+'" name="'+id+'">'+
             '<label class="layui-form-label">费用种类：</label>'+
             '<div class="layui-input-inline" style="min-width: 100px;">'+
-               '<select name="fee_select" id="'+id+'_select" lay-verify="">'+
-                '<option>预付款</option>'+
-               ' <option>尾款</option>'+
-                '<option>增值税</option>'+
-                '<option>报关费</option>'+
-                '<option>物流费（国外）</option>'+
-                '<option>物流费（国内）</option>'+
-                '<option>海运费</option>'+
-                '<option>其他费用</option>'+
+               '<select name="fee_select" id="'+id+'_select" lay-verify="" lay-filter="fee_select">'+
+                '<option value="预付款">预付款</option>'+
+               ' <option value="尾款">尾款</option>'+
+                '<option value="增值税">增值税</option>'+
+                '<option value="报关费">报关费</option>'+
+                '<option value="物流费（国外）">物流费（国外）</option>'+
+                '<option value="物流费（国内）">物流费（国内）</option>'+
+                '<option value="海运费">海运费</option>'+
+                '<option value="其他费用">其他费用</option>'+
              ' </select>'+
             '</div>'+
            ' <div class="layui-input-inline" style="width: 200px;">'+
@@ -133,12 +133,39 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         //console.log(JSON.stringify(feeList));
         //删除后重新计算费用
         calculateFee();
+        //刷新全局feeList
+        refreshFeeList();
     });
     //绑定计算事件
     $('body').on("change",'input[name="fee_input"],input[name="stock_num_input"],input[name="storage_fee"]',function() {
-            //录入结束计算费用
-            calculateFee();
+        //录入结束计算费用
+        calculateFee();
+        //刷新全局feeList
+        refreshFeeList();
+        
     });
+    form.on('select(fee_select)', function(data){
+       //刷新全局feeList
+        refreshFeeList();
+    }); 
+    //刷新全局feeList
+    var refreshFeeList = function(){
+        //将费用部分同步到feeList中方便外围获取数据
+        $("input[name='fee_input']").each(function(){
+            //统计每一个项目的录入并更新到数据对象
+            var idSub = $(this).attr("id").split("_")[2];
+            for(var i = 0; i < feeList.length ; i++){
+                if(feeList[i].id == "fee_item_"+idSub){
+                    feeList[i].type = $(this).parent().parent().find("select").val();
+                    feeList[i].fee = $(this).val();
+                }
+            }
+        });
+        //console.log(feeList);
+        //将data设置到浮层
+        $("#fee_container").attr("data",JSON.stringify(feeList));
+        //console.log(JSON.stringify(feeList));
+    };
     //统计并显示费用
     var calculateFee = function(){
         //遍历所有费用项目并显示成本计算内容
@@ -182,8 +209,5 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         }else{
             $("#everage_fee").html("-元");
         }
-
-
-
     }
 });

@@ -7,13 +7,39 @@
   <script type="text/javascript" src="/echarts/echarts.min.js" charset="utf-8"></script>
   </head>
   <body style="margin: 10px;">
+  <form class="layui-form" action="" id="sales_form">
+  
   <fieldset class="layui-elem-field field-block">
-  	<legend>七日销售情况</legend>
+  	<legend>
+  	<select>
+  		<option>七日销售情况</option>
+  		<option>本月售情况</option>
+  		<option>本年度销售情况</option>
+  	</select>
+  	</legend>
+  	<div id="container" style="width: 100%;height: 400px;" ></div>
+  </fieldset>
+  <fieldset class="layui-elem-field field-block">
+  	<legend>
+  		<select>
+  		<option>库存总揽</option>
+  		<option>饮品类库存</option>
+  		<option>食品类库存</option>
+  	</select>
+  	</legend>
   	<div id="container" style="width: 100%;height: 400px;" ></div>
   </fieldset>
   	
-  
+  </form>
   <script type="text/javascript">
+  layui.use(['form','layer','table','jquery','laydate'], function() {
+	var $ = layui.jquery,
+	        form = layui.form,
+	        table = layui.table,
+	        laydate = layui.laydate,
+	        layer = layui.layer;
+	form.render();
+  });
   	var dom = document.getElementById("container");
 	var myChart = echarts.init(dom);
 	var app = {};

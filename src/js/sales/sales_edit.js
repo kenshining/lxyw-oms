@@ -22,6 +22,7 @@ layui.use(['form','layer','table','element'], function() {
 	  var subId = id.split("_")[2];
 	  var inputText = $("#product_item_"+subId+"_discount_value");
 	  inputText.removeClass("layui-disabled");
+	  inputText.val("");
 	  //根据不同的优惠显示不同的内容
 	  if(data.value == 1){
 	  	//折扣优惠
@@ -43,6 +44,13 @@ layui.use(['form','layer','table','element'], function() {
 	  refreshProductList();
 
 	});
+	//监听所有product_item_ input变化，更新产品列表。
+	$('body').on("change",'input[name="product_list_input"]',function() {
+        //刷新列表内容
+	  	refreshProductList();
+	  	//计算优惠价格和总价
+    });
+
 	//新增销售产品条目
 	var createNewSalesItem = function(item){
 
@@ -61,13 +69,13 @@ layui.use(['form','layer','table','element'], function() {
 		      '<td nowrap="nowrap">瓶装500ml*24/箱</td>'+
 		      '<td>日本|24个月|34kg/箱|0.1M3/箱</td>'+
 		      '<td>'+
-		      	'<input type="text" name="single_price" id="'+id+'_single_price" autocomplete="off" class="layui-input" placeholder="单品金额（元）">'+
+		      	'<input type="text" name="product_list_input" id="'+id+'_single_price" autocomplete="off" class="layui-input" placeholder="单品金额（元）">'+
 		      '</td>'+
 		      '<td>'+
-		      	'<input type="text" name="count" id="'+id+'_count" autocomplete="off" class="layui-input" placeholder="订购数量（箱）">'+
+		      	'<input type="text" name="product_list_input" id="'+id+'_count" autocomplete="off" class="layui-input" placeholder="订购数量（箱）">'+
 		      '</td>'+
 		      '<td>'+
-		      	'<input type="text" name="present" id="'+id+'_present" autocomplete="off" class="layui-input" placeholder="搭赠量（件）">'+
+		      	'<input type="text" name="product_list_input" id="'+id+'_present" autocomplete="off" class="layui-input" placeholder="搭赠量（件）">'+
 		      '</td>'+
 		    '</tr>'+
 		    '<tr name="'+id+'" style="background-color:rgb(250, 255, 189);">'+
@@ -80,7 +88,7 @@ layui.use(['form','layer','table','element'], function() {
 	            '</select>'+
 	          '</td>'+
 		      '<td>'+
-		      	'<input type="text" name="total" id="'+id+'_discount_value" autocomplete="off" class="layui-input layui-disabled" placeholder="无优惠">'+
+		      	'<input type="text" name="product_list_input" id="'+id+'_discount_value" autocomplete="off" class="layui-input layui-disabled" placeholder="无优惠">'+
 		      '</td>'+
 		      '<td colspan="5">单品类总价（元）：<em class="highlight">454.22</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠后总价（元）：<em class="highlight">532.9</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠金额（元）：<em class="highlight">532.9</em>'+
 		      '</td>'+

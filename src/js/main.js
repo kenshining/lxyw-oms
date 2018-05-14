@@ -34,7 +34,7 @@ layui.config({
 			{
 				"id" : "3",
 				"title" : "货品库存",
-				"icon" : "&#xe622;",
+				"icon" : "&#xe68e;",
 				"href" : "/stock/stock_control",
 				"spread" : false
 			}
@@ -99,7 +99,7 @@ layui.config({
 			{
 				"id" : "441",
 				"title" : "客户活跃统计",
-				"icon" : "&#xe616;",
+				"icon" : "&#xe604;",
 				"href" : "/comingSoon",
 				"spread" : false
 			}
@@ -114,14 +114,14 @@ layui.config({
 			{
 				"id" : "9",
 				"title" : "用户管理",
-				"icon" : "&#xe631;",
+				"icon" : "&#xe612;",
 				"href" : "/user/user_control",
 				"spread" : false
 			},
 			{
 				"id" : "10",
 				"title" : "用户组与权限",
-				"icon" : "&#xe631;",
+				"icon" : "&#xe770;",
 				"href" : "/comingSoon",
 				"spread" : false
 			}

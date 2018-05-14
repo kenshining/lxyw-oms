@@ -1,8 +1,9 @@
 //示例代码
-layui.use(['layer','jquery','form','table'], function() {
+layui.use(['layer','jquery','form','table','laydate'], function() {
     var $ = layui.jquery,
         form = layui.form,
         table = layui.table,
+        laydate = layui.laydate,
         layer = layui.layer;
 
         //检索库存数据
@@ -18,6 +19,11 @@ layui.use(['layer','jquery','form','table'], function() {
             }
             ,loading:true
             });
+        });
+        laydate.render({
+          elem: 'input[name="stock_search_date"]'
+          ,range: '到'
+          ,format: 'yyyy-MM-dd'
         });
         //新增库存
         $('#add').on('click', function() {
@@ -40,9 +46,8 @@ layui.use(['layer','jquery','form','table'], function() {
                         layer.msg(msg);
                         return;
                       }
-
-                       layer.msg("正在提交");
-
+                      //提取费用细则数据
+                      var feelist = $.parseJSON(dataForm.contents().find("#fee_container").attr("data"));
                       //提交数据
                        /*var loadIndex = layer.load(2);
                        $.post('/user/saveUser',{
@@ -97,6 +102,8 @@ layui.use(['layer','jquery','form','table'], function() {
 
       var productName=dataForm.contents().find("input[name='productName']").val(),
           productBatch=dataForm.contents().find("input[name='productBatch']").val(),
+          productDate=dataForm.contents().find("input[name='productDate']").val(),
+          deadDate=dataForm.contents().find("input[name='deadDate']").val(),
           qno=dataForm.contents().find("input[name='qno']").val(),
           location=dataForm.contents().find("input[name='location']").val(),
           box_num=dataForm.contents().find("#box_num").val(),
@@ -125,7 +132,9 @@ layui.use(['layer','jquery','form','table'], function() {
         || cvu.isNull(guaranteeTime) 
         || cvu.isNull(singleNetWeight) 
         || cvu.isNull(singleCapacity) 
-        || cvu.isNull(wastage) 
+        || cvu.isNull(wastage)
+        || cvu.isNull(productDate) 
+        || cvu.isNull(deadDate)  
         //|| cvu.isNull(supplierId)
         || cvu.isNull(storage_fee)){
         return emu.errorMsg.all_not_null;

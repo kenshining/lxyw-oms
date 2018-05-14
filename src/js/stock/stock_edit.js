@@ -6,6 +6,13 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         laydate = layui.laydate,
         layer = layui.layer;
 
+        //渲染日期组件
+        laydate.render({
+            elem:'#productDate'
+        });
+        laydate.render({
+            elem:'#deadDate'
+        });
         //选择供应商切换视图和渲染表格
         $('#selectSupplier_show').on('click', function() {
             fadeDiv("#stock_form","#supplier_select");
@@ -19,8 +26,7 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
                 }
                 //,url:'/user/user_findUserByPage'
                 ,cols: [[
-                  {type:'checkbox'}
-                  ,{field:'name',  align:'center',title: '供货商名称'}
+                  {field:'name',  align:'center',title: '供货商名称'}
                   ,{field:'type',  align:'center',title: '供货商类别' ,templet: function(d){
                       if(d.sex == '0'){
                         return "公司客户";
@@ -95,7 +101,7 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
             '<div class="layui-input-inline" style="min-width: 100px;">'+
                '<select name="fee_select" id="'+id+'_select" lay-verify="" lay-filter="fee_select">'+
                 '<option value="预付款">预付款</option>'+
-               ' <option value="尾款">尾款</option>'+
+                '<option value="尾款">尾款</option>'+
                 '<option value="增值税">增值税</option>'+
                 '<option value="报关费">报关费</option>'+
                 '<option value="物流费（国外）">物流费（国外）</option>'+
@@ -104,7 +110,10 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
                 '<option value="其他费用">其他费用</option>'+
              ' </select>'+
             '</div>'+
-           ' <div class="layui-input-inline" style="width: 200px;">'+
+            '<div class="layui-input-inline" style="width: 200px;">'+
+                '<input type="text" name="fee_date" id="'+id+'_date" autocomplete="off" class="layui-input" placeholder="请输入付款日期">'+
+            '</div>'+
+            '<div class="layui-input-inline" style="width: 200px;">'+
                 '<input type="text" name="fee_input" id="'+id+'_input" autocomplete="off" class="layui-input" placeholder="请输入金额（元）">'+
             '</div>'+
             '<div class="layui-form-label">'+
@@ -114,6 +123,9 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         $("#fee_container").append(itemHtml);
         //添加HTML时需要重新渲染表单。
         form.render();
+        laydate.render({
+            elem: '#'+id+'_date'
+        });
         feeList.push({
             id:id
         });
@@ -157,6 +169,7 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
             for(var i = 0; i < feeList.length ; i++){
                 if(feeList[i].id == "fee_item_"+idSub){
                     feeList[i].type = $(this).parent().parent().find("select").val();
+                    feeList[i].date = $(this).parent().parent().find('#fee_item_'+idSub+'_date').val();
                     feeList[i].fee = $(this).val();
                 }
             }

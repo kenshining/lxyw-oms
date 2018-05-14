@@ -1,8 +1,9 @@
-layui.use(['form','layer','element','jquery','table'], function() {
+layui.use(['form','layer','element','jquery','table','laydate'], function() {
 	var $ = layui.jquery,
         form = layui.form,
         layer = layui.layer,
         table = layui.table,
+        laydate = layui.laydate,
         element = layui.element;
 
         $('#add').on('click', function() {
@@ -21,14 +22,20 @@ layui.use(['form','layer','element','jquery','table'], function() {
             layer.full(index);
         });
 
+        laydate.render({
+          elem: 'input[name="sales_search_date"]'
+          ,range: '到'
+          ,format: 'yyyy-MM-dd'
+        });
+
         table.render({
             elem: '#table_content'
-            ,id: 'stock_table'
+            ,id: 'sales_bill_table'
             ,where:{
                 t: new Date().getTime()
             }
             ,cols: [[
-                {field:'batch', align:'center', title: '订单号'}
+              {field:'batch', align:'center', title: '订单号'}
               ,{field:'name',  align:'center',title: '客户名称'}
               ,{field:'qNo', align:'center', title: '客户类别'}
               ,{field:'location', align:'center', title: '总价'}

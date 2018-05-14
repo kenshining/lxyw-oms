@@ -151,8 +151,8 @@
 		   <div class="layui-form-item" style="margin-left: 10px;">
 		        <div class="layui-inline">
 		           <div class="layui-btn-group">
-				    <button class="layui-btn layui-btn-small layui-btn-normal"><i class="layui-icon ">&#xe608;</i>新增商品</button>
-				    <button class="layui-btn layui-btn-small layui-btn-danger"><i class="layui-icon">&#xe640;</i>删除商品</button>
+				    <button id="addProductBtn" type="button" class="layui-btn layui-btn-small layui-btn-normal"><i class="layui-icon ">&#xe608;</i>新增商品</button>
+				    <button id="deleteProductBtn" type="button" class="layui-btn layui-btn-small layui-btn-danger"><i class="layui-icon">&#xe640;</i>删除商品</button>
 				  </div>
 		        </div>
 		    </div>
@@ -172,78 +172,7 @@
 				      <th>搭赠(件)</th>
 				    </tr> 
 				  </thead>
-				  <tbody>
-
-				    <tr>
-				      <td rowspan="2" align="center" valign="middle">
-						<input type="checkbox" name="checked" lay-skin="primary">
-				      </td>
-				      <td>日本透明奶茶</td>
-				      <td>4200340</td>
-				      <td nowrap="nowrap">瓶装500ml*24/箱</td>
-				      <td>日本|24个月|34kg/箱|0.1M3/箱</td>
-				      <td>
-				      	<input type="text" name="single_price" autocomplete="off" class="layui-input" placeholder="单品金额（元）">
-				      </td>
-				      <td>
-				      	<input type="text" name="count" autocomplete="off" class="layui-input" placeholder="订购数量（箱）">
-				      </td>
-				      <td>
-				      	<input type="text" name="present" autocomplete="off" class="layui-input" placeholder="搭赠量（件）">
-				      </td>
-				    </tr>
-				    <tr style="background-color:rgb(250, 255, 189);">
-				      <td>
-				      <select name="discount" lay-verify="">
-			              <option selected="true">无优惠</option>
-			              <option>折扣优惠</option>
-			              <option>抹零优惠</option>
-			              <option>免单</option>
-			            </select>     
-			          </td>
-				      <td>
-				      	<input type="text" name="total" autocomplete="off" class="layui-input" placeholder="优惠后总售价（元）">
-				      </td>
-				      <td colspan="5">单品类总价（元）：<em class="highlight">454.22</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠后总价（元）：<em class="highlight">532.9</em>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠金额（元）：<em class="highlight">532.9</em>
-				      </td>
-				    </tr>
-
-				    <tr>
-				      <td rowspan="2" align="center" valign="middle">
-						<input type="checkbox" name="checked" lay-skin="primary">
-				      </td>
-				      <td>日本透明奶茶</td>
-				      <td>4200340</td>
-				      <td nowrap="nowrap">瓶装500ml*24/箱</td>
-				      <td>日本|24个月|34kg/箱|0.1M3/箱</td>
-				      <td>
-				      	<input type="text" name="single_price" autocomplete="off" class="layui-input" placeholder="单品金额（元）">
-				      </td>
-				      <td>
-				      	<input type="text" name="count" autocomplete="off" class="layui-input" placeholder="订购数量（箱）">
-				      </td>
-				      <td>
-				      	<input type="text" name="present" autocomplete="off" class="layui-input" placeholder="搭赠量（件）">
-				      </td>
-				    </tr>
-				    <tr style="background-color:rgb(250, 255, 189);">
-				      <td>
-				      <select name="discount" lay-verify="">
-			              <option selected="true">无优惠</option>
-			              <option>折扣优惠</option>
-			              <option>抹零优惠</option>
-			              <option>免单</option>
-			            </select>     
-			          </td>
-				      <td>
-				      	<input type="text" name="total" autocomplete="off" class="layui-input" placeholder="优惠后总售价（元）">
-				      </td>
-				      <td colspan="5">单品类总价（元）：<em class="highlight">454.22</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠后总价（元）：<em class="highlight">532.9</em>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠金额（元）：<em class="highlight">532.9</em>
-				      </td>
-				    </tr>
-
+				  <tbody id="productListTable">
 				     <tr style="text-align: right;padding-right: 10px;background-color: #eee;">
 				     	<td colspan="8" style="padding-top: 10px;padding-bottom: 10px;">
 				     		共计：<b class="highlight">6</b>&nbsp;&nbsp;类商品&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -263,7 +192,7 @@
 		     	<div class="layui-inline">
 		     		<label class="layui-form-label">销售人：</label>
 		     		<div class="layui-input-inline">
-		            	<input type="text" name="" autocomplete="off" class="layui-input" placeholder="">
+		            	<input type="text" name="" autocomplete="off" class="layui-input layui-disabled" placeholder="">
 			          </td>
 		          	</div>
 		        </div>

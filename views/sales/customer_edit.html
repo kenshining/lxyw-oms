@@ -6,7 +6,7 @@
   <script type="text/javascript" src="/javascripts/sales/customer_edit.js"></script>
   </head>
   <body>
-	<form class="layui-form" action="" id="sales_form">
+	<form class="layui-form" action="" id="customer_form">
 		<fieldset class="layui-elem-field field-block">
 		    <legend class="form-label">客户信息</legend>
 		    <div class="layui-form-item">
@@ -21,7 +21,7 @@
 		     	<div class="layui-inline">
 		     		<label class="layui-form-label">客户类别：</label>
 		     		<div class="layui-input-inline">
-		            	<select name="customer_type">
+		            	<select name="customer_type" id="customer_type">
 			              <option selected="true">企业</option>
 			              <option>个人</option>
 			            </select>     
@@ -33,13 +33,13 @@
 				<div class="layui-inline">
 		     		<label class="layui-form-label" style="width: 85px;">公司电话：</label>
 		     		<div class="layui-input-inline">
-		     			<input type="text" name="customer_transport_fee" autocomplete="off" class="layui-input">
+		     			<input type="text" name="customer_cellphone" id="customer_cellphone" autocomplete="off" class="layui-input">
 		     		</div>
 		        </div>
 		        <div class="layui-inline">
 		     		<label class="layui-form-label" style="width: 85px;">服务邮箱：</label>
 		     		<div class="layui-input-inline">
-		     			<input type="text" name="customer_transport_fee" autocomplete="off" class="layui-input">
+		     			<input type="text" name="customer_email" id="customer_email" autocomplete="off" class="layui-input">
 		     		</div>
 		        </div>
 			</div>
@@ -47,7 +47,7 @@
 			    <div class="layui-inline">
 		          <label class="layui-form-label">公司地址：</label>
 		          <div class="layui-input-inline" style="width: 520px;">
-		            <textarea name="transport_address" autocomplete="off" class="layui-textarea"></textarea>
+		            <textarea name="customer_address" id="customer_address" autocomplete="off" class="layui-textarea"></textarea>
 		          </div>
 		        </div>
 		    </div>
@@ -55,7 +55,7 @@
 			    <div class="layui-inline">
 		          <label class="layui-form-label">备注：</label>
 		          <div class="layui-input-inline" style="width: 520px;">
-		            <textarea name="remarks" autocomplete="off" class="layui-textarea" placeholder=""></textarea>
+		            <textarea name="customer_remarks" id="customer_remarks" autocomplete="off" class="layui-textarea" placeholder=""></textarea>
 		          </div>
 		        </div>
 		    </div>

@@ -42,15 +42,15 @@ function ServiceEnumeration(){
 
  	//销售管理
  	//销售客户信息分页查询
- 	this.SALSE_CUSTOMER_LIST = "userInfo";
+ 	this.SALSE_CUSTOMER_LIST = "customerInfo/getCustomerPageInfo";
  	//主键查询销售客户信息
- 	this.SALSE_CUSTOMER_SEARCH_BY_PRIMARYKEY = "userInfo";
+ 	this.SALSE_CUSTOMER_SEARCH_BY_PRIMARYKEY = "customerInfo/findCustomerInfoByPrimaryKey";
  	//销售客户新增
- 	this.SALSE_CUSTOMER_SAVE_NEW = "userInfo";
+ 	this.SALSE_CUSTOMER_SAVE_NEW = "customerInfo/addCustomerInfo";
  	//销售客户保存
- 	this.SALSE_CUSTOMER_SAVE_UPDATE = "userInfo";
+ 	this.SALSE_CUSTOMER_SAVE_UPDATE = "customerInfo/updateCustomerInfo";
  	//销售客户删除
- 	this.SALSE_CUSTOMER_SAVE_DELETE = "userInfo";
+ 	this.SALSE_CUSTOMER_SAVE_DELETE = "customerInfo/deleteCustomerInfo";
 
  	//销售管理
  	//销售订单分页查询

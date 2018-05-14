@@ -54,6 +54,7 @@ layui.use(['form','layer','table','jquery','element'], function() {
                 return;
               }
               cusList.push(item);
+              $("#cus_table_container").attr("data",JSON.stringify(cusList));
               table.reload('cus_table',{
                 data:cusList
               });
@@ -84,6 +85,7 @@ layui.use(['form','layer','table','jquery','element'], function() {
               data:tempArr
             });
             cusList = tempArr;
+            $("#cus_table_container").attr("data",JSON.stringify(cusList));
         }
   });
 });

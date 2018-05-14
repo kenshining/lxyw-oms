@@ -25,12 +25,116 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
   
       res.render('sales/customer_control', {title: '客户管理' });
   });
+  /**客户管理**/
+  app.get('/sales/customer_findByPage', function(req, res){
+       var params = {
+          pageIndex:(req.query.page-1)*req.query.limit,
+          pageSize:req.query.limit,
+          customerType:null,
+          customerName:null,
+          cellphoneNo:null
+       };
+       if(req.query.customerName != ''){
+          params.customerName = req.query.customerName;
+       }
+       if(req.query.customerType != ''){
+          params.customerType = req.query.customerType;
+       }else
+       if(req.query.cellphoneNo != ''){
+          params.cellphoneNo = req.query.cellphoneNo;
+       }
 
-  app.get('/sales/customer_edit', function(req, res){
-  
-      res.render('sales/customer_edit', {title: '客户编辑' });
+       var pageJson = {};
+       console.info(params);
+      serviceInstance.callServer(params,function(msg){
+        console.info(msg);
+        pageJson.code = 0;
+        pageJson.msg = "获取成功";
+        pageJson.count = msg.data.totalSize;
+        pageJson.data = msg.data.list;
+        res.json(pageJson); 
+      },function(msg){
+        pageJson.code = 1;
+        pageJson.msg = msg.message;
+        res.json(msg);
+      },serviceEnumerationInstance.SALSE_CUSTOMER_LIST,"POST"); 
   });
+  /**客户管理-查询用户**/
+  app.get('/sales/customer_edit', function(req, res){
 
+    var id = req.query.id;
+    //判断为新增则直接跳转到页面
+    if(id != null && id != ""){
+      var params={
+        id:id
+      }
+      serviceInstance.callServer(params,function(msg){
+        console.info(msg);
+        res.render('sales/customer_edit', {
+          user:req.session.user,
+          msg:msg
+        });
+      },function(msg){
+        console.error(msg);
+        res.render('sales/customer_edit', {
+          user:req.session.user,
+          msg:msg
+        });
+      },serviceEnumerationInstance.SALSE_CUSTOMER_SEARCH_BY_PRIMARYKEY,"POST");
 
+    }else{
+      res.render('sales/customer_edit', {title: '客户编辑',user:req.session.user});
+    }
+      
+  });
+  /**客户管理-保存用户信息**/
+  app.post('/sales/customer_save', function(req, res){
+
+     //准备保存用户数据
+     var id = req.body.id,
+      customerName = req.body.customerName,
+      customerType = req.body.customerType,
+      customerCellphone = req.body.customerCellphone,
+      customerEmail = req.body.customerEmail,
+      customerAddress = req.body.customerAddress,
+      customerRemark = req.body.customerRmarks,
+      custlist = req.body.custlist;
+      if(custlist !=null && custlist != ""){
+          custlist =  JSON.parse(custlist);
+      }
+
+      var params = {
+        customerName:customerName,
+        customerType:customerType,
+        customerEmail:customerEmail,
+        customerCellphone:customerCellphone,
+        customerAddress:customerAddress,
+        customerRemark:customerRemark,
+        custlist:custlist
+      }
+
+      console.info(params);
+
+     if(id != null && id != ""){
+      //修改客户
+      serviceInstance.callServer(params,function(msg){
+        console.info(msg);
+        res.json(msg); 
+      },function(msg){
+        res.json(msg);
+      },serviceEnumerationInstance.SALSE_CUSTOMER_SAVE_UPDATE,"POST"); 
+      
+     }else{
+      //新增用户
+      params.createdBy = req.session.user.username;
+      serviceInstance.callServer(params,function(msg){
+        console.info(msg);
+        res.json(msg); 
+      },function(msg){
+        res.json(msg);
+      },serviceEnumerationInstance.SALSE_CUSTOMER_SAVE_NEW,"POST");
+     }
+
+  });
   
 };

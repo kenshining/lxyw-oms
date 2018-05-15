@@ -7,10 +7,12 @@ var bodyParser = require('body-parser');
 var ejs = require('ejs');
 var config=require('./config/config.json');
 var routes = require('./routes/index');
+var compression = require('compression');
 
 var app = express();
 
-
+//启用Gzip压缩请求和返回体
+app.use(compression());
 //log4jsConfigration
 var log4js = require('log4js');
 log4js.configure(config.log4js);

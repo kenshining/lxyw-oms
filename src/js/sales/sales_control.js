@@ -24,7 +24,7 @@ layui.use(['form','layer','element','jquery','table','laydate'], function() {
 
         laydate.render({
           elem: 'input[name="sales_search_date"]'
-          ,range: '到'
+          ,range: '-'
           ,format: 'yyyy-MM-dd'
         });
 

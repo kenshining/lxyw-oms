@@ -8,6 +8,7 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
 
         //检索库存数据
         $("#search").on("click",function(){
+            console.log($('#stock_search_date').val());
             table.reload('stock_table',{
               page: {
                 curr: 1 //重新从第 1 页开始
@@ -15,14 +16,15 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
             ,where:{
                 t: new Date().getTime(),
                 productName:$('#productName_search').val(),
-                cellphoneNo:$('#productId_search').val()
+                cellphoneNo:$('#productId_search').val(),
+                dates:$('#stock_search_date').val()       
             }
             ,loading:true
             });
         });
         laydate.render({
           elem: 'input[name="stock_search_date"]'
-          ,range: '到'
+          ,range: '-'
           ,format: 'yyyy-MM-dd'
         });
         //新增库存

@@ -15,6 +15,8 @@ function ServiceEnumeration(){
  	//验证用户名唯一
  	this.USER_VALIDATE_QUNIQUE = "userInfo/isUniqueUserName";
  	//重置用户密码
+ 	this.USER_MODIFY_PASSWORD = "userInfo/modifyUserPassword";
+ 	//重置用户密码
  	this.USER_RESET_PASSWORD = "userInfo";
 
  	//库存管理

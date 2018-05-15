@@ -165,30 +165,44 @@ layui.config({
                 form.render();
             },
             yes: function(index,layero){
-               /*var dataForm = layer.getChildFrame('form', index);
+               var dataForm = layer.getChildFrame('form', index);
                //dataForm.contents().find("input[name='username']").val()
+               //验证输入是否合法
+               var password = dataForm.contents().find("#password").val();
+               var newPassword = dataForm.contents().find("#newPassword").val();
+               var newPasswordRepeat = dataForm.contents().find("#newPasswordRepeat").val();
+               	  //验证输入框不能为空
+			      var cvu = new CommonValidationUtils();
+			      var emu = new CommonValidationEmu();
+			      //为空校验
+			      if(cvu.isNull(password) 
+			        || cvu.isNull(newPasswordRepeat) 
+			        || cvu.isNull(newPassword)){
+			        layer.msg(emu.errorMsg.all_not_null);
+			    	return;
+			      }
+			      //验证棉麻输入是否满足要求
+			      if(newPassword != newPasswordRepeat){
+			      	layer.msg("两次输入的新密码不一致，请重新输入。");
+			      	return;
+			      }
                var loadIndex = layer.load(2);
-               $.post('/user/saveUser',{
-                name:dataForm.contents().find("input[name='name']").val(),
-                username:dataForm.contents().find("input[name='username']").val(),
-                sex:dataForm.contents().find("select[name='sex']").val(),
-                email:dataForm.contents().find("input[name='email']").val(),
-                idcardNo:dataForm.contents().find("input[name='idcardNo']").val(),
-                birthday:dataForm.contents().find("input[name='birthday']").val(),
-                cellphoneNo:dataForm.contents().find("input[name='cellphoneNo']").val(),
-                wechat:dataForm.contents().find("input[name='wechat']").val(),
-                postCode:dataForm.contents().find("input[name='postCode']").val(),
-                address:dataForm.contents().find("textarea[name='address']").val()
+               $.post('/user/modify_password',{
+               		password:password,
+               		newPassword:newPassword
                },function(data, textStatus, jqXHR){
-                    layer.close(loadIndex);
-                    layer.close(index);
-                    layer.msg("用户数据保存成功");
-                    table.reload('user_table');
-               },'json');*/
+               		layer.close(loadIndex);
+               		if(data.code == 0){
+	                    layer.close(index);
+	                    layer.msg("用户密码已修改成功！");
+               		}else{
+	                    layer.msg(data.message);
+               		}
+                    
+               },'json');
             }
         });
 	});
-
 
 	//手机设备的简单适配
 	var treeMobile = $('.site-tree-mobile'),

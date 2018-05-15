@@ -136,5 +136,23 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
      }
 
   });
+
+  /**客户管理-保存用户信息**/
+  app.post('/sales/customer_delete', function(req, res){
+    var id = req.body.id;
+    //准备用户参数
+    var params = {
+      id: id
+    };
+    //更新用户
+    serviceInstance.callServer(params,function(msg){
+      console.info(msg);
+      res.json(msg); 
+    },function(msg){
+      res.json(msg);
+    },serviceEnumerationInstance.SALSE_CUSTOMER_SAVE_DELETE,"POST");
+    
+  });
+  
   
 };

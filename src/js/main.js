@@ -259,6 +259,10 @@ layui.config({
 
 	//心跳检测用户登录状态是否有效，若无效需要重新验证
 	setInterval(function(){
+		//判断当前是否已被锁定，如果已被锁定则不在提示直接跳转到登录页面
+		if(window.sessionStorage.getItem("lockcms") == "true"){
+			window.location.href="/";
+		}
 		$.post('/validateUserValid',{
             t: new Date().getTime()  
 	    },function(data, textStatus, jqXHR){
@@ -270,7 +274,7 @@ layui.config({
 	        	console.log("登录状态有效...");
 	        }
 	    },'json');
-	},1000*60*0.5);
+	},1000*60*1);
 
 	
 });

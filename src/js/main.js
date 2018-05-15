@@ -228,14 +228,29 @@ layui.config({
 		if($(this).siblings(".admin-header-lock-input").val() == ''){
 			layer.msg("请输入解锁密码！");
 		}else{
-			if($(this).siblings(".admin-header-lock-input").val() == "123456"){
-				window.sessionStorage.setItem("lockcms",false);
-				$(this).siblings(".admin-header-lock-input").val('');
-				layer.closeAll();
-				$(".admin-header-lock").hide();
-			}else{
-				layer.msg("密码错误，请重新输入！");
-			}
+			console.log($("#lockUserName").html());
+			console.log($(this).siblings(".admin-header-lock-input").val());
+			$.ajax({
+				url	:'/login',
+				type:'POST',
+				dataType:'json',
+				data:{
+					username:$("#lockUserName").html(),
+					password:$(this).siblings(".admin-header-lock-input").val()
+				},
+				success:function(msg){
+					if(msg.status){
+						window.sessionStorage.setItem("lockcms",false);
+						$(this).siblings(".admin-header-lock-input").val('');
+						layer.closeAll();
+						$(".admin-header-lock").hide();
+					}else{
+						layer.msg("密码错误，请重新输入！");
+					}
+					
+				}
+
+			});
 		}
 	});
 	$(document).on('keydown', function() {
@@ -243,6 +258,22 @@ layui.config({
 			$("#unlock").click();
 		}
 	});
+
+	//心跳检测用户登录状态是否有效，若无效需要重新验证
+	setInterval(function(){
+		$.post('/validateUserValid',{
+            t: new Date().getTime()  
+	    },function(data, textStatus, jqXHR){
+	        if(data.code != 0){
+	        	//登录失效，显示验证窗口
+	        	$(".lockcms").click();
+	        	console.log("登录状态已失效...");
+	        }else{
+	        	console.log("登录状态有效...");
+	        }
+	    },'json');
+	},1000*60*0.5);
+
 	
 });
 

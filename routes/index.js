@@ -76,10 +76,31 @@ module.exports = function(app,logger){
 	  });
 	});
 
+	/**心跳检测用户登录状态是否仍然有效，如果无效需要给出提示锁屏**/
+	app.post('/validateUserValid', function(req, res, next) {
+
+	  //获取用户信息
+	  var user = req.session.user;
+	  if(!req.session || !req.session.user){
+	  	//用户登录已经失效
+	  	res.json({
+	  		code:1,
+	  		message:'为了您的账户安全，需要再次校验您的登录密码。'
+	  	});
+	  }else{
+	  	res.json({
+	  		code:0,
+	  		message:''
+	  	});
+	  }
+	 
+	});
+
+	/**跳转默认工作台**/
 	app.get('/platform-default', function(req, res, next) {
 	  res.render('platform-default', { title: 'Express' });
 	});
-
+	/**显示打印销售订单**/
 	app.get('/print', function(req, res, next) {
 	  res.render('print-model/sale_list', { title: 'Express' });
 	});

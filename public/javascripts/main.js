@@ -228,8 +228,6 @@ layui.config({
 		if($(this).siblings(".admin-header-lock-input").val() == ''){
 			layer.msg("请输入解锁密码！");
 		}else{
-			console.log($("#lockUserName").html());
-			console.log($(this).siblings(".admin-header-lock-input").val());
 			$.ajax({
 				url	:'/login',
 				type:'POST',

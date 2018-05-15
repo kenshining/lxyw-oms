@@ -83,7 +83,10 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
       },serviceEnumerationInstance.SALSE_CUSTOMER_SEARCH_BY_PRIMARYKEY,"POST");
 
     }else{
-      res.render('sales/customer_edit', {title: '客户编辑',user:req.session.user});
+       res.render('sales/customer_edit', {
+          user:req.session.user,
+          msg:{}
+      });
     }
       
   });

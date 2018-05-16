@@ -275,6 +275,8 @@ layui.config({
 	setInterval(function(){
 		//判断当前是否已被锁定，如果已被锁定则不在提示直接跳转到登录页面
 		if(window.sessionStorage.getItem("lockcms") == "true"){
+			//跳转登录页面，登录后不用再次输入密码
+			window.sessionStorage.setItem("lockcms",false);
 			window.location.href="/";
 		}
 		$.post('/validateUserValid',{

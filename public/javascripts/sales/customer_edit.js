@@ -4,9 +4,6 @@ layui.use(['form','layer','table','jquery','element'], function() {
         layer = layui.layer,
         table = layui.table,
         element = layui.element;
-
-    //采购联系人列表
-  var cusList = [];
   //渲染静态表格
   table.render({
         elem: '#cus_table_container'
@@ -15,13 +12,36 @@ layui.use(['form','layer','table','jquery','element'], function() {
         ,data:cusList
         ,cols:[[
            {field:'name', minWidth:'150',   align:'center',title: '姓名'}
-          ,{field:'cellphoneNo',  minWidth:'150',  align:'center',title: '移动电话'}
+          ,{field:'cellphone',  minWidth:'150',  align:'center',title: '移动电话'}
           ,{field:'email', minWidth:'150',   align:'center',title: 'Email'}
           ,{field:'address',  minWidth:'150',  align:'center',title: '地址'}
           ,{align:'center', minWidth:'150', title: '操作', toolbar:'#table_control_bar'}
         ]]
         ,loading:true
   });
+  //采购联系人列表
+  var cusList = [];
+  //如果是修改，则页面加载完成后需要初始化采购人列表数据
+  if($("#customerLink").length > 0){
+      var customerLinkObj = $.parseJSON($("#customerLink").val());
+      for(var i = 0 ; i <customerLinkObj.length ; i++){ 
+         var item = {
+              id:customerLinkObj[i].id,
+              name:customerLinkObj[i].name,
+              cellphone:customerLinkObj[i].cellphone,
+              email:customerLinkObj[i].email,
+              address:customerLinkObj[i].address
+         }
+         cusList.push(item);
+      }
+      JSON.stringify(JSON.stringify(cusList));
+      //设置待提交设局
+      $("#cus_table_container").attr("data",JSON.stringify(cusList));
+      table.reload('cus_table',{
+        data:cusList
+      });
+
+  }
   form.render();
     $("#addNewCusBtn").on('click',function(){
         //新增联系人
@@ -41,14 +61,14 @@ layui.use(['form','layer','table','jquery','element'], function() {
               var item = {
                 id:new Date().getTime(),
                 name:$('#tmp_add_name').val(),
-                cellphoneNo:$('#tmp_add_cellphoneNo').val(),
+                cellphone:$('#tmp_add_cellphoneNo').val(),
                 email:$('#tmp_add_email').val(),
                 address:$('#tmp_add_address').val()
               }
               //判断属性都不能为空
               if(item.name == "" || 
                 item.address == "" ||
-                item.cellphoneNo == "" ||
+                item.cellphone == "" ||
                 item.email == "" ){
                 layer.msg("字段[姓名、地址、电话、email]均不能为空。");
                 return;

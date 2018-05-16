@@ -70,6 +70,8 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
       }
       serviceInstance.callServer(params,function(msg){
         console.info(msg);
+        //传输将JSON对象作为字符串传递给前台
+        msg.data.customerLinks = JSON.stringify(msg.data.customerLinks);
         res.render('sales/customer_edit', {
           user:req.session.user,
           msg:msg
@@ -113,13 +115,15 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
         customerCellphone:customerCellphone,
         customerAddress:customerAddress,
         customerRemark:customerRemark,
-        custlist:custlist
+        customerLinks:custlist
       }
 
       console.info(params);
 
      if(id != null && id != ""){
       //修改客户
+      params.id = id;
+      params.updateBy = req.session.user.username;
       serviceInstance.callServer(params,function(msg){
         console.info(msg);
         res.json(msg); 

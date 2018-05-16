@@ -19,7 +19,7 @@ layui.use(['form','layer','element','jquery','table'], function() {
                     yes:function(index,layero){
                       //创建保存库存数据
                       var dataForm = layer.getChildFrame('#customer_form', index);
-                      var msg = validateSave(dataForm);
+                      var msg = saveValidate(dataForm);
                       if(msg != ""){
                         //验证错误提示用户错误
                         layer.msg(msg);

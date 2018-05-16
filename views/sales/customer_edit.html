@@ -8,7 +8,9 @@
   <body>
 	<form class="layui-form" action="" id="customer_form">
 		<%if(msg.data && msg.data != ""){%>
-	      <input type="hidden" name="cust_id" id="cust_id" value="<%=msg.data.id%>">  
+	      <input type="hidden" name="cust_id" id="cust_id" value="<%=msg.data.id%>"> 
+	      <!--联系人先存在hidden里，然后js转成对象后js调用新增即可-->
+		  <input type="hidden" id="customerLink" name="customerLink" value="<%=msg.data.customerLinks%>">
 	    <%}%>
 		<fieldset class="layui-elem-field field-block">
 		    <legend class="form-label">客户信息</legend>
@@ -65,7 +67,7 @@
 			    <div class="layui-inline">
 		          <label class="layui-form-label">公司地址：</label>
 		          <div class="layui-input-inline" style="width: 520px;">
-		            <textarea name="customer_address" id="customer_address" autocomplete="off" class="layui-textarea"><%if(msg.data && msg.data != ""){%>value="<%=msg.data.customerAddress%>"<%}%></textarea>
+		            <textarea name="customer_address" id="customer_address" autocomplete="off" class="layui-textarea"><%if(msg.data && msg.data != ""){%><%=msg.data.customerAddress%><%}%></textarea>
 		          </div>
 		        </div>
 		    </div>
@@ -73,7 +75,7 @@
 			    <div class="layui-inline">
 		          <label class="layui-form-label">备注：</label>
 		          <div class="layui-input-inline" style="width: 520px;">
-		            <textarea name="customer_remarks" id="customer_remarks" autocomplete="off" class="layui-textarea" placeholder=""><%if(msg.data && msg.data != ""){%>value="<%=msg.data.customerRemark%>"<%}%></textarea>
+		            <textarea name="customer_remarks" id="customer_remarks" autocomplete="off" class="layui-textarea" placeholder=""><%if(msg.data && msg.data != ""){%><%=msg.data.customerRemark%><%}%></textarea>
 		          </div>
 		        </div>
 		    </div>
@@ -85,7 +87,6 @@
 		        <table class="layui-table" id="cus_table_container" lay-filter="cus_table_container"></table>
 		    </div>
 		</fieldset>
-		<!--联系人先存在hidden里，然后js转成对象后js调用新增即可-->
 	</form>
 
 

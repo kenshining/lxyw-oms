@@ -48,7 +48,10 @@ layui.use(['form','layer','element','jquery','table'], function() {
         var tr = obj.tr; //获得当前行 tr 的DOM对象
         if(layEvent === 'select'){ 
         	//选择客户信息
-        	alert(obj.data);
+        	$(window.parent.document.getElementById("customer_name")).val(obj.data.customerName);
+        	//TODO 处理选择后事件
+        	var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+			parent.layer.close(index); //再执行关闭 
         }
     });
 });

@@ -153,7 +153,7 @@ layui.config({
 	//修改用户密码
 	$("#main_password_modify").on("click",function(){
 		var index = layer.open({
-            content: '/user/reset_password_render',
+            content: '/user/modify_password_render',
             type: 2,
             anim: 2, //动画类型
             title: '修改密码',
@@ -263,11 +263,6 @@ layui.config({
 				}
 
 			});
-		}
-	});
-	$(document).on('keydown', function() {
-		if(event.keyCode == 13) {
-			$("#unlock").click();
 		}
 	});
 

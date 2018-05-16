@@ -69,8 +69,8 @@ layui.use(['form','layer','element','jquery','table'], function() {
               {field:'customerName',  align:'center',title: '客户名称'}
               ,{field:'customerType', align:'center', title: '客户类别'}
               ,{field:'customerCellphone', align:'center', title: '客户电话'}
-              ,{field:'customerEmail', align:'center', title: 'Email'}
-              ,{field:'customerAddress', align:'center', title: '客户地址'}
+              ,{field:'customerEmail', align:'left', title: 'Email'}
+              ,{field:'customerAddress', align:'left', title: '客户地址'}
               ,{fixed: 'right', align:'center',title: '操作', toolbar:'#table_control_bar'}
             ]]
             ,page: true

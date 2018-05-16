@@ -136,4 +136,25 @@ layui.use(['form','layer','table','element'], function() {
         $("#productListTable").attr("data",JSON.stringify(productList));
         console.log(JSON.stringify(productList));
     };
+
+    //选择客户
+    $("#selectCoustomBtn").on("click",function(){
+    	var index = layer.open({
+            content: '/sales/chooes_customer',
+            type: 2,
+            anim: 2, //动画类型
+            title: '选择客户',
+            btn: ['选择客户', '取消'],
+            skin: 'layui-layer-rim', //加上边框
+            area: ['90%', '80%'], //宽高
+            success: function(layero, index){
+                //console.log(layero, index);
+            },
+            yes: function(index,layero){
+               var dataForm = layer.getChildFrame('form', index);
+               //dataForm.contents().find("input[name='username']").val()
+            }
+        });
+        
+    });
 });

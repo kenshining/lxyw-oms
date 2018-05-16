@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <% include ../include.html %>
+  <link rel="stylesheet" href="/stylesheets/form.min.css">
+  <script type="text/javascript" src="/javascripts/sales/chooes_customer_control.js"></script>
+  </head>
+    <div class="admin-main">
+      <div class="form-search">
+      <form class="layui-form">
+       <div class="layui-inline">
+          <label>客户名称：</label>
+          <div class="layui-input-inline" style="width: 200px;">
+            <input type="text" name="cust_search_name" id="cust_search_name" placeholder="" autocomplete="off" class="layui-input">
+          </div>
+          <label>手机号码：</label>
+          <div class="layui-input-inline" style="width: 200px;">
+            <input type="text" name="cust_search_cellphont" id="cust_search_cellphont" placeholder="" autocomplete="off" class="layui-input">
+          </div>
+          <label>状态：</label>
+          <div class="layui-input-inline" style="width: 180px;">
+           <select name="city" lay-verify="" name="cust_search_type" id="cust_search_type">
+              <option selected="true" value="">全部</option>
+              <option value="企业">企业</option>
+              <option value="个人">个人</option>
+            </select>     
+          </div>
+        </div>
+
+        <div class="layui-inline form-right">
+          <a href="javascript:;" class="layui-btn layui-btn-small layui-btn-warm" id="search">
+            <i class="layui-icon">&#xe615;</i> 搜索
+          </a>
+        </div>
+        </form>
+      </div>
+      <div id="table_content" lay-filter="cust_table_filter">
+      </div>
+      <script type="text/html" id="table_control_bar">
+        <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="select">选择此客户</a>
+      </script>
+  </body>
+</html>

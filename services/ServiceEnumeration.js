@@ -14,10 +14,10 @@ function ServiceEnumeration(){
  	this.USER_SAVE_DELETE = "userInfo/deleteUserInfo";
  	//验证用户名唯一
  	this.USER_VALIDATE_QUNIQUE = "userInfo/isUniqueUserName";
- 	//重置用户密码
+ 	//修改用户密码
  	this.USER_MODIFY_PASSWORD = "userInfo/modifyUserPassword";
  	//重置用户密码
- 	this.USER_RESET_PASSWORD = "userInfo";
+ 	this.USER_RESET_PASSWORD = "userInfo/resetUserPassword";
 
  	//库存管理
  	//供应商查询分页

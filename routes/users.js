@@ -6,7 +6,7 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
 
   
   /**修改用户密码（本人）**/
-  app.get('/user/reset_password_render', function(req, res){
+  app.get('/user/modify_password_render', function(req, res){
       res.render('user/modify_password', {title: 'Express' });
   });
   app.post('/user/modify_password', function(req, res){
@@ -17,19 +17,43 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
       password:req.body.password,
       newPassword:req.body.newPassword
     };
+    console.info(params);
     serviceInstance.callServer(params,function(msg){
         console.info(msg);
         res.json(msg); 
       },function(msg){
         res.json(msg);
-      },serviceEnumerationInstance.USER_MODIFY_PASSWORD,"POST"); 
-  
-      res.render('user/modify_password', {title: 'Express' });
+      },serviceEnumerationInstance.USER_MODIFY_PASSWORD,"POST");
   });
   /**修改用户密码（重置）**/
-  app.get('/user/reset_password', function(req, res){
+  app.get('/user/reset_password_render', function(req, res){
+
+      var username = req.query.username;
+      var email = req.query.email;
+
+      res.render('user/reset_password', {
+        msg:{
+          username:username,
+          email:email
+        }
+      });
+  });
+  app.post('/user/reset_password', function(req, res){
+    //获取用户登录对象
+    var username = req.body.username;
+    var email = req.body.email;
+    var params = {
+      username:username,
+      email:email
+    };
+    console.info(params);
+    serviceInstance.callServer(params,function(msg){
+        console.info(msg);
+        res.json(msg); 
+      },function(msg){
+        res.json(msg);
+      },serviceEnumerationInstance.USER_RESET_PASSWORD,"POST"); 
   
-      res.render('user/reset_password', {title: 'Express' });
   });
   app.get('/user/modify_self_information', function(req, res){
   

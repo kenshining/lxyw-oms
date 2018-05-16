@@ -25,6 +25,12 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
   
       res.render('sales/customer_control', {title: '客户管理' });
   });
+
+  /**销售订单选择客户**/
+  app.get('/sales/chooes_customer', function(req, res){
+  
+      res.render('sales/chooes_customer', {title: '销售订单选择客户' });
+  });
   /**客户管理**/
   app.get('/sales/customer_findByPage', function(req, res){
        var params = {

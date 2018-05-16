@@ -167,7 +167,7 @@ layui.use(['table','layer','element','jquery'], function() {
             });
         }else if(layEvent === 'reset'){
             var index = layer.open({
-              content: '/user/reset_password',
+              content: '/user/reset_password_render?username='+data.username+'&email='+data.email,
               type: 2,
               anim: 2, //动画类型
               title: '重置用户密码',
@@ -176,7 +176,7 @@ layui.use(['table','layer','element','jquery'], function() {
               area: ['450px', '220px'], //宽高
               success: function(layero, index){
                   //console.log(layero, index);
-                  form.render();
+                  //form.render();
               },
               yes: function(index,layero){
                 var dataForm = layer.getChildFrame('form', index);
@@ -191,11 +191,11 @@ layui.use(['table','layer','element','jquery'], function() {
                   return;
                 }
                   var loadIndex = layer.load(2);
-                   $.post('/user/saveUser',{
+                   $.post('/user/reset_password',{
                     username:username,
                     email:email
                    },function(data, textStatus, jqXHR){
-                      if(date && data.code == 0){
+                      if(data != null && data.code == 0){
                         layer.close(loadIndex);
                         layer.close(index);
                         layer.msg("密码已成功发送到对方邮箱！");

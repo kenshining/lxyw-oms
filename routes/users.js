@@ -6,6 +6,9 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
 
   
   /**修改用户密码（本人）**/
+  app.get('/user/reset_password_render', function(req, res){
+      res.render('user/modify_password', {title: 'Express' });
+  });
   app.post('/user/modify_password', function(req, res){
     //获取用户登录对象
     var user = req.session.user;

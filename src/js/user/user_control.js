@@ -165,6 +165,23 @@ layui.use(['table','layer','element','jquery'], function() {
                    },'json');
                 }
             });
+        }else if(layEvent === 'reset'){
+            var index = layer.open({
+              content: '/user/reset_password',
+              type: 2,
+              anim: 2, //动画类型
+              title: '重置用户密码',
+              btn: ['发送重置邮件', '取消'],
+              skin: 'layui-layer-rim', //加上边框
+              area: ['450px', '220px'], //宽高
+              success: function(layero, index){
+                  //console.log(layero, index);
+                  form.render();
+              },
+              yes: function(index,layero){
+                 
+              }
+          });
         }
     });
 

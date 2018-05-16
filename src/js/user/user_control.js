@@ -179,7 +179,31 @@ layui.use(['table','layer','element','jquery'], function() {
                   form.render();
               },
               yes: function(index,layero){
-                 
+                var dataForm = layer.getChildFrame('form', index);
+                var username = dataForm.contents().find("#username").val();
+                var email = dataForm.contents().find("#email").val();
+                //验证对象
+                var cvu = new CommonValidationUtils();
+                var emu = new CommonValidationEmu();
+                //必要验证
+                if(cvu.isNull(username) || cvu.isNull(email) ){
+                  layer.msg("所列项目均为必填项目。");
+                  return;
+                }
+                  var loadIndex = layer.load(2);
+                   $.post('/user/saveUser',{
+                    username:username,
+                    email:email
+                   },function(data, textStatus, jqXHR){
+                      if(date && data.code == 0){
+                        layer.close(loadIndex);
+                        layer.close(index);
+                        layer.msg("密码已成功发送到对方邮箱！");
+                      }else{
+                        layer.msg(data.message);
+                      }
+                        
+                   },'json');
               }
           });
         }

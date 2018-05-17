@@ -72,7 +72,7 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
           pageSize:req.query.limit,
           username:null,
           name:null,
-          cellphoneNo:null
+          cellphone:null
        };
        if(req.query.username != ''){
           params.username = req.query.username;
@@ -81,7 +81,7 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
           params.name = req.query.name;
        }else
        if(req.query.cellphoneNo != ''){
-          params.cellphoneNo = req.query.cellphoneNo;
+          params.cellphone = req.query.cellphone;
        }
 
        var pageJson = {};
@@ -136,7 +136,7 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
       email:req.body.email,
       idcardNo:req.body.idcardNo,
       birthday:req.body.birthday,
-      cellphoneNo:req.body.cellphoneNo,
+      cellphone:req.body.cellphone,
       wechat:req.body.wechat,
       postCode:req.body.postCode,
       address:req.body.address

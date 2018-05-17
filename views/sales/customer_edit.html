@@ -3,7 +3,6 @@
   <head>
   <% include ../include.html %>
   <link rel="stylesheet" href="/stylesheets/form.min.css">
-  <script type="text/javascript" src="/javascripts/sales/customer_edit.js"></script>
   </head>
   <body>
 	<form class="layui-form" action="" id="customer_form">
@@ -84,7 +83,10 @@
 		   <legend class="form-label">采购联系人</legend>
 		   <div class="layui-form-item" style="margin-left: 10px;margin-right: 10px;">
 		        <button id="addNewCusBtn" type="button" class="layui-btn layui-btn-small layui-btn-normal"><i class="layui-icon ">&#xe608;</i>新增采购(收货)联系人</button>
-		        <table class="layui-table" id="cus_table_container" lay-filter="cus_table_container"></table>
+		        <div style="min-width:1200px;">
+		        	<table class="layui-table" id="cus_table_container" lay-filter="cus_table_container"></table>
+		        </div>
+		        
 		    </div>
 		</fieldset>
 	</form>
@@ -122,5 +124,6 @@
     <script type="text/html" id="table_control_bar">
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deletCusbtn">删除</a>
     </script>
+    <script type="text/javascript" src="/javascripts/sales/customer_edit.js"></script>
   </body>
 </html>

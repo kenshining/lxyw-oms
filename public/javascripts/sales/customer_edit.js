@@ -11,11 +11,11 @@ layui.use(['form','layer','table','jquery','element'], function() {
         ,page:false
         ,data:cusList
         ,cols:[[
-           {field:'name', minWidth:'150',   align:'center',title: '姓名'}
-          ,{field:'cellphone',  minWidth:'150',  align:'center',title: '移动电话'}
-          ,{field:'email', minWidth:'150',   align:'center',title: 'Email'}
-          ,{field:'address',  minWidth:'150',  align:'center',title: '地址'}
-          ,{align:'center', minWidth:'150', title: '操作', toolbar:'#table_control_bar'}
+           {field:'name', width:'20%', align:'center',title: '姓名'}
+          ,{field:'cellphone',width:'20%', align:'center',title: '移动电话'}
+          ,{field:'email',width:'20%', align:'center',title: 'Email'}
+          ,{field:'address',width:'20%', align:'center',title: '地址'}
+          ,{align:'center',width:'20%', title: '操作', toolbar:'#table_control_bar'}
         ]]
         ,loading:true
   });
@@ -108,4 +108,5 @@ layui.use(['form','layer','table','jquery','element'], function() {
             $("#cus_table_container").attr("data",JSON.stringify(cusList));
         }
   });
+
 });

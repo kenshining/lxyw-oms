@@ -9,6 +9,7 @@
 <form class="layui-form" action="" id="product_form">
   <fieldset class="layui-elem-field field-block">
     <legend class="form-label">供货商基本信息</legend>
+    <div style="max-width: 1024px;">
      <div class="layui-form-item">
         <div class="layui-inline">
           <label class="layui-form-label" style="width: 100px;">供货商公司名：</label>
@@ -23,16 +24,7 @@
           </div>
           <label class="layui-form-label" style="width: 100px;">国家和地区：</label>
           <div class="layui-input-inline" style="width: 140px;">
-            <select name="city" lay-verify="" lay-search>
-              <option value="0">录入搜索</option>
-              <option value="bl">日本</option>
-              <option value="jp">美国</option>
-              <option value="ch">中国大陆</option>
-              <option value="cn">中国台湾</option>
-              <option value="sq">中国香港</option>
-              <option value="sh">印度尼西亚</option>
-              <option value="tl">泰国</option>
-            </select>   
+            <input type="text" name="" autocomplete="off" class="layui-input">
           </div>
         </div>
         <div class="layui-inline">
@@ -46,6 +38,7 @@
           <div class="layui-input-inline" style="min-width: 490px;">
            <textarea name="" lay-verify="" placeholder="请输入备注信息..." class="layui-textarea"></textarea>
         </div>
+      </div>
       </div>
     </fieldset>
     <fieldset class="layui-elem-field field-block">

@@ -11,7 +11,7 @@ layui.use(['table','layer','element','jquery'], function() {
             t: new Date().getTime(),
             username:$('#username_search').val(),
             name:$('#name_search').val(),
-            cellphoneNo:$('#cellphoneNo_search').val()
+            cellphone:$('#cellphoneNo_search').val()
         }
         ,url:'/user/user_findUserByPage'
         ,cols: [[
@@ -27,7 +27,7 @@ layui.use(['table','layer','element','jquery'], function() {
 
 
             }}
-          ,{field:'cellphoneNo', align:'center', title: '手机号'}
+          ,{field:'cellphone', align:'center', title: '手机号'}
           ,{field:'birthdayStr', align:'center', title: '生日'}
           ,{fixed: 'right', align:'center',title: '操作', toolbar:'#table_control_bar'}
         ]]
@@ -46,7 +46,7 @@ layui.use(['table','layer','element','jquery'], function() {
             t: new Date().getTime(),
             username:$('#username_search').val(),
             name:$('#name_search').val(),
-            cellphoneNo:$('#cellphoneNo_search').val()
+            cellphone:$('#cellphoneNo_search').val()
         }
         ,loading:true
         });
@@ -81,7 +81,7 @@ layui.use(['table','layer','element','jquery'], function() {
                 email:dataForm.contents().find("input[name='email']").val(),
                 idcardNo:dataForm.contents().find("input[name='idcardNo']").val(),
                 birthday:dataForm.contents().find("input[name='birthday']").val(),
-                cellphoneNo:dataForm.contents().find("input[name='cellphoneNo']").val(),
+                cellphone:dataForm.contents().find("input[name='cellphone']").val(),
                 wechat:dataForm.contents().find("input[name='wechat']").val(),
                 postCode:dataForm.contents().find("input[name='postCode']").val(),
                 address:dataForm.contents().find("textarea[name='address']").val()
@@ -153,7 +153,7 @@ layui.use(['table','layer','element','jquery'], function() {
                     email:dataForm.contents().find("input[name='email']").val(),
                     idcardNo:dataForm.contents().find("input[name='idcardNo']").val(),
                     birthday:dataForm.contents().find("input[name='birthday']").val(),
-                    cellphoneNo:dataForm.contents().find("input[name='cellphoneNo']").val(),
+                    cellphone:dataForm.contents().find("input[name='cellphone']").val(),
                     wechat:dataForm.contents().find("input[name='wechat']").val(),
                     postCode:dataForm.contents().find("input[name='postCode']").val(),
                     address:dataForm.contents().find("textarea[name='address']").val()
@@ -220,7 +220,7 @@ layui.use(['table','layer','element','jquery'], function() {
           email=dataForm.contents().find("input[name='email']").val(),
           idcardNo=dataForm.contents().find("input[name='idcardNo']").val(),
           birthday=dataForm.contents().find("input[name='birthday']").val(),
-          cellphoneNo=dataForm.contents().find("input[name='cellphoneNo']").val(),
+          cellphone=dataForm.contents().find("input[name='cellphone']").val(),
           wechat=dataForm.contents().find("input[name='wechat']").val(),
           postCode=dataForm.contents().find("input[name='postCode']").val(),
           address=dataForm.contents().find("textarea[name='address']").val();
@@ -230,14 +230,14 @@ layui.use(['table','layer','element','jquery'], function() {
         || cvu.isNull(email) 
         || cvu.isNull(idcardNo) 
         || cvu.isNull(birthday) 
-        || cvu.isNull(cellphoneNo) 
+        || cvu.isNull(cellphone) 
         || cvu.isNull(wechat) 
         || cvu.isNull(postCode) 
         || cvu.isNull(address) ){
         return emu.errorMsg.all_not_null;
       }
       //分类校验
-      if(!cvu.checkMobileNo(cellphoneNo)){
+      if(!cvu.checkMobileNo(cellphone)){
         return emu.errorMsg.all_worng_cellphoneNo;
       }
       if(!cvu.checkIdCard(idcardNo)){

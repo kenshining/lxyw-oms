@@ -12,7 +12,7 @@
        <div class="layui-inline">
           <label>供货商名称：</label>
           <div class="layui-input-inline" style="width: 350px;">
-            <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
+            <input type="text" name="supplierNameSearch" id="supplierNameSearch" placeholder="" autocomplete="off" class="layui-input">
           </div>
         </div>
         <div class="layui-inline form-right">
@@ -25,7 +25,7 @@
         </div>
         </form>
       </div>
-      <div id="table_content">
+      <div id="table_content"  lay-filter="supplier_table_filter">
       </div>
        <script type="text/html" id="table_control_bar">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>

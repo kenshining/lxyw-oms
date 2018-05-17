@@ -164,7 +164,7 @@ layui.use(['form','layer','table','element'], function() {
   		var customerlinks = $(data.elem).attr("data");
   		customerlinks = $.parseJSON(customerlinks);
   		for(var i = 0 ; i < customerlinks.length ; i++){
-  			if(customerlinks[i].cellphone == data.value.split("|")[1]){
+  			if(customerlinks[i].cellphone == data.value.split("|")[1] && customerlinks[i].name == data.value.split("|")[0]){
   				$("#transport_address").val(customerlinks[i].address);
   				$("#invoice_address").val(customerlinks[i].address);
   				return;

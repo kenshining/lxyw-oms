@@ -21,7 +21,7 @@ function ServiceEnumeration(){
 
  	//库存管理
  	//供应商查询分页
- 	this.STOCK_SUPPLIER_SEARCH_LIST = "userInfo";
+ 	this.STOCK_SUPPLIER_SEARCH_LIST = "supplierSubject/getSupplierSubjectPageInfo";
  	//供应商主键查询供应商信息
  	this.STOCK_SUPPLIER_SEARCH_BY_PRIMARYKEY = "userInfo";
  	//供应商新增

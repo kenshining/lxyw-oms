@@ -29,7 +29,7 @@ layui.use(['form','layer','jquery','table'], function() {
           }
         ,where:{
             t: new Date().getTime(),
-            name:$('#supplierNameSearch').val()     
+            supplierName:$('#supplierNameSearch').val()     
         }
         ,loading:true
         });
@@ -53,7 +53,7 @@ layui.use(['form','layer','jquery','table'], function() {
               }
             }}
           ,{field:'supplierEmail', align:'center', title: '邮件'}
-          ,{field:'supplierPhone', align:'center', title: '联系电话'}
+          ,{field:'supplierCellphone', align:'center', title: '联系电话'}
           ,{field:'supplierLocation', align:'center', title: '供货商所属地区'}
           ,{fixed: 'right', align:'center',title: '操作', toolbar:'#table_control_bar'}
         ]]

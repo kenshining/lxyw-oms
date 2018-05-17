@@ -32,7 +32,6 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
       if(req.query.supplierName != ''){
           params.supplierName = req.query.supplierName;
       }
-       
       var pageJson = {};
       console.info(params);
       serviceInstance.callServer(params,function(msg){
@@ -47,8 +46,6 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
         pageJson.msg = msg.message;
         res.json(msg);
       },serviceEnumerationInstance.STOCK_SUPPLIER_SEARCH_LIST,"POST"); 
-  
-      res.render('stock/supplier_control', {title: '供货商管理' });
   });
   //编辑供货商
   app.get('/stock/supplier_edit', function(req, res){

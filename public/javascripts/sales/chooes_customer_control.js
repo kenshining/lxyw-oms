@@ -48,10 +48,42 @@ layui.use(['form','layer','element','jquery','table'], function() {
         var tr = obj.tr; //获得当前行 tr 的DOM对象
         if(layEvent === 'select'){ 
         	//选择客户信息
-        	$(window.parent.document.getElementById("customer_name")).val(obj.data.customerName);
-        	//TODO 处理选择后事件
-        	var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-			parent.layer.close(index); //再执行关闭 
+        	$(window.parent.document.getElementById("customer_name")).val(data.customerName);
+            //移除选择项目
+            $(window.parent.document.getElementById("customer_type")).find("option").remove();
+            $(window.parent.document.getElementById("customer_type")).append("<option value='"+data.customerType+"' selected='true'>"+data.customerType+"</option>");
+            //添加联系人
+            //分页对象中并没有联系人详细信息，此处重新获取联系人详细信息
+            $(window.parent.document.getElementById("purchasing_contact")).find("option").remove();
+            var loadIndex = layer.load(2);
+            $.ajax({
+                url:'/sales/customer_links',
+                type:'GET',
+                data:{
+                    id:data.id
+                },
+                success:function(datas){
+                    //console.log(JSON.stringify(datas));
+                    //添加引用人和引用地址
+                    for(var i = 0 ; i < datas.customerlinks.length ; i++){
+                        if(i == 0){
+                            $(window.parent.document.getElementById("purchasing_contact")).append("<option value='"+datas.customerlinks[i].name+"|"+datas.customerlinks[i].cellphone+"' selected='true'>"+datas.customerlinks[i].name+"|"+datas.customerlinks[i].cellphone+"</option>");
+                            //设置默认收货地址和发票地址
+                            $(window.parent.document.getElementById("transport_address")).val(datas.customerlinks[i].address);
+                            $(window.parent.document.getElementById("invoice_address")).val(datas.customerlinks[i].address);
+                        }else{
+                            $(window.parent.document.getElementById("purchasing_contact")).append("<option value='"+datas.customerlinks[i].name+"|"+datas.customerlinks[i].cellphone+"'>"+datas.customerlinks[i].name+"|"+datas.customerlinks[i].cellphone+"</option>");
+                        }
+                    }
+                    //为外层的对象设置数据内容方便切换时填地址
+                    $(window.parent.document.getElementById("purchasing_contact")).attr("data",JSON.stringify(datas.customerlinks));
+                    layer.close(loadIndex);
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index); //再执行关闭 
+                }
+
+            });
+
         }
     });
 });

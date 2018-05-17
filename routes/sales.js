@@ -12,7 +12,10 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
 
   app.get('/sales/sales_edit', function(req, res){
   
-      res.render('sales/sales_edit', {title: '销售订单管理' });
+      res.render('sales/sales_edit', {
+        user:req.session.user,
+        title: '销售订单管理' 
+      });
   });
 
   app.get('/sales/sales_process', function(req, res){
@@ -98,6 +101,27 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
     }
       
   });
+
+  //获取客户联系人信息
+  app.get('/sales/customer_links', function(req, res){
+      var id = req.query.id;
+      var params={
+        id:id
+      }
+      serviceInstance.callServer(params,function(msg){
+        console.info(msg);
+        res.json({
+          customerlinks:msg.data.customerLinks
+        });
+      },function(msg){
+        console.error(msg);
+        res.json({
+          customerlinks:msg.data.customerLinks
+        });
+      },serviceEnumerationInstance.SALSE_CUSTOMER_SEARCH_BY_PRIMARYKEY,"POST");
+
+  });
+
   /**客户管理-保存用户信息**/
   app.post('/sales/customer_save', function(req, res){
 

@@ -144,17 +144,31 @@ layui.use(['form','layer','table','element'], function() {
             type: 2,
             anim: 2, //动画类型
             title: '选择客户',
-            btn: ['选择客户', '取消'],
+            btn: ['取消'],
             skin: 'layui-layer-rim', //加上边框
             area: ['90%', '80%'], //宽高
             success: function(layero, index){
                 //console.log(layero, index);
             },
-            yes: function(index,layero){
-               var dataForm = layer.getChildFrame('form', index);
-               //dataForm.contents().find("input[name='username']").val()
+            end:function(){
+            	//关闭层后重新渲染选择内容
+            	form.render('select');
             }
         });
         
     });
+    //监听收货人选择并处理地址回写
+    form.on('select(purchasing_contact)', function(data){
+    	//console.log(data.elem); //得到select原始DOM对象
+  		//console.log(data.value); //得到被选中的值
+  		var customerlinks = $(data.elem).attr("data");
+  		customerlinks = $.parseJSON(customerlinks);
+  		for(var i = 0 ; i < customerlinks.length ; i++){
+  			if(customerlinks[i].cellphone == data.value.split("|")[1]){
+  				$("#transport_address").val(customerlinks[i].address);
+  				$("#invoice_address").val(customerlinks[i].address);
+  				return;
+  			}
+  		}
+	});
 });

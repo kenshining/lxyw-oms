@@ -150,6 +150,18 @@ layui.config({
 		//window.sessionStorage.setItem("lockcms",false);
 	});
 
+	//退出系统
+	$("#main_logout").on("click",function(){
+		var loadIndex = layer.load(2);
+		$.get('/logout',{ },function(data, textStatus, jqXHR){
+       		layer.close(loadIndex);
+       		if(data.code == 0){
+                window.location.href="/";
+       		}
+            
+       },'json');
+	});
+
 	//修改用户密码
 	$("#main_password_modify").on("click",function(){
 		var index = layer.open({

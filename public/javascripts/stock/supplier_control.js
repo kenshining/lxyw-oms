@@ -46,7 +46,7 @@ layui.use(['form','layer','jquery','table'], function() {
         ,cols: [[
           {field:'supplierName',  align:'center',title: '供货商名称'}
           ,{field:'supplierType',  align:'center',title: '供货商类别' ,templet: function(d){
-              if(d.sex == '0'){
+              if(d.supplierType == '0'){
                 return "公司客户";
               }else{
                 return "个人客户";
@@ -61,5 +61,98 @@ layui.use(['form','layer','jquery','table'], function() {
         ,loading:true
         ,limits:[10,20,50,90]
     });
+
+     //监听工具条
+    table.on('tool(supplier_table_filter)', function(obj){
+        var data = obj.data; //获得当前行数据
+        var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+        var tr = obj.tr; //获得当前行 tr 的DOM对象
+
+        if(layEvent === 'edit'){
+          var index = layer.open({
+                content: '/stock/supplier_edit?id='+data.id,
+                type: 2,
+                anim: 2, //动画类型
+                title: '编辑供应商信息',
+                btn: ['保存', '取消'],
+                success: function(layero, index){
+                    
+                },
+                yes: function(index,layero){
+                   var dataForm = layer.getChildFrame('form', index);
+                   //dataForm.contents().find("input[name='username']").val()
+                   //进行必要验证
+                   var msg = saveValidate(dataForm);
+                   if(msg != ''){
+                    layer.msg(msg);
+                    return;
+                   }
+                   //取不到ID使用逐层查找的方式找ID
+                   //var id = $(layero).find("iframe")[0].contentWindow.document.getElementById("user_id").value;
+                   //提取采购联系人
+                   var indevidualList = $.parseJSON(dataForm.contents().find("#cus_table_container").attr("data"));
+                   var loadIndex = layer.load(2);
+                   $.post('/sales/customer_save',{
+                    id:data.id,
+                    supplierName:dataForm.contents().find("#supplierName").val(),
+                    supplierType:dataForm.contents().find("#supplierType").val(),
+                    supplierEmail:dataForm.contents().find("#supplierEmail").val(),
+                    supplierLocation:dataForm.contents().find("#supplierLocation").val(),
+                    supplierCellphone:dataForm.contents().find("#supplierCellphone").val(),
+                    supplierAddress:dataForm.contents().find("#supplierAddress").val(),
+                    supplierRemark:dataForm.contents().find("#supplierRemark").val(),
+                    indevidualList:JSON.stringify(indevidualList)
+                   },function(data, textStatus, jqXHR){
+                        layer.close(loadIndex);
+                        if(data.code == 0){
+                            layer.close(index);
+                            layer.msg("供应商信息成功");
+                            table.reload('supplier_table');
+                        }else{
+                            layer.msg("保存失败："+data.message);
+                        }
+                   },'json');
+                }
+            });
+            //默认全屏显示
+            layer.full(index);
+          
+
+        }else if(layEvent === 'del'){
+
+          layer.confirm("确认要删除供应商和相关联系人吗？",{
+                icon: 4
+                ,title:'删除'
+                ,btn : [ '删除', '取消' ]//按钮
+            },function(index){
+                //关闭提示删除窗口
+                 layer.close(index);
+                 //显示加载层
+                 var loadIndex = layer.load(2);
+                 
+                $.post('/stock/supplier_delete',{
+                  id:data.id,
+                  t: new Date().getTime()
+                 },function(data, textStatus, jqXHR){
+                    layer.close(loadIndex);
+                    if(data.code == 0){
+                        layer.close(index);
+                        layer.msg("供应商与联系人数据已删除！");
+                        table.reload('supplier_table');
+                    }else{
+                        layer.msg("删除失败："+data.message);
+                    }
+                     
+                 },'json');
+            });
+
+        }
+    });
+
+    //保存验证
+    var saveValidate = function(){
+
+      return '';
+    }
     
 });

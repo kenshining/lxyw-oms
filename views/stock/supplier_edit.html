@@ -9,36 +9,87 @@
 <form class="layui-form" action="" id="product_form">
   <fieldset class="layui-elem-field field-block">
     <legend class="form-label">供货商基本信息</legend>
+      <%if(msg.data && msg.data != ""){%>
+        <input type="hidden" name="supplier_id" id="supplier_id" value="<%=msg.data.id%>"> 
+        <!--联系人先存在hidden里，然后js转成对象后js调用新增即可-->
+        <input type="hidden" id="individualLink" name="customerLink" value="<%=msg.data.individualLink%>">
+      <%}%>
+
+
     <div style="max-width: 1024px;">
      <div class="layui-form-item">
         <div class="layui-inline">
           <label class="layui-form-label" style="width: 100px;">供货商公司名：</label>
           <div class="layui-input-inline" style="min-width: 490px;">
-            <input type="text" name="" autocomplete="off" class="layui-input">
+            <input type="text" name="supplierName" id="supplierName" autocomplete="off" class="layui-input" 
+               <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.supplierName%>"
+               <%}%>
+            >
           </div>
         </div>
        <div class="layui-inline">
           <label class="layui-form-label" style="width: 100px;">Email：</label>
           <div class="layui-input-inline" style="width: 210px;">
-            <input type="text" name="" autocomplete="off" class="layui-input">
+            <input type="text" name="supplierEmail" id="supplierEmail" autocomplete="off" class="layui-input"
+
+              <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.supplierEmail%>"
+               <%}%>
+            >
           </div>
           <label class="layui-form-label" style="width: 100px;">国家和地区：</label>
           <div class="layui-input-inline" style="width: 140px;">
-            <input type="text" name="" autocomplete="off" class="layui-input">
+            <input type="text" name="supplierLocation" autocomplete="off" class="layui-input" id="supplierLocation"
+
+                <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.supplierLocation%>"
+               <%}%>
+
+            >
           </div>
         </div>
         <div class="layui-inline">
           <label class="layui-form-label" style="width: 100px;">联系电话：</label>
+          <div class="layui-input-inline" style="min-width: 210px;">
+            <input type="text" name="supplierCellphone" id="supplierCellphone" autocomplete="off" class="layui-input"
+                
+                <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.supplierCellphone%>"
+               <%}%>
+
+            >
+          </div>
+          <label class="layui-form-label" style="width: 100px;">类别：</label>
+          <div class="layui-input-inline" style="width: 140px;">
+            <select name="supplierType"  id="supplierType" >
+                <%if(msg.data && msg.data != ""){
+                    if(msg.data.supplierType == '0'){%>
+
+                          <option value="0" selected="true">公司客户</option>
+                          <option value="1">个人客户</option>
+                    <%}else{%>
+                          <option value="0">公司客户</option>
+                          <option value="1"  selected="true">个人客户</option>
+                    <%}}else{%>
+                          <option value="0">公司客户</option>
+                          <option value="1">个人客户</option>
+                    <%}%>
+            </select>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label" style="width: 100px;">地址：</label>
           <div class="layui-input-inline" style="min-width: 490px;">
-            <input type="text" name="" autocomplete="off" class="layui-input">
+           <textarea name="supplierAddress" id="supplierAddress" lay-verify="" placeholder="请输入地址信息..." class="layui-textarea"><%if(msg.data && msg.data != ""){%><%=msg.data.supplierAddress%><%}%></textarea>
           </div>
         </div>
         <div class="layui-inline">
           <label class="layui-form-label" style="width: 100px;">备注：</label>
           <div class="layui-input-inline" style="min-width: 490px;">
-           <textarea name="" lay-verify="" placeholder="请输入备注信息..." class="layui-textarea"></textarea>
+           <textarea name="supplierRemark" id="supplierRemark" lay-verify="" placeholder="请输入备注信息..." class="layui-textarea"><%if(msg.data && msg.data != ""){%><%=msg.data.supplierRemark%><%}%></textarea>
+          </div>
         </div>
-      </div>
       </div>
     </fieldset>
     <fieldset class="layui-elem-field field-block">

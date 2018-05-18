@@ -49,7 +49,28 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
   });
   //编辑供货商
   app.get('/stock/supplier_edit', function(req, res){
-  
-      res.render('stock/supplier_edit', {title: '编辑供货商' });
+
+    console.info(req.query.id);
+    //区别是新增还是修改
+    if(req.query.id == null || req.query.id == ''){
+      res.render('stock/supplier_edit', {
+          msg:{}
+      });
+    }
+    var params = {
+      id:req.query.id
+    }
+    serviceInstance.callServer(params,function(msg){
+        console.info(msg);
+        res.render('stock/supplier_edit', {
+          msg:msg
+        });
+      },function(msg){
+        console.error(msg);
+        res.render('stock/supplier_edit', {
+          msg:msg
+        });
+      },serviceEnumerationInstance.STOCK_SUPPLIER_SEARCH_BY_PRIMARYKEY,"POST");
+
   });
 };

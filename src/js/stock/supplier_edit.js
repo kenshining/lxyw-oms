@@ -6,6 +6,28 @@ layui.use(['form','layer','jquery','table','element'], function() {
         layer = layui.layer;
   //供应商联系人列表
   var contectList = [];
+  //如果是修改，则页面加载完成后需要初始化采购人列表数据
+  if($("#individualLink").length > 0){
+      var individualLink = $.parseJSON($("#individualLink").val());
+      for(var i = 0 ; i <individualLink.length ; i++){ 
+         var item = {
+              id:individualLink[i].id,
+              name:individualLink[i].name,
+              position:individualLink[i].position,
+              cellphone:individualLink[i].cellphone,
+              remark:individualLink[i].remark,
+              email:individualLink[i].email
+         }
+         contectList.push(item);
+      }
+      JSON.stringify(JSON.stringify(contectList));
+      //设置待提交设局
+      $("#contact_table_container").attr("data",JSON.stringify(contectList));
+      table.reload('contact_table',{
+        data:contectList
+      });
+
+  }
   //渲染静态表格
   table.render({
         elem: '#contact_table_container'
@@ -15,7 +37,7 @@ layui.use(['form','layer','jquery','table','element'], function() {
         ,cols:[[
            {field:'name', minWidth:'120', align:'center',title: '姓名'}
           ,{field:'position', minWidth:'120',  align:'center',title: '职位'}
-          ,{field:'cellphoneNo', minWidth:'120',  align:'center',title: '移动电话'}
+          ,{field:'cellphone', minWidth:'120',  align:'center',title: '移动电话'}
           ,{field:'email', minWidth:'240',  align:'center',title: 'Email'}
           ,{field:'remark', minWidth:'240',  align:'center',title: '备注'}
           ,{align:'center',minWidth:'120', title: '操作', toolbar:'#table_control_bar'}
@@ -42,19 +64,20 @@ layui.use(['form','layer','jquery','table','element'], function() {
               id:new Date().getTime(),
               name:$('#tmp_add_name').val(),
               position:$('#tmp_add_position').val(),
-              cellphoneNo:$('#tmp_add_cellphoneNo').val(),
+              cellphone:$('#tmp_add_cellphoneNo').val(),
               email:$('#tmp_add_email').val(),
               remark:$('#tmp_add_remark').val()
             }
             //判断属性都不能为空
             if(item.name == "" || 
               item.position == "" ||
-              item.cellphoneNo == "" ||
+              item.cellphone == "" ||
               item.email == "" ){
               layer.msg("字段[姓名、职位、电话、email]均不能为空。");
               return;
             }
             contectList.push(item);
+            $("#contact_table_container").attr("data",JSON.stringify(contectList));
             table.reload('contact_table',{
               data:contectList
             });
@@ -84,6 +107,7 @@ layui.use(['form','layer','jquery','table','element'], function() {
               data:tempArr
             });
             contectList = tempArr;
+            $("#contact_table_container").attr("data",JSON.stringify(contectList));
         }
   });
 

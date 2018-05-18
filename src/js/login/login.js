@@ -2,6 +2,12 @@ layui.use(['layer', 'form','jquery'], function() {
 	var layer = layui.layer,
 		$ = layui.jquery,
 		form = layui.form;
+		//判断是否存在记录的用户名如果存在则填入表单
+		var localremeberedUser = layui.data('user');
+		if(localremeberedUser != null){
+			var username = localremeberedUser.username;
+			$("#username").val(username);
+		}
 
 	$("#loginBtn").on('click',function(data){
 		var username = $("#username").val();
@@ -20,6 +26,13 @@ layui.use(['layer', 'form','jquery'], function() {
 			},
 			success:function(msg){
 				if(msg.status){
+					//验证成功后保留用户名
+					if($("#rememberMe").attr("checked") == true){
+						layui.data('user',{
+							username:$("#username").val()
+						});
+					}
+					
 					location.href='/main';
 				}else{
 					layer.alert(msg.msg, {icon: 2});

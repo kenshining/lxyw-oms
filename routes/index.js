@@ -65,6 +65,13 @@ module.exports = function(app,logger){
 	        serviceEnumerationInstance.USER_VALIDATE_LOGIN);*/
 
 	});
+	//登出系统
+	app.get('/logout', function(req, res, next) {
+		req.session.user = null;
+		res.json({
+	  		code : 0
+	  	});
+	});
 
 	app.get('/main', function(req, res, next) {
 

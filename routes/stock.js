@@ -15,6 +15,10 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
       res.render('stock/stock_edit', {title: 'Express' });
   });
 
+  app.get('/stock/stock_status', function(req, res){
+      res.render('stock/stock_status', {title: 'Express' });
+  });
+
   //供货商管理
   app.get('/stock/supplier_control', function(req, res){
   
@@ -73,4 +77,65 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
       },serviceEnumerationInstance.STOCK_SUPPLIER_SEARCH_BY_PRIMARYKEY,"POST");
 
   });
+
+  //保存&更新供应商
+  app.post('/stock/supplier_save', function(req, res){
+
+    var id = req.body.id;
+    //准备用户参数
+    var params = {
+      id: req.body.id,
+      username: req.body.username,
+      name: req.body.name,
+      sex:req.body.sex,
+      email:req.body.email,
+      idcardNo:req.body.idcardNo,
+      birthday:req.body.birthday,
+      cellphone:req.body.cellphone,
+      wechat:req.body.wechat,
+      postCode:req.body.postCode,
+      address:req.body.address
+    };
+    console.info("=============="+id+"================");
+    if( id != null && id != ''){
+      //更新用户
+      serviceInstance.callServer(params,function(msg){
+        console.info(msg);
+        res.json(msg); 
+      },function(msg){
+        res.json(msg);
+      },serviceEnumerationInstance.STOCK_SUPPLIER_SAVE_UPDATE,"POST"); 
+    }else{
+      //新增用户
+      serviceInstance.callServer(params,function(msg){
+        console.info(msg);
+        res.json(msg); 
+      },function(msg){
+        res.json(msg);
+      },serviceEnumerationInstance.STOCK_SUPPLIER_SAVE_NEW,"POST");
+    }
+  
+      
+  });
+
+  //删除供应商
+  app.post('/stock/supplier_delete', function(req, res){
+
+    var id = req.body.id;
+    //准备用户参数
+    var params = {
+      id: req.body.id
+    };
+    console.info("============== delete:"+id+"================");
+    //更新用户
+    serviceInstance.callServer(params,function(msg){
+      console.info(msg);
+      res.json(msg); 
+    },function(msg){
+      res.json(msg);
+    },serviceEnumerationInstance.SALSE_CUSTOMER_SAVE_DELETE,"POST");
+    
+  });
+
+
 };

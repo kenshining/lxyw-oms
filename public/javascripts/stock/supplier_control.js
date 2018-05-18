@@ -14,7 +14,41 @@ layui.use(['form','layer','jquery','table'], function() {
             btn: ['保存', '取消'],
             success: function(layero, index){
                 //console.log(layero, index);
-            }
+            },
+            yes: function(index,layero){
+                   var dataForm = layer.getChildFrame('form', index);
+                   //dataForm.contents().find("input[name='username']").val()
+                   //进行必要验证
+                   var msg = saveValidate(dataForm);
+                   if(msg != ''){
+                    layer.msg(msg);
+                    return;
+                   }
+                   //取不到ID使用逐层查找的方式找ID
+                   //var id = $(layero).find("iframe")[0].contentWindow.document.getElementById("user_id").value;
+                   //提取采购联系人
+                   var indevidualList = $.parseJSON(dataForm.contents().find("#contact_table_container").attr("data"));
+                   var loadIndex = layer.load(2);
+                   $.post('/stock/supplier_save',{
+                    supplierName:dataForm.contents().find("#supplierName").val(),
+                    supplierType:dataForm.contents().find("#supplierType").val(),
+                    supplierEmail:dataForm.contents().find("#supplierEmail").val(),
+                    supplierLocation:dataForm.contents().find("#supplierLocation").val(),
+                    supplierCellphone:dataForm.contents().find("#supplierCellphone").val(),
+                    supplierAddress:dataForm.contents().find("#supplierAddress").val(),
+                    supplierRemark:dataForm.contents().find("#supplierRemark").val(),
+                    indevidualList:JSON.stringify(indevidualList)
+                   },function(data, textStatus, jqXHR){
+                        layer.close(loadIndex);
+                        if(data.code == 0){
+                            layer.close(index);
+                            layer.msg("供应商信息成功");
+                            table.reload('supplier_table');
+                        }else{
+                            layer.msg("保存失败："+data.message);
+                        }
+                   },'json');
+                }
         });
         //默认全屏显示
         layer.full(index);
@@ -90,9 +124,9 @@ layui.use(['form','layer','jquery','table'], function() {
                    //取不到ID使用逐层查找的方式找ID
                    //var id = $(layero).find("iframe")[0].contentWindow.document.getElementById("user_id").value;
                    //提取采购联系人
-                   var indevidualList = $.parseJSON(dataForm.contents().find("#cus_table_container").attr("data"));
+                   var indevidualList = $.parseJSON(dataForm.contents().find("#contact_table_container").attr("data"));
                    var loadIndex = layer.load(2);
-                   $.post('/sales/customer_save',{
+                   $.post('/stock/supplier_save',{
                     id:data.id,
                     supplierName:dataForm.contents().find("#supplierName").val(),
                     supplierType:dataForm.contents().find("#supplierType").val(),
@@ -151,8 +185,32 @@ layui.use(['form','layer','jquery','table'], function() {
 
     //保存验证
     var saveValidate = function(){
+      var indevidualList = $.parseJSON(dataForm.contents().find("#contact_table_container").attr("data")),
+      supplierName=dataForm.contents().find("#supplierName").val(),
+      supplierType=dataForm.contents().find("#supplierType").val(),
+      supplierEmail=dataForm.contents().find("#supplierEmail").val(),
+      supplierLocation=dataForm.contents().find("#supplierLocation").val(),
+      supplierCellphone=dataForm.contents().find("#supplierCellphone").val(),
+      supplierAddress=dataForm.contents().find("#supplierAddress").val(),
+      supplierRemark=dataForm.contents().find("#supplierRemark").val();
+      //验证输入框不能为空
+      var cvu = new CommonValidationUtils();
+      var emu = new CommonValidationEmu();
 
-      return '';
+      //为空校验
+      if(cvu.isNull(supplierName) 
+        || cvu.isNull(supplierEmail) 
+        || cvu.isNull(supplierLocation) 
+        || cvu.isNull(supplierCellphone) 
+        || cvu.isNull(supplierAddress) 
+        || cvu.isNull(supplierRemark) ){
+        return emu.errorMsg.all_not_null;
+      }
+      //收货联系人必须填写
+      if(indevidualList.length <= 0 ){
+        return "必须设置一位[供应商联系人]";
+      }
+      return "";
     }
     
 });

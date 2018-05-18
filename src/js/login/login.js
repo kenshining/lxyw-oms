@@ -8,7 +8,7 @@ layui.use(['layer', 'form','jquery'], function() {
 			var username = localremeberedUser.username;
 			$("#username").val(username);
 		}
-
+	window.sessionStorage.setItem("lockcms",false);
 	$("#loginBtn").on('click',function(data){
 		var username = $("#username").val();
 		var password = $("#password").val();

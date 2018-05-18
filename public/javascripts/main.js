@@ -156,6 +156,7 @@ layui.config({
 		$.get('/logout',{ },function(data, textStatus, jqXHR){
        		layer.close(loadIndex);
        		if(data.code == 0){
+       			window.sessionStorage.setItem("lockcms",false);
                 window.location.href="/";
        		}
             

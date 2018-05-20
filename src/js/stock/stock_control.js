@@ -12,8 +12,11 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
             var start_date;
             var end_date;
             if(search_date != ""){
-              start_date = search_date.split("_")[0];
-              end_date = search_date.split("_")[1];
+              start_date = search_date.split("~")[0];
+              end_date = search_date.split("~")[1];
+            }else{
+              start_date = "";
+              end_date = "";
             }
             table.reload('stock_table',{
               page: {
@@ -31,7 +34,7 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
         });
         laydate.render({
           elem: 'input[name="stock_search_date"]'
-          ,range: '-'
+          ,range: '~'
           ,format: 'yyyy-MM-dd'
         });
         //新增库存
@@ -56,17 +59,35 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
                         return;
                       }
                       //提取费用细则数据
-                      var feelist = $.parseJSON(dataForm.contents().find("#fee_container").attr("data"));
-                      //提交数据
-                       /*var loadIndex = layer.load(2);
-                       $.post('/user/saveUser',{
-
+                      var feelist = $.parseJSON(dataForm.contents().find("#fee_container").attr("data"));                      //提交数据
+                      var loadIndex = layer.load(2);
+                       $.post('/stock/stock_save',{
+                          productName:dataForm.contents().find("input[name='productName']").val(),
+                          productBatch:dataForm.contents().find("input[name='productBatch']").val(),
+                          productDate:dataForm.contents().find("input[name='productDate']").val(),
+                          deadDate:dataForm.contents().find("input[name='deadDate']").val(),
+                          qno:dataForm.contents().find("input[name='qno']").val(),
+                          location:dataForm.contents().find("input[name='location']").val(),
+                          box_num:dataForm.contents().find("#box_num").val(),
+                          positon:dataForm.contents().find("select[name='positon']").val(),
+                          plus_num:dataForm.contents().find("#plus_num").val(),
+                          plusPosition:dataForm.contents().find("select[name='plusPosition']").val(),
+                          format_num:dataForm.contents().find("#format_num").val(),
+                          guaranteeTime:dataForm.contents().find("#guaranteeTime").val(),
+                          singleNetWeight:dataForm.contents().find("#singleNetWeight").val(),
+                          singleCapacity:dataForm.contents().find("#singleCapacity").val(),
+                          state:dataForm.contents().find("#state").val(),
+                          storage:dataForm.contents().find("#storage").val(),
+                          wastage:dataForm.contents().find("#wastage").val(),
+                          supplierId:dataForm.contents().find("#supplierId").val(),
+                          storage_fee:dataForm.contents().find("#storage_fee").val(),
+                          feelist:JSON.stringify(feelist)
                        },function(data, textStatus, jqXHR){
                             layer.close(loadIndex);
                             layer.close(index);
                             layer.msg("库存保存成功");
                             table.reload('stock_table');
-                       },'json');*/
+                       },'json');
                     }
                 });
                  //默认全屏显示
@@ -82,18 +103,28 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
                 t: new Date().getTime()
             }
             ,cols: [[
-              {field:'productName',  align:'center',title: '品名'}
-              ,{field:'qNo', align:'center', title: '条形码'}
-              ,{field:'batch', align:'center', title: '批次'}
-              ,{field:'location', align:'center', title: '产地'}
-              ,{field:'location', align:'center', title: '规格'}
-              ,{field:'location', align:'center', title: '供应商'}
-              ,{field:'state',  align:'center',title: '库存状态' ,templet: function(d){
+              {field:'stockProductName',  align:'center',title: '品名'}
+              ,{field:'stockProductQno', align:'center', title: '条形码'}
+              ,{field:'stockProductBatch', align:'center', title: '批次'}
+              ,{field:'stockProductPosition', align:'center', title: '产地'}
+              ,{field:'stockProductNum', align:'center', title: '规格',templet:function(d){
+                return d.stockProductSingleNetweight+"*"+d.stockProductFormatNum+"/"+d.stockProductPosition;
+              }}
+              ,{field:'supplierSubjectName', align:'center', title: '供应商'}
+              ,{field:'stockProductStatus',  align:'center',title: '库存状态' ,templet: function(d){
 
-                  if(d.status == '0'){
-                    return "女";
+                  if(d.stockProductStatus == '0'){
+                    return "在途（可预售）";
+                  }else if(d.stockProductStatus == '1'){
+                    return "在售";
+                  }else if(d.stockProductStatus == '2'){
+                    return "已售罄";
+                  }else if(d.stockProductStatus == '3'){
+                    return "退货（在途";
+                  }else if(d.stockProductStatus == '4'){
+                    return "已退货";
                   }else{
-                    return "男";
+                    return "未识别状态";
                   }
 
                 }}
@@ -103,6 +134,91 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
             ,loading:true
             ,limits:[10,20,50,90]
         });
+
+    table.on('tool(stock_table_filter)', function(obj){
+        var data = obj.data; //获得当前行数据
+        var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+        var tr = obj.tr; //获得当前行 tr 的DOM对象
+        if(layEvent === 'del'){ //删除
+            layer.confirm("确认要删除库存吗？",{
+                icon: 4
+                ,title:'删除'
+                ,btn : [ '删除', '取消' ]//按钮
+            },function(index){
+                 layer.close(index);
+                 var loadIndex = layer.load(2);
+                 layer.close(loadIndex);
+                 //alert(data.id);
+                $.post('/stock/stock_delete',{
+                  id:data.id,
+                  t: new Date().getTime()
+                 },function(data, textStatus, jqXHR){
+                      layer.close(loadIndex);
+                      layer.close(index);
+                      layer.msg("库存已删除！");
+                      table.reload('stock_table');
+                 },'json');
+                 table.reload('stock_table');
+            });
+        }else if (layEvent === 'edit'){//编辑
+            //打开编辑窗口
+            var index = layer.open({
+                content: '/stock/stock_edit?id='+data.id,
+                type: 2,
+                anim: 2, //动画类型
+                title: '编辑库存信息',
+                btn: ['保存', '取消'],
+                success: function(layero, index){
+                    //console.log(layero, index);
+                },
+                yes: function(index,layero){
+                  var dataForm = layer.getChildFrame('#stock_form', index);
+                  var msg = validateSave(dataForm);
+                  if(msg != ""){
+                    //验证错误提示用户错误
+                    layer.msg(msg);
+                    return;
+                  }
+                  //提取费用细则数据
+                  var feelist = $.parseJSON(dataForm.contents().find("#fee_container").attr("data"));
+                      //提交数据
+                     var loadIndex = layer.load(2);
+                     $.post('/stock/stock_save',{
+                        id:data.id,
+                        productName:dataForm.contents().find("input[name='productName']").val(),
+                        productBatch:dataForm.contents().find("input[name='productBatch']").val(),
+                        productDate:dataForm.contents().find("input[name='productDate']").val(),
+                        deadDate:dataForm.contents().find("input[name='deadDate']").val(),
+                        qno:dataForm.contents().find("input[name='qno']").val(),
+                        location:dataForm.contents().find("input[name='location']").val(),
+                        box_num:dataForm.contents().find("#box_num").val(),
+                        positon:dataForm.contents().find("select[name='positon']").val(),
+                        plus_num:dataForm.contents().find("#plus_num").val(),
+                        plusPosition:dataForm.contents().find("select[name='plusPosition']").val(),
+                        format_num:dataForm.contents().find("#format_num").val(),
+                        guaranteeTime:dataForm.contents().find("#guaranteeTime").val(),
+                        singleNetWeight:dataForm.contents().find("#singleNetWeight").val(),
+                        singleCapacity:dataForm.contents().find("#singleCapacity").val(),
+                        state:dataForm.contents().find("#state").val(),
+                        storage:dataForm.contents().find("#storage").val(),
+                        wastage:dataForm.contents().find("#wastage").val(),
+                        supplierId:dataForm.contents().find("#supplierId").val(),
+                        storage_fee:dataForm.contents().find("#storage_fee").val(),
+                        feelist:JSON.stringify(feelist)
+                     },function(data, textStatus, jqXHR){
+                          layer.close(loadIndex);
+                          layer.close(index);
+                          layer.msg("库存保存成功");
+                          table.reload('stock_table');
+                     },'json');
+                   }
+            });
+            //默认全屏显示
+            layer.full(index);
+
+        }
+    });
+
     //保存验证存储数据
     var validateSave = function(dataForm){
 
@@ -145,21 +261,22 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
         || cvu.isNull(wastage)
         || cvu.isNull(productDate)
         || cvu.isNull(deadDate)
-        //|| cvu.isNull(supplierId)
+        || cvu.isNull(supplierId)
         || cvu.isNull(storage_fee)){
         return emu.errorMsg.all_not_null;
       }
       //验证feeList项目是否都填写数据
       var feelist = $.parseJSON(dataForm.contents().find("#fee_container").attr("data"));
       for(var i = 0; i < feelist.length ; i++ ){
-        if(cvu.isNull(feelist[i].fee)){
-          return "未设置["+feelist[i].type+"],若无需保存此项，请删除。";
+        if(cvu.isNull(feelist[i].feeNum)){
+          return "未设置["+feelist[i].feeType+"],若无需保存此项，请删除。";
         }
-        if(cvu.isNumber(feelist[i].fee) || cvu.isDecimal(feelist[i].fee)){
+        /*if(cvu.isNumber(feelist[i].feeNum) || cvu.isDecimal(feelist[i].feeNum)){
         }else{
-          return "["+feelist[i].type+"],要求输入数字。";
+          return "["+feelist[i].feeType+"],要求输入数字。";
         }
-      }
+      */      
+    }
 
       return "";
     }

@@ -32,15 +32,15 @@ function ServiceEnumeration(){
  	this.STOCK_SUPPLIER_SAVE_DELETE = "supplierSubject/deleteSupplierSubject";
 
  	//库存查询分页
- 	this.STOCK_SEARCH_LIST = "userInfo";
+ 	this.STOCK_SEARCH_LIST = "stockList/getStockListPageInfo";
  	//库存主键查询库存记录
- 	this.STOCK_SEARCH_BY_PRIMARYKEY = "userInfo";
+ 	this.STOCK_SEARCH_BY_PRIMARYKEY = "stockList/getStockListById";
  	//新增库存信息
- 	this.STOCK_SAVE_NEW = "userInfo";
+ 	this.STOCK_SAVE_NEW = "stockList/addStockList";
  	//更新库存记录
- 	this.STOCK_SAVE_UPDATE = "userInfo";
+ 	this.STOCK_SAVE_UPDATE = "stockList/updateStockList";
  	//删除库存记录
- 	this.STOCK_SAVE_DELETE = "userInfo";
+ 	this.STOCK_SAVE_DELETE = "stockList/deleteStockList";
 
  	//销售管理
  	//销售客户信息分页查询

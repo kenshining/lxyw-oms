@@ -13,8 +13,6 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         laydate.render({
             elem:'#deadDate'
         });
-        //费用列表
-        var feeInputsList = [];
 
         //选择供应商切换视图和渲染表格
         $('#selectSupplier_show').on('click', function() {
@@ -129,6 +127,11 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         form.render();
         laydate.render({
             elem: '#'+id+'_date'
+            ,done: function(value, date){ //监听日期被切换
+                //刷新全局feeList
+                refreshFeeList();
+
+            }
         });
         feeList.push({
             id:id
@@ -153,7 +156,7 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         refreshFeeList();
     });
     //绑定计算事件
-    $('body').on("change",'input[name="fee_input"],input[name="stock_num_input"],input[name="storage_fee"]',function() {
+    $('body').on("change",'input[name="fee_input"],input[name="fee_date"],input[name="stock_num_input"],input[name="storage_fee"]',function() {
         //录入结束计算费用
         calculateFee();
         //刷新全局feeList
@@ -172,9 +175,10 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
             var idSub = $(this).attr("id").split("_")[2];
             for(var i = 0; i < feeList.length ; i++){
                 if(feeList[i].id == "fee_item_"+idSub){
-                    feeList[i].type = $(this).parent().parent().find("select").val();
-                    feeList[i].date = $(this).parent().parent().find('#fee_item_'+idSub+'_date').val();
-                    feeList[i].fee = $(this).val();
+                    feeList[i].feeType = $(this).parent().parent().find("select").val();
+                    feeList[i].payDate = $(this).parent().parent().find('#fee_item_'+idSub+'_date').val();
+                    feeList[i].feeNum = $(this).val();
+                    //alert(feeList[i].payDate);
                 }
             }
         });
@@ -227,4 +231,50 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
             $("#everage_fee").html("-元");
         }
     }
+    if($("#feeList").length > 0){
+      var feeDefault = $.parseJSON($("#feeList").val());
+      for(var i = 0 ; i <feeDefault.length ; i++){
+         //创建表格对象
+        var id = "fee_item_"+new Date().getTime();
+        var itemHtml = '<div class="layui-inline" id="'+id+'" name="'+id+'">'+
+            '<label class="layui-form-label">费用种类：</label>'+
+            '<div class="layui-input-inline" style="min-width: 100px;">'+
+               '<select name="fee_select" id="'+id+'_select" lay-verify="" lay-filter="fee_select">'+
+                '<option value="'+feeDefault[i].feeType+'">'+feeDefault[i].feeType+'</option>'+
+             ' </select>'+
+            '</div>'+
+            '<div class="layui-input-inline" style="width: 200px;">'+
+                '<input type="text" name="fee_date" id="'+id+'_date" value="'+feeDefault[i].payDateStr+'" autocomplete="off" class="layui-input" placeholder="请输入付款日期">'+
+            '</div>'+
+            '<div class="layui-input-inline" style="width: 200px;">'+
+                '<input type="text" name="fee_input" id="'+id+'_input" value="'+feeDefault[i].feeNum+'" autocomplete="off" class="layui-input" placeholder="请输入金额（元）">'+
+            '</div>'+
+            '<div class="layui-form-label">'+
+               '<button class="layui-btn layui-btn-xs layui-btn-danger" type="button" name="deleteFeeBtn"> <i class="layui-icon">&#xe640;</i>删除</button>'+
+            '</div>'+
+        '</div>';
+        $("#fee_container").append(itemHtml);
+        var item = {
+              id:id,
+              feeType:feeDefault[i].feeType,
+              payDate:feeDefault[i].payDateStr,
+              feeNum:feeDefault[i].feeNum
+        }
+        feeList.push(item);
+        form.render();
+        laydate.render({
+            elem: '#'+id+'_date'
+            ,done: function(value, date){ //监听日期被切换
+                //刷新全局feeList
+                refreshFeeList();
+
+            }
+        });
+      }
+      //JSON.stringify(JSON.stringify(feeList));
+      //设置待提交设局
+      calculateFee();
+      $("#fee_container").attr("data",JSON.stringify(feeList));
+  }
+
 });

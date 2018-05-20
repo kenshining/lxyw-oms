@@ -10,81 +10,148 @@
 <form class="layui-form" action="" id="stock_form">
     <fieldset class="layui-elem-field field-block" style="max-width: 700px;">
     <legend class="form-label">产品基本信息</legend>
+      <%if(msg.data && msg.data != ""){%>
+        <input type="hidden" name="stock_id" id="stock_id" value="<%=msg.data.id%>"> 
+        <!--联系人先存在hidden里，然后js转成对象后js调用新增即可-->
+        <input type="hidden" id="feeList" name="feeList" value='<%=msg.data.stockListFeeList%>'>
+      <%}%>
      <div class="layui-form-item">
       <div class="layui-inline">
           <label class="layui-form-label">品名：</label>
           <div class="layui-input-inline" style="width: 210px;">
-            <input type="text" name="productName" id="productName"  autocomplete="off" class="layui-input">
+            <input type="text" name="productName" id="productName"  autocomplete="off" class="layui-input"
+
+              <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductName%>"
+               <%}%>
+            >
           </div>
           <label class="layui-form-label">批次：</label>
           <div class="layui-input-inline" style="width: 210px;">
-            <input type="text" name="productBatch" id="productBatch" autocomplete="off" class="layui-input">
+            <input type="text" name="productBatch" id="productBatch" autocomplete="off" class="layui-input"
+              <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductBatch%>"
+               <%}%>
+            >
           </div>
       </div>
        <div class="layui-inline">
           <label class="layui-form-label">条形码：</label>
           <div class="layui-input-inline" style="width: 210px;">
-            <input type="text" name="qno" id="qno" autocomplete="off" class="layui-input">
+            <input type="text" name="qno" id="qno" autocomplete="off" class="layui-input"
+              <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductQno%>"
+               <%}%>
+            >
           </div>
           <label class="layui-form-label">产地：</label>
           <div class="layui-input-inline" style="width: 210px;">
-            <input type="text" name="location" id="location" autocomplete="off" class="layui-input">
+            <input type="text" name="location" id="location" autocomplete="off" class="layui-input"
+              <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductLocation%>"
+               <%}%>
+            >
           </div>
         </div>
         <div class="layui-inline">
           <label class="layui-form-label">生产日期：</label>
           <div class="layui-input-inline" style="width: 210px;">
-            <input type="text" name="productDate" id="productDate" autocomplete="off" class="layui-input">
+            <input type="text" name="productDate" id="productDate" autocomplete="off" class="layui-input"
+
+              <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockManufactureDateStr%>"
+               <%}%>
+            >
           </div>
           <label class="layui-form-label">到期日：</label>
           <div class="layui-input-inline" style="width: 210px;">
-            <input type="text" name="deadDate" id="deadDate" autocomplete="off" class="layui-input">
+            <input type="text" name="deadDate" id="deadDate" autocomplete="off" class="layui-input"
+                <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockExpireDateStr%>"
+               <%}%>
+
+            >
           </div>
         </div>
        <div class="layui-inline">
           <label class="layui-form-label">入库数量：</label>
           <div class="layui-input-inline" style="width: 210px;">
-            <input type="text" name="stock_num_input" id="box_num" autocomplete="off" class="layui-input">
+            <input type="text" name="stock_num_input" id="box_num" autocomplete="off" class="layui-input"
+`               <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductNum%>"
+               <%}%>
+
+            >
           </div>
           <label class="layui-form-label">单位：</label>
           <div class="layui-input-inline" style="width: 210px;">
             <select name="positon" lay-verify="">
+              <%if(msg.data && msg.data != ""){%>
+                    <option selected="true"><%=msg.data.stockProductPosition%></option>
+               <%}%>
               <option value="箱">箱</option>
-            </select>   
+            </select>
           </div>
         </div>
         <div class="layui-inline">
           <label class="layui-form-label">非整件品：</label>
           <div class="layui-input-inline" style="width: 210px;">
-            <input type="text" name="stock_num_input" id="plus_num" autocomplete="off" class="layui-input">
+            <input type="text" name="stock_num_input" id="plus_num" autocomplete="off" class="layui-input"
+                <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductPlusNum%>"
+               <%}%>
+            >
           </div>
           <label class="layui-form-label">单位：</label>
           <div class="layui-input-inline" style="width: 210px;">
             <select name="plusPosition" id="plusPosition" lay-verify="">
+              <%if(msg.data && msg.data != ""){%>
+                    <option selected="true"><%=msg.data.stockProductPlusPosition%></option>
+               <%}%>
               <option value="箱">个</option>
               <option value="瓶">瓶</option>
               <option value="件">件</option>
-            </select>   
+            </select>
           </div>
         </div>
         <div class="layui-inline">
           <label class="layui-form-label">每<em class="label-trans">箱</em>个数：</label>
           <div class="layui-input-inline" style="width: 210px;">
-            <input type="text" name="stock_num_input" id="format_num" autocomplete="off" class="layui-input">
+            <input type="text" name="stock_num_input" id="format_num" autocomplete="off" class="layui-input"
+                <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductFormatNum%>"
+               <%}%>
+
+            >
           </div>
           <label class="layui-form-label">保质期：</label>
           <div class="layui-input-inline" style="width: 210px;">
-            <input type="text" name="guaranteeTime" id="guaranteeTime" autocomplete="off" class="layui-input">
+            <input type="text" name="guaranteeTime" id="guaranteeTime" autocomplete="off" class="layui-input"
+                <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductGuaranteeTime%>"
+               <%}%>
+
+            >
           </div>
         </div>
          <div class="layui-inline">
             <label class="layui-form-label">单件重-kg：</label>
             <div class="layui-input-inline" style="width: 210px;">
-              <input type="text" name="singleNetWeight" id="singleNetWeight" autocomplete="off" class="layui-input">
+              <input type="text" name="singleNetWeight" id="singleNetWeight" autocomplete="off" class="layui-input"
+              <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductSingleNetweight%>"
+               <%}%>
+
+              >
             </div>
             <label class="layui-form-label" style="min-width: 120px;">单件体积-m3：</label>
             <div class="layui-input-inline" style="width: 170px;">
-              <input type="text" name="singleCapacity" id="singleCapacity" autocomplete="off" class="layui-input">
+              <input type="text" name="singleCapacity" id="singleCapacity" autocomplete="off" class="layui-input"
+              <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductSingleCapacity%>"
+               <%}%>
+
+              >
             </div>
           </div>
      </div>
@@ -98,7 +165,7 @@
     </div>
     <div class="layui-form-item">
       <div id="fee_container">
-               
+
       </div>
       <div class="layui-inline">
         <label class="layui-form-label">总成本：</label>
@@ -119,33 +186,81 @@
         <label class="layui-form-label">库存状态：</label>
         <div class="layui-input-inline" style="min-width: 100px;">
            <select name="state" id="state" lay-verify="">
-            <option selected="true">在途（可预售）</option>
-            <option>在售</option>
-            <option>已售罄</option>
-            <option>退货（在途）</option>
-            <option>已退货</option>
+            <%
+              if(msg.data && msg.data){
+
+                if(msg.data.stockProductStatus == "0"){
+                    %>
+                      <option value="0" selected="true">在途（可预售）</option>
+                      <option value="1">在售</option>
+                      <option value="2">已售罄</option>
+                      <option value="3">退货（在途）</option>
+                      <option value="4">已退货</option>
+                    <%
+                }else if(msg.data.stockProductStatus == "1"){
+                    %>
+                      <option value="0" selected="true">在售</option>
+                      <option value="2">已售罄</option>
+                      <option value="3">退货（在途）</option>
+                      <option value="4">已退货</option>
+                    <%
+                }else if(msg.data.stockProductStatus == "2"){
+                    %>
+                      <option value="0" selected="true">已售罄</option>
+                      <option value="3">退货（在途）</option>
+                      <option value="4">已退货</option>
+                    <%
+                }else if(msg.data.stockProductStatus == "3"){
+                    %>
+                      <option value="0" selected="true">退货（在途）</option>
+                      <option value="0" selected="true">已退货</option>
+                    <%
+                }else if(msg.data.stockProductStatus == "4"){
+                    %>
+                      <option value="0" selected="true">已退货</option>
+                    <%
+                }
+
+              }else{
+                  %>
+              <option value="0">在途（可预售）</option>
+              <option value="1">在售</option>
+              <option value="2">已售罄</option>
+              <option value="3">退货（在途）</option>
+              <option value="4">已退货</option>                  <%
+              }
+
+            %>
           </select>
         </div>
         <label class="layui-form-label">使用仓库：</label>
        <div class="layui-input-inline" style="min-width: 90px;">
          <select name="storage" id="storage" lay-verify="">
+          <%if(msg.data && msg.data != ""){%>
+             <option selected="true"><%=msg.data.stockProductStorage%></option>
+          <%}%>
           <option>在途销售|无库存</option>
-          <option>青岛1库|新城区</option>
-          <option>青岛2库|老城区</option>
-          <option>上海1库|宝山区</option>
-          <option>天津1库|和平区</option>
-          <option>重庆1库|南岸</option>
+          <option>默认库存|青岛</option>
         </select>
       </div>
       </div>
       <div class="layui-inline">
         <label class="layui-form-label">损耗个数：</label>
         <div class="layui-input-inline" style="min-width: 100px;">
-           <input type="text" name="stock_num_input" id="wastage" autocomplete="off" class="layui-input">
+           <input type="text" name="stock_num_input" id="wastage" autocomplete="off" class="layui-input"
+              <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductWastage%>"
+               <%}%>
+
+           >
         </div>
         <label class="layui-form-label">库存费：</label>
         <div class="layui-input-inline" style="min-width: 100px;">
-           <input type="text" name="storage_fee" id="storage_fee" autocomplete="off" class="layui-input">
+           <input type="text" name="storage_fee" id="storage_fee" autocomplete="off" class="layui-input"
+              <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductStorageFee%>"
+               <%}%>
+           >
         </div>
     </div>
     </div>
@@ -156,8 +271,16 @@
       <div class="layui-inline">
         <label class="layui-form-label">供货商：</label>
         <div class="layui-input-inline" style="min-width: 100px;width: 400px;">
-            <input type="text" name="supplierName" autocomplete="off" class="layui-input" id="supplier_select_input" readonly="true">
-            <input type="hidden" name="supplierId" id="supplierId" />
+            <input type="text" name="supplierName" autocomplete="off" class="layui-input" id="supplier_select_input" readonly="true"
+              <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.supplierSubjectName%>"
+               <%}%>
+            >
+            <input type="hidden" name="supplierId" id="supplierId" 
+              <%if(msg.data && msg.data != ""){%>
+                    value="<%=msg.data.stockProductSupplierSubjectId%>"
+               <%}%>
+            />
         </div>
         <div class="layui-form-label">
             <a href="javascript:;" id="selectSupplier_show" class="layui-btn layui-btn-xs layui-btn-warm">

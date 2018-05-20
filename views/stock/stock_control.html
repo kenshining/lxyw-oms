@@ -19,7 +19,7 @@
            <select name="productStatus_search" id="productStatus_search" lay-verify="">
               <option value="" selected="true">全部</option>
               <option value="0">在途（可预售）</option>
-              <option vakue="1">在售</option>
+              <option value="1">在售</option>
               <option value="2">已售罄</option>
               <option value="3">退货（在途）</option>
               <option value="4">已退货</option>
@@ -41,9 +41,7 @@
         </div>
         </form>
       </div>
-      <div id="table_content">
-      </div>
-      <div id="table_content" lay-filter="user_table_filter"></div>
+      <div id="table_content" lay-filter="stock_table_filter"></div>
       <script type="text/html" id="table_control_bar">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>

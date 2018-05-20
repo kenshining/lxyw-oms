@@ -18,7 +18,6 @@ layui.use(['table','layer','element','jquery'], function() {
          {field:'username',  align:'center',title: '用户名'}
           ,{field:'name', align:'center', title: '姓名'}
           ,{field:'sex',  align:'center',title: '性别' ,templet: function(d){
-              
               if(d.sex == 'F'){
                 return "女";
               }else{

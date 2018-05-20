@@ -21,7 +21,7 @@ var cache = require('gulp-cache');
 
 //清理动作
 gulp.task("clean", function(){ 
-    return gulp.src(['./dist/**/*.*','./public/stylesheets/**/*.css'],{read:false})
+    return gulp.src(['./dist/**/*.*','./public/stylesheets/**/*.css','./public/javascripts/**/*.js'],{read:false})
     .pipe(clean());
 });
 
@@ -95,9 +95,9 @@ gulp.task('imagesmin', function() {
 
 //监听文件，文件改变，执行对应任务
 gulp.task('watch',function(){
-    squence('clean', 'sass','cssmin','jsmin','imagesmin','jsscp',function() {
-         gulp.watch(['./src/sass/**/*.scss','./src/js/**/*.js','./src/images/**/*.{png,jpg,gif}'],function(event){
-          squence('clean','sass','cssmin','jsmin','imagesmin','jsscp')(function (err) {
+    squence('clean', 'sass','cssmin','jsmin','jsscp',function() {
+         gulp.watch(['./src/sass/**/*.scss','./src/js/**/*.js'],function(event){
+          squence('clean','sass','cssmin','jsmin','jsscp')(function (err) {
             if (err){
             console.log(err);
           }else{

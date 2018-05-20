@@ -8,7 +8,13 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
 
         //检索库存数据
         $("#search").on("click",function(){
-            console.log($('#stock_search_date').val());
+            var search_date = $('#stock_search_date').val();
+            var start_date;
+            var end_date;
+            if(search_date != ""){
+              start_date = search_date.split("_")[0];
+              end_date = search_date.split("_")[1];
+            }
             table.reload('stock_table',{
               page: {
                 curr: 1 //重新从第 1 页开始
@@ -16,8 +22,9 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
             ,where:{
                 t: new Date().getTime(),
                 productName:$('#productName_search').val(),
-                cellphoneNo:$('#productId_search').val(),
-                dates:$('#stock_search_date').val()       
+                productStatus:$('#productStatus_search').val(),
+                start_date:start_date,
+                end_date:end_date
             }
             ,loading:true
             });
@@ -53,7 +60,7 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
                       //提交数据
                        /*var loadIndex = layer.load(2);
                        $.post('/user/saveUser',{
-                        
+
                        },function(data, textStatus, jqXHR){
                             layer.close(loadIndex);
                             layer.close(index);
@@ -64,12 +71,13 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
                 });
                  //默认全屏显示
                 layer.full(index);
-            
+
         });
 
         table.render({
             elem: '#table_content'
             ,id: 'stock_table'
+            ,url:'/stock/stock_findByPage'
             ,where:{
                 t: new Date().getTime()
             }
@@ -82,7 +90,7 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
               ,{field:'location', align:'center', title: '供应商'}
               ,{field:'state',  align:'center',title: '库存状态' ,templet: function(d){
 
-                  if(d.sex == 'F'){
+                  if(d.status == '0'){
                     return "女";
                   }else{
                     return "男";
@@ -122,21 +130,21 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
           supplierId=dataForm.contents().find("#supplierId").val(),
           storage_fee=dataForm.contents().find("#storage_fee").val();
       //为空校验
-      if(cvu.isNull(productName) 
-        || cvu.isNull(productBatch) 
-        || cvu.isNull(qno) 
-        || cvu.isNull(location) 
-        || cvu.isNull(box_num) 
-        || cvu.isNull(positon) 
-        || cvu.isNull(plus_num) 
-        || cvu.isNull(plusPosition) 
-        || cvu.isNull(format_num) 
-        || cvu.isNull(guaranteeTime) 
-        || cvu.isNull(singleNetWeight) 
-        || cvu.isNull(singleCapacity) 
+      if(cvu.isNull(productName)
+        || cvu.isNull(productBatch)
+        || cvu.isNull(qno)
+        || cvu.isNull(location)
+        || cvu.isNull(box_num)
+        || cvu.isNull(positon)
+        || cvu.isNull(plus_num)
+        || cvu.isNull(plusPosition)
+        || cvu.isNull(format_num)
+        || cvu.isNull(guaranteeTime)
+        || cvu.isNull(singleNetWeight)
+        || cvu.isNull(singleCapacity)
         || cvu.isNull(wastage)
-        || cvu.isNull(productDate) 
-        || cvu.isNull(deadDate)  
+        || cvu.isNull(productDate)
+        || cvu.isNull(deadDate)
         //|| cvu.isNull(supplierId)
         || cvu.isNull(storage_fee)){
         return emu.errorMsg.all_not_null;

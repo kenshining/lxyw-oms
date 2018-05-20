@@ -6,10 +6,28 @@ layui.use(['form','layer','jquery','table','element'], function() {
         layer = layui.layer;
   //供应商联系人列表
   var contectList = [];
+  //渲染静态表格
+  table.render({
+        elem: '#contact_table_container'
+        ,id: 'contact_table'
+        ,page:false
+        ,data:contectList
+        ,cols:[[
+           {field:'name', minWidth:'120', align:'center',title: '姓名'}
+          ,{field:'position', minWidth:'120',  align:'center',title: '职位'}
+          ,{field:'cellphone', minWidth:'120',  align:'center',title: '移动电话'}
+          ,{field:'email', minWidth:'240',  align:'center',title: 'Email'}
+          ,{field:'remark', minWidth:'240',  align:'center',title: '备注'}
+          ,{align:'center',minWidth:'120', title: '操作', toolbar:'#table_control_bar'}
+        ]]
+        ,loading:true
+  });
   //如果是修改，则页面加载完成后需要初始化采购人列表数据
   if($("#individualLink").length > 0){
+    //alert($("#individualLink").val());
       var individualLink = $.parseJSON($("#individualLink").val());
-      for(var i = 0 ; i <individualLink.length ; i++){ 
+
+      for(var i = 0 ; i <individualLink.length ; i++){
          var item = {
               id:individualLink[i].id,
               name:individualLink[i].name,
@@ -28,22 +46,6 @@ layui.use(['form','layer','jquery','table','element'], function() {
       });
 
   }
-  //渲染静态表格
-  table.render({
-        elem: '#contact_table_container'
-        ,id: 'contact_table'
-        ,page:false
-        ,data:contectList
-        ,cols:[[
-           {field:'name', minWidth:'120', align:'center',title: '姓名'}
-          ,{field:'position', minWidth:'120',  align:'center',title: '职位'}
-          ,{field:'cellphone', minWidth:'120',  align:'center',title: '移动电话'}
-          ,{field:'email', minWidth:'240',  align:'center',title: 'Email'}
-          ,{field:'remark', minWidth:'240',  align:'center',title: '备注'}
-          ,{align:'center',minWidth:'120', title: '操作', toolbar:'#table_control_bar'}
-        ]]
-        ,loading:true
-  });
   form.render();
   table.reload('contact_table');
   $("#addNewConnectorBtn").on("click",function(){
@@ -69,7 +71,7 @@ layui.use(['form','layer','jquery','table','element'], function() {
               remark:$('#tmp_add_remark').val()
             }
             //判断属性都不能为空
-            if(item.name == "" || 
+            if(item.name == "" ||
               item.position == "" ||
               item.cellphone == "" ||
               item.email == "" ){
@@ -96,7 +98,6 @@ layui.use(['form','layer','jquery','table','element'], function() {
         var tr = obj.tr; //获得当前行 tr 的DOM对象
         //console.log(data);
         if(layEvent === 'deletContect'){ //删除
-            
             var tempArr = [];
             for(var i = 0; i < contectList.length ; i++){
               if(contectList[i].id != obj.data.id){

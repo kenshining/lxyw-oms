@@ -27,7 +27,7 @@ layui.use(['form','layer','jquery','table'], function() {
                    //取不到ID使用逐层查找的方式找ID
                    //var id = $(layero).find("iframe")[0].contentWindow.document.getElementById("user_id").value;
                    //提取采购联系人
-                   var indevidualList = $.parseJSON(dataForm.contents().find("#contact_table_container").attr("data"));
+                   var individualLink = $.parseJSON(dataForm.contents().find("#contact_table_container").attr("data"));
                    var loadIndex = layer.load(2);
                    $.post('/stock/supplier_save',{
                     supplierName:dataForm.contents().find("#supplierName").val(),
@@ -37,7 +37,7 @@ layui.use(['form','layer','jquery','table'], function() {
                     supplierCellphone:dataForm.contents().find("#supplierCellphone").val(),
                     supplierAddress:dataForm.contents().find("#supplierAddress").val(),
                     supplierRemark:dataForm.contents().find("#supplierRemark").val(),
-                    indevidualList:JSON.stringify(indevidualList)
+                    individualLink:JSON.stringify(individualLink)
                    },function(data, textStatus, jqXHR){
                         layer.close(loadIndex);
                         if(data.code == 0){
@@ -52,7 +52,6 @@ layui.use(['form','layer','jquery','table'], function() {
         });
         //默认全屏显示
         layer.full(index);
-            
     });
 
     //检索库存数据
@@ -63,7 +62,7 @@ layui.use(['form','layer','jquery','table'], function() {
           }
         ,where:{
             t: new Date().getTime(),
-            supplierName:$('#supplierNameSearch').val()     
+            supplierName:$('#supplierNameSearch').val()
         }
         ,loading:true
         });
@@ -110,7 +109,7 @@ layui.use(['form','layer','jquery','table'], function() {
                 title: '编辑供应商信息',
                 btn: ['保存', '取消'],
                 success: function(layero, index){
-                    
+
                 },
                 yes: function(index,layero){
                    var dataForm = layer.getChildFrame('form', index);
@@ -124,7 +123,7 @@ layui.use(['form','layer','jquery','table'], function() {
                    //取不到ID使用逐层查找的方式找ID
                    //var id = $(layero).find("iframe")[0].contentWindow.document.getElementById("user_id").value;
                    //提取采购联系人
-                   var indevidualList = $.parseJSON(dataForm.contents().find("#contact_table_container").attr("data"));
+                   var individualLink = $.parseJSON(dataForm.contents().find("#contact_table_container").attr("data"));
                    var loadIndex = layer.load(2);
                    $.post('/stock/supplier_save',{
                     id:data.id,
@@ -135,7 +134,7 @@ layui.use(['form','layer','jquery','table'], function() {
                     supplierCellphone:dataForm.contents().find("#supplierCellphone").val(),
                     supplierAddress:dataForm.contents().find("#supplierAddress").val(),
                     supplierRemark:dataForm.contents().find("#supplierRemark").val(),
-                    indevidualList:JSON.stringify(indevidualList)
+                    individualLink:JSON.stringify(individualLink)
                    },function(data, textStatus, jqXHR){
                         layer.close(loadIndex);
                         if(data.code == 0){
@@ -150,7 +149,7 @@ layui.use(['form','layer','jquery','table'], function() {
             });
             //默认全屏显示
             layer.full(index);
-          
+
 
         }else if(layEvent === 'del'){
 
@@ -163,7 +162,6 @@ layui.use(['form','layer','jquery','table'], function() {
                  layer.close(index);
                  //显示加载层
                  var loadIndex = layer.load(2);
-                 
                 $.post('/stock/supplier_delete',{
                   id:data.id,
                   t: new Date().getTime()
@@ -176,7 +174,7 @@ layui.use(['form','layer','jquery','table'], function() {
                     }else{
                         layer.msg("删除失败："+data.message);
                     }
-                     
+
                  },'json');
             });
 
@@ -184,8 +182,8 @@ layui.use(['form','layer','jquery','table'], function() {
     });
 
     //保存验证
-    var saveValidate = function(){
-      var indevidualList = $.parseJSON(dataForm.contents().find("#contact_table_container").attr("data")),
+    var saveValidate = function(dataForm){
+      var individualLink = $.parseJSON(dataForm.contents().find("#contact_table_container").attr("data")),
       supplierName=dataForm.contents().find("#supplierName").val(),
       supplierType=dataForm.contents().find("#supplierType").val(),
       supplierEmail=dataForm.contents().find("#supplierEmail").val(),
@@ -198,19 +196,19 @@ layui.use(['form','layer','jquery','table'], function() {
       var emu = new CommonValidationEmu();
 
       //为空校验
-      if(cvu.isNull(supplierName) 
-        || cvu.isNull(supplierEmail) 
-        || cvu.isNull(supplierLocation) 
-        || cvu.isNull(supplierCellphone) 
-        || cvu.isNull(supplierAddress) 
+      if(cvu.isNull(supplierName)
+        || cvu.isNull(supplierEmail)
+        || cvu.isNull(supplierLocation)
+        || cvu.isNull(supplierCellphone)
+        || cvu.isNull(supplierAddress)
         || cvu.isNull(supplierRemark) ){
         return emu.errorMsg.all_not_null;
       }
       //收货联系人必须填写
-      if(indevidualList.length <= 0 ){
+      if(individualLink.length <= 0 ){
         return "必须设置一位[供应商联系人]";
       }
       return "";
     }
-    
+
 });

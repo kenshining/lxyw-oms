@@ -12,7 +12,7 @@
       <%if(msg.data && msg.data != ""){%>
         <input type="hidden" name="supplier_id" id="supplier_id" value="<%=msg.data.id%>"> 
         <!--联系人先存在hidden里，然后js转成对象后js调用新增即可-->
-        <input type="hidden" id="individualLink" name="customerLink" value="<%=msg.data.individualLink%>">
+        <input type="hidden" id="individualLink" name="individualLink" value='<%=msg.data.individualLink%>'>
       <%}%>
 
 

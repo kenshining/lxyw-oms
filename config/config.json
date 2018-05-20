@@ -1,7 +1,7 @@
-{ 
+{
     "serverInfo":{
         "port":"3000",
-        "url":"http://127.0.0.1",
+        "url":"http://192.168.0.110",
         "_comment":"使用的服务和端口号"
     },
     "redisConfig":{
@@ -10,25 +10,25 @@
         "sessionDay":0.04
     },
     "webservice":{
-        "url":"http://localhost:8080/",
+        "url":"http://192.168.0.110:8080/",
         "_comment":"使用的后端服务"
     },
     "roleURL":[
         "/main"
     ],
-    "log4js": { 
-        "appenders": [ 
+    "log4js": {
+        "appenders": [
             {"type": "console", "category": "console"},
             {
               "type": "dateFile",
               "filename": "logs/",
               "pattern": "yyyyMMddhh.txt",
               "absolute": true,
-              "alwaysIncludePattern": true,   
+              "alwaysIncludePattern": true,
               "category": "logInfo"
-            } 
+            }
         ],
-        "levels":{ 
+        "levels":{
             "logInfo": "ALL"
         },
         "replaceConsole": false

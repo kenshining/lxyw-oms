@@ -3,35 +3,35 @@ var tools= require('../lib/tools');
 * 我要借款模块
 **/
 exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
-  
+
   /**销售订单**/
   app.get('/sales/sales_control', function(req, res){
-  
+
       res.render('sales/sales_control', {title: '销售订单管理' });
   });
 
   app.get('/sales/sales_edit', function(req, res){
-  
+
       res.render('sales/sales_edit', {
         user:req.session.user,
-        title: '销售订单管理' 
+        title: '销售订单管理'
       });
   });
 
   app.get('/sales/sales_process', function(req, res){
-  
+
       res.render('sales/sales_process', {title: '销售过程状态' });
   });
 
 	/**客户管理**/
   app.get('/sales/customer_control', function(req, res){
-  
+
       res.render('sales/customer_control', {title: '客户管理' });
   });
 
   /**销售订单选择客户**/
   app.get('/sales/chooes_customer', function(req, res){
-  
+
       res.render('sales/chooes_customer', {title: '销售订单选择客户' });
   });
   /**客户管理**/
@@ -61,12 +61,12 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
         pageJson.msg = "获取成功";
         pageJson.count = msg.data.totalSize;
         pageJson.data = msg.data.list;
-        res.json(pageJson); 
+        res.json(pageJson);
       },function(msg){
         pageJson.code = 1;
         pageJson.msg = msg.message;
         res.json(msg);
-      },serviceEnumerationInstance.SALSE_CUSTOMER_LIST,"POST"); 
+      },serviceEnumerationInstance.SALSE_CUSTOMER_LIST,"POST");
   });
   /**客户管理-查询用户**/
   app.get('/sales/customer_edit', function(req, res){
@@ -99,7 +99,7 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
           msg:{}
       });
     }
-      
+
   });
 
   //获取客户联系人信息
@@ -156,17 +156,17 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
       params.updateBy = req.session.user.username;
       serviceInstance.callServer(params,function(msg){
         console.info(msg);
-        res.json(msg); 
+        res.json(msg);
       },function(msg){
         res.json(msg);
-      },serviceEnumerationInstance.SALSE_CUSTOMER_SAVE_UPDATE,"POST"); 
-      
+      },serviceEnumerationInstance.SALSE_CUSTOMER_SAVE_UPDATE,"POST");
+
      }else{
       //新增用户
       params.createdBy = req.session.user.username;
       serviceInstance.callServer(params,function(msg){
         console.info(msg);
-        res.json(msg); 
+        res.json(msg);
       },function(msg){
         res.json(msg);
       },serviceEnumerationInstance.SALSE_CUSTOMER_SAVE_NEW,"POST");
@@ -184,12 +184,12 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
     //更新用户
     serviceInstance.callServer(params,function(msg){
       console.info(msg);
-      res.json(msg); 
+      res.json(msg);
     },function(msg){
       res.json(msg);
     },serviceEnumerationInstance.SALSE_CUSTOMER_SAVE_DELETE,"POST");
-    
+
   });
-  
-  
+
+
 };

@@ -13,30 +13,34 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         laydate.render({
             elem:'#deadDate'
         });
+        //费用列表
+        var feeInputsList = [];
+
         //选择供应商切换视图和渲染表格
         $('#selectSupplier_show').on('click', function() {
             fadeDiv("#stock_form","#supplier_select");
-            //渲染供应商选择列表 
+            //渲染供应商选择列表
             table.render({
                 elem: '#supplier_select_List'
                 ,id: 'supplier_select_List'
                 ,cellMinWidth: 200 //全局定义常规单元格的最小宽度，
                 ,where:{
-                    t: new Date().getTime()
+                    t: new Date().getTime(),
+                    supplierName:$("#supplierNameSelect").val()
                 }
-                //,url:'/user/user_findUserByPage'
+                ,url:'/stock/supplier_findByPage'
                 ,cols: [[
-                  {field:'name',  align:'center',title: '供货商名称'}
-                  ,{field:'type',  align:'center',title: '供货商类别' ,templet: function(d){
-                      if(d.sex == '0'){
+                  {field:'supplierName',  align:'center',title: '供货商名称'}
+                  ,{field:'supplierType',  align:'center',title: '供货商类别' ,templet: function(d){
+                      if(d.supplierType == '0'){
                         return "公司客户";
                       }else{
                         return "个人客户";
                       }
                     }}
-                  ,{field:'email', align:'center', title: '邮件'}
-                  ,{field:'phone', align:'center', title: '联系电话'}
-                  ,{field:'location', align:'center', title: '供货商所属地区'}
+                  ,{field:'supplierEmail', align:'center', title: '邮件'}
+                  ,{field:'supplierCellphone', align:'center', title: '联系电话'}
+                  ,{field:'supplierLocation', align:'center', title: '供货商所属地区'}
                   ,{fixed: 'right', align:'center',title: '操作', toolbar:'#table_control_bar'}
                 ]]
                 ,page: true
@@ -54,7 +58,7 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
               }
             ,where:{
                 t: new Date().getTime(),
-                supplierName:$('#supplierName').val()
+                supplierName:$("#supplierNameSelect").val()
             }
             ,loading:true
             });
@@ -66,15 +70,15 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
             var tr = obj.tr; //获得当前行 tr 的DOM对象
             //console.log(data);
             if(layEvent === 'selectSupplierBtn'){ //删除
-                layer.msg(obj.data.id);
+                //layer.msg(obj.data.id);
                  fadeDiv("#supplier_select","#stock_form",function(){
                     //滚动到最底部，显示赋值。
                     $('html,body').animate({scrollTop:$("body").height()},'fast');
-                    $("#supplier_select_input").val(obj.data.id);
+                    $("#supplier_select_input").val(obj.data.supplierName);
+                    $("#supplierId").val(obj.data.id);
                     //完成选择前启用外层保存按钮
                     $('.layui-layer-btn0', parent.document).show();
                 });
-                
             }
       });
     //切换显示DIV内容
@@ -154,12 +158,12 @@ layui.use(['form','layer','table','jquery','laydate'], function() {
         calculateFee();
         //刷新全局feeList
         refreshFeeList();
-        
+
     });
     form.on('select(fee_select)', function(data){
        //刷新全局feeList
         refreshFeeList();
-    }); 
+    });
     //刷新全局feeList
     var refreshFeeList = function(){
         //将费用部分同步到feeList中方便外围获取数据

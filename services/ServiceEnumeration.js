@@ -23,13 +23,13 @@ function ServiceEnumeration(){
  	//供应商查询分页
  	this.STOCK_SUPPLIER_SEARCH_LIST = "supplierSubject/getSupplierSubjectPageInfo";
  	//供应商主键查询供应商信息
- 	this.STOCK_SUPPLIER_SEARCH_BY_PRIMARYKEY = "userInfo";
+ 	this.STOCK_SUPPLIER_SEARCH_BY_PRIMARYKEY = "supplierSubject/getSupplierSubjectById";
  	//供应商新增
- 	this.STOCK_SUPPLIER_SAVE_NEW = "userInfo";
+ 	this.STOCK_SUPPLIER_SAVE_NEW = "supplierSubject/addSupplierSubject";
  	//供应商更新
- 	this.STOCK_SUPPLIER_SAVE_UPDATE = "userInfo";
+ 	this.STOCK_SUPPLIER_SAVE_UPDATE = "supplierSubject/updateSupplierSubject";
  	//供应商删除
- 	this.STOCK_SUPPLIER_SAVE_DELETE = "userInfo";
+ 	this.STOCK_SUPPLIER_SAVE_DELETE = "supplierSubject/deleteSupplierSubject";
 
  	//库存查询分页
  	this.STOCK_SEARCH_LIST = "userInfo";

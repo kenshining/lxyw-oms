@@ -7,21 +7,27 @@
   </head>
   <body>
 	<fieldset class="layui-elem-field field-block table-block">
-		<legend class="form-label">库存状态修改</legend>
+		<legend class="form-label">基本信息</legend>
 			<table class="layui-table display-table">
 				<tr>
-					<th>商品名称</th>
-					<td>20180901189032MXL</td>
-					<th>入库日期</th>
-					<td>2018年5月18日</td>
-					<th>库存量</th>
-					<td>北京乐享御味贸易有限公司</td>
+					<th>品名</th>
+					<td><%=msg.data.stockProductName%></td>
+					<th>条形码</th>
+					<td><%=msg.data.stockProductQno%></td>
+					<th>批次</th>
+					<td><%=msg.data.stockProductBatch%></td>
 				</tr>
 				<tr>
 					<th>规格</th>
-					<td>20180901189032MXL</td>
-					<th>总费用</th>
-					<td>20180901189032MXL</td>
+					<td>
+							<%if(msg.data.stockProductPlusPosition == "瓶"){%>
+								<%=msg.data.stockProductSingleCapacity+"ml * "+msg.data.stockProductFormatNum+msg.data.stockProductPlusPosition+"/"+msg.data.stockProductPosition%>
+							<%}else{%>
+								<%=msg.data.stockProductSingleNetweight+"kg * "+msg.data.stockProductFormatNum+"/"+msg.data.stockProductPlusPosition+msg.data.stockProductPosition%>
+							<%}%>
+					</td>
+					<th>入库量</th>
+					<td></td>
 					<th>当前状态</th>
 					<td>入库</td>
 				</tr>

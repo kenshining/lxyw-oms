@@ -199,31 +199,31 @@
                     <%
                 }else if(msg.data.stockProductStatus == "1"){
                     %>
-                      <option value="0" selected="true">在售</option>
+                      <option value="1" selected="true">在售</option>
                       <option value="2">已售罄</option>
                       <option value="3">退货（在途）</option>
                       <option value="4">已退货</option>
                     <%
                 }else if(msg.data.stockProductStatus == "2"){
                     %>
-                      <option value="0" selected="true">已售罄</option>
+                      <option value="2" selected="true">已售罄</option>
                       <option value="3">退货（在途）</option>
                       <option value="4">已退货</option>
                     <%
                 }else if(msg.data.stockProductStatus == "3"){
                     %>
-                      <option value="0" selected="true">退货（在途）</option>
-                      <option value="0" selected="true">已退货</option>
+                      <option value="3" selected="true">退货（在途）</option>
+                      <option value="4">已退货</option>
                     <%
                 }else if(msg.data.stockProductStatus == "4"){
                     %>
-                      <option value="0" selected="true">已退货</option>
+                      <option value="4" selected="true">已退货</option>
                     <%
                 }
 
               }else{
                   %>
-              <option value="0">在途（可预售）</option>
+              <option value="0" selected="true">在途（可预售）</option>
               <option value="1">在售</option>
               <option value="2">已售罄</option>
               <option value="3">退货（在途）</option>

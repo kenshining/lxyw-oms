@@ -55,7 +55,6 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
 
     var id = req.body.id,
     feelist = req.body.feelist;
-    console.info("2222222222222"+feelist);
       if(feelist !=null && feelist != ""){
           feelist =  JSON.parse(feelist);
       }
@@ -83,9 +82,6 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
       stockProductStorageFee:req.body.storage_fee,
       stockListFeeList:feelist
     };
-    console.info("=============="+id+"================");
-    console.info(params);
-
     if( id != null && id != ''){
       //更新用户
       params.id = id;
@@ -110,7 +106,7 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
 
   });
 
-   //删除供应商
+   //删除库存
   app.post('/stock/stock_delete', function(req, res){
 
     var id = req.body.id;
@@ -118,7 +114,6 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
     var params = {
       id: req.body.id
     };
-    console.info("============== delete:"+id+"================");
     //更新用户
     serviceInstance.callServer(params,function(msg){
       console.info(msg);
@@ -154,8 +149,23 @@ exports.init= function(app,serviceInstance,serviceEnumerationInstance,logger){
       },serviceEnumerationInstance.STOCK_SEARCH_BY_PRIMARYKEY,"POST");
   });
 
+  /**状态修改操作**/
   app.get('/stock/stock_status', function(req, res){
-      res.render('stock/stock_status', {title: 'Express' });
+    var params = {
+      id:req.query.id
+    }
+    serviceInstance.callServer(params,function(msg){
+      msg.data.stockListFeeList = JSON.stringify(msg.data.stockListFeeList);
+      res.render('stock/stock_status', {
+        msg:msg
+      });
+    },function(msg){
+      console.info(msg);
+      res.render('stock/stock_status', {
+        msg:msg
+      });
+    },serviceEnumerationInstance.STOCK_SEARCH_BY_PRIMARYKEY,"POST");
+
   });
 
   //供货商管理

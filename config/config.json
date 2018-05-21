@@ -10,7 +10,7 @@
         "sessionDay":0.04
     },
     "webservice":{
-        "url":"http://192.168.0.110:8080/",
+        "url":"http://localhost:8080/",
         "_comment":"使用的后端服务"
     },
     "roleURL":[

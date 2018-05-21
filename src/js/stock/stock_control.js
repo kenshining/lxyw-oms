@@ -106,9 +106,21 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
               {field:'stockProductName',  align:'center',title: '品名'}
               ,{field:'stockProductQno', align:'center', title: '条形码'}
               ,{field:'stockProductBatch', align:'center', title: '批次'}
-              ,{field:'stockProductPosition', align:'center', title: '产地'}
+              ,{field:'stockProductLocation', align:'center', title: '产地'}
               ,{field:'stockProductNum', align:'center', title: '规格',templet:function(d){
-                return d.stockProductSingleNetweight+"*"+d.stockProductFormatNum+"/"+d.stockProductPosition;
+                if(d.stockProductPlusPosition == "瓶"){
+                  return d.stockProductSingleCapacity+"ml * "+d.stockProductFormatNum+d.stockProductPlusPosition+"/"+d.stockProductPosition;
+                }else{
+                  return d.stockProductSingleNetweight+"kg * "+d.stockProductFormatNum+"/"+d.stockProductPlusPosition+d.stockProductPosition;
+                }
+                
+              }}
+              ,{field:'stockProductNum', align:'center', title: '入库量',templet: function(d){
+                  var plus = "";
+                  if(d.stockProductPlusNum && d.stockProductPlusNum!= "" && d.stockProductPlusNum != 0){
+                    plus = "|"+d.stockProductPlusNum+d.stockProductPlusPosition;
+                  }
+                  return d.stockProductNum + d.stockProductPosition + plus;
               }}
               ,{field:'supplierSubjectName', align:'center', title: '供应商'}
               ,{field:'stockProductStatus',  align:'center',title: '库存状态' ,templet: function(d){
@@ -128,7 +140,7 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
                   }
 
                 }}
-              ,{fixed: 'right', align:'center',title: '操作', toolbar:'#table_control_bar'}
+              ,{fixed: 'right', align:'center',width:180,title: '操作', toolbar:'#table_control_bar'}
             ]]
             ,page: true
             ,loading:true
@@ -215,6 +227,35 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
             });
             //默认全屏显示
             layer.full(index);
+
+        }else if (layEvent === 'stockStatus'){//编辑库存状态
+
+          var index = layer.open({
+            content: '/stock/stock_status?id='+data.id,
+            type: 2,
+            anim: 2, //动画类型
+            title: '库存状态处理',
+            btn: ['确定', '取消'],
+            skin: 'layui-layer-rim', //加上边框
+            area: ['80%', '80%'], //宽高
+            success: function(layero, index){
+                //console.log(layero, index);
+            },
+            yes: function(index,layero){
+               var dataForm = layer.getChildFrame('form', index);
+               //dataForm.contents().find("input[name='username']").val()
+               //进行必要验证
+               var msg = saveValidate(dataForm);
+               if(msg != ''){
+                layer.msg(msg);
+                return;
+               }
+               var loadIndex = layer.load(2);
+               
+            }
+        });
+
+
 
         }
     });

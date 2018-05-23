@@ -172,8 +172,8 @@ layui.use(['form','layer','element','jquery','table'], function() {
 
     //添加和修改验证
     var saveValidate = function(dataForm){
-      var cutList = $.parseJSON(dataForm.contents().find("#cus_table_container").attr("data")),
-      customerName=dataForm.contents().find("#customer_name").val(),
+     
+     var customerName=dataForm.contents().find("#customer_name").val(),
       customerType=dataForm.contents().find("#customer_type").val(),
       customerCellphone=dataForm.contents().find("#customer_cellphone").val(),
       customerEmail=dataForm.contents().find("#customer_email").val(),
@@ -193,6 +193,11 @@ layui.use(['form','layer','element','jquery','table'], function() {
         || cvu.isNull(customerEmail) ){
         return emu.errorMsg.all_not_null;
       }
+      var indata = dataForm.contents().find("#cus_table_container").attr("data");
+      if(indata == null || indata == ""){
+        return "必须设置一位[采购联系人]";
+      }
+      var cutList = $.parseJSON(dataForm.contents().find("#cus_table_container").attr("data"));
       //收货联系人必须填写
       if(cutList.length <= 0 ){
         return "必须设置一位[采购联系人]";

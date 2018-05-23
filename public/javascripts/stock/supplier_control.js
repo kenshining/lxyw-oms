@@ -183,8 +183,8 @@ layui.use(['form','layer','jquery','table'], function() {
 
     //保存验证
     var saveValidate = function(dataForm){
-      var individualLink = $.parseJSON(dataForm.contents().find("#contact_table_container").attr("data")),
-      supplierName=dataForm.contents().find("#supplierName").val(),
+      
+      var supplierName=dataForm.contents().find("#supplierName").val(),
       supplierType=dataForm.contents().find("#supplierType").val(),
       supplierEmail=dataForm.contents().find("#supplierEmail").val(),
       supplierLocation=dataForm.contents().find("#supplierLocation").val(),
@@ -204,6 +204,11 @@ layui.use(['form','layer','jquery','table'], function() {
         || cvu.isNull(supplierRemark) ){
         return emu.errorMsg.all_not_null;
       }
+      var indata = dataForm.contents().find("#contact_table_container").attr("data");
+      if(indata == null || indata == ""){
+        return "必须设置一位[供应商联系人]";
+      }
+      var individualLink = $.parseJSON(dataForm.contents().find("#contact_table_container").attr("data"));
       //收货联系人必须填写
       if(individualLink.length <= 0 ){
         return "必须设置一位[供应商联系人]";

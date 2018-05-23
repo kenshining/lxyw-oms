@@ -58,7 +58,8 @@ body {
 .form-contain .sign-company {
   text-align: right;
   font-size: 1.8rem;
-  font-weight: bold; }
+  font-weight: bold;
+  height: 1rem; }
 
 .form-contain .sign-signature {
   bottom: 10rem;

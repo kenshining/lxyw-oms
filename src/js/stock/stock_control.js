@@ -237,19 +237,13 @@ layui.use(['layer','jquery','form','table','laydate'], function() {
             title: '库存状态处理',
             btn: ['确定', '取消'],
             skin: 'layui-layer-rim', //加上边框
-            area: ['80%', '80%'], //宽高
+            area: ['916px', '360px'], //宽高
             success: function(layero, index){
                 //console.log(layero, index);
             },
             yes: function(index,layero){
                var dataForm = layer.getChildFrame('form', index);
                //dataForm.contents().find("input[name='username']").val()
-               //进行必要验证
-               var msg = saveValidate(dataForm);
-               if(msg != ''){
-                layer.msg(msg);
-                return;
-               }
                var loadIndex = layer.load(2);
                
             }

@@ -27,11 +27,56 @@
 							<%}%>
 					</td>
 					<th>入库量</th>
-					<td></td>
+					<td><%=msg.data.stockProductNum%><%=msg.data.stockProductPosition%>|<%=msg.data.stockProductPlusNum%><%=msg.data.stockProductPlusPosition%></td>
 					<th>当前状态</th>
-					<td>入库</td>
+					<td>
+						<%if(msg.data.stockProductStatus == "0"){%>
+							在途（可预售）
+						<%}else if(msg.data.stockProductStatus == "1"){%>
+							在售
+						<%}else if(msg.data.stockProductStatus == "2"){%>
+							已售罄
+						<%}else if(msg.data.stockProductStatus == "3"){%>
+							退货（在途）
+						<%}else if(msg.data.stockProductStatus == "4"){%>
+							已退货
+						<%}else{%>
+							状态异常
+						<%}%>
+					</td>
+				</tr>
+				<tr>
+					<th>供应商</th>
+					<td><%=msg.data.supplierSubjectName%></td>
+					<th>损耗件数</th>
+					<td><%=msg.data.stockProductWastage%></td>
+					<th>库存可售量</th>
+					<td class="highlight"><b>3000</b></td>
+				</tr>
+				<tr>
+					<th>状态管理</th>
+					<td colspan="5">
+						<form class="layui-form" action="" id="status_form">
+							<input type="radio" name="stockProductStatus" value="0" title="在途（可预售）" <%if(msg.data.stockProductStatus == "0"){%>checked<%}%> >
+							<input type="radio" name="stockProductStatus" value="1" title="在售" <%if(msg.data.stockProductStatus == "1"){%>checked<%}%>>
+							<input type="radio" name="stockProductStatus" value="2" title="已售罄" <%if(msg.data.stockProductStatus == "2"){%>checked<%}%>>
+							<input type="radio" name="stockProductStatus" value="3" title="退货（在途）" <%if(msg.data.stockProductStatus == "3"){%>checked<%}%>>
+							<input type="radio" name="stockProductStatus" value="4" title="已退货" <%if(msg.data.stockProductStatus == "4"){%>checked<%}%>>
+						</form>
+					</td>
 				</tr>
 			</table>
 	</fieldset>
+	<script type="text/javascript">
+		layui.use(['layer','jquery','form','table','laydate'], function() {
+	    var $ = layui.jquery,
+	        form = layui.form,
+	        table = layui.table,
+	        laydate = layui.laydate,
+	        layer = layui.layer;
+
+	        form.render();
+	    });
+	</script>
   </body>
 </html>

@@ -27,9 +27,10 @@
 
 
     <script type="text/javascript">
+      var order_id = "20180524145152098DEIN";
       $(function(){
         //生成
-        $(".order_id_barcode").barcode("20170309XNI3321XIIN", "code93",{barWidth:1, barHeight:40});
+        $(".order_id_barcode").barcode(order_id, "code93",{barWidth:1, barHeight:40});
         // 设置参数方式
         /*var qrcode = new QRCode('wx_code', {
           text: 'https://u.wechat.com/13241413155',
@@ -40,7 +41,6 @@
           correctLevel : QRCode.CorrectLevel.H
         });*/
       });
-      var order_id = "20170309XNI3321XIIN";
       var printToPdf = function(){
         alert("因效果不好暂时停止使用。");
       }
@@ -139,8 +139,8 @@
               <div>
                 <table>
                     <tr>
-                      <td colspan="7">客户名称：成龙（个人客户）</td>
-                      <td colspan="4">订单编号：20170309XNI3321XIIN | 2018年10月13日</td>
+                      <td colspan="7" style="width: 50%">客户名称：成龙（个人客户）</td>
+                      <td colspan="4" style="width: 50%">订单编号：20170309XNI3321XIIN | 2018年10月13日</td>
                     </tr>
                     <tr>
                       <td colspan="7">采购联系人：成龙 | 电话：18611699091</td>

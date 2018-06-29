@@ -22,3 +22,6 @@ html {
 .display-table th {
   color: #054e8e;
   text-align: right; }
+
+.layui-table tbody tr:hover {
+  background-color: transparent; }
